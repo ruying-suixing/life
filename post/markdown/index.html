@@ -1,0 +1,3475 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="keywords" content="Gridea 静态个人博客 | 如影随形">
+<meta name="description" content="">
+<meta name="theme-color" content="#5f3dc4">
+<meta name="msvalidate.01" content="834934A21966752BEE6AF6E075C3C653" />
+<title>Markdown语法教程 | 生活 - 如形の小站</title>
+<link rel="shortcut icon" href="/favicon.ico?v=1782735875191">
+<link rel="stylesheet" href="/media/css/pisces.css">
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.cn/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto+Slab:300,300italic,400,400italic,700,700italic|Rosario:300,300italic,400,400italic,700,700italic|PT+Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="/media/hljs/styles/gradient-dark.css" rel="stylesheet">
+
+<script src="https://cdn.bootcdn.net/ajax/libs/pace/1.2.1/pace.min.js"></script>
+<link href="https://cdn.jsdelivr.net/gh/soyaine/PaceJS-Custom-Theme/image-loading.js?img=https://ruyingsuixing.dpdns.org/favicon.ico" rel="stylesheet" />
+
+<link rel="stylesheet" href="/styles/main.css">
+<!-- Scripts begin -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="/media/js/jquery.js"></script>
+<script src="/media/hljs/highlight.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/velocity/1.5.0/velocity.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/velocity/1.5.0/velocity.ui.min.js"></script>
+<script src="/media/js/random-bg.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<!-- Scripts end -->
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.4/katex.min.css">
+
+
+<script defer src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.4/katex.min.js"></script>
+<script defer src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.4/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body);"></script>
+
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?37a462fa40f92378c48b38ae7e80a64c";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+<script defer type="text/javascript" src="https://www.daoblog.top/js/console-text.js"></script>
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+<script src="https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
+
+
+
+<style>
+  @font-face {
+    font-family: '霞鹜文楷';
+    src: url('/media/fonts/霞鹜文楷.ttf'); 
+    font-weight: normal;
+    font-style: normal;
+  }
+  * {
+    font-family: '霞鹜文楷';
+    font-display: swap;
+  }
+</style>
+  <meta name="description" content="Markdown语法教程" />
+  <meta name="keywords" content="Markdown" />
+</head>
+<body>
+  <!-- ===================== 1. 模糊遮罩 blur 短代码 ===================== -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const blurReg = /\{\% blur (.*?)\%\}/g;
+    const contentBox = document.querySelector('.next-md-body');
+    if(contentBox) {
+        contentBox.innerHTML = contentBox.innerHTML.replace(blurReg, '<span class="blur">$1</span>');
+    }
+});
+</script>
+<style>
+    .blur {
+        filter: blur(5px) !important;
+        -webkit-filter: blur(5px) !important;
+        transition: filter 0.3s ease !important;
+        cursor: pointer !important;
+    }
+    .blur:hover {
+        filter: none !important;
+        -webkit-filter: none !important;
+    }
+</style>
+
+<!-- ===================== 2. 折叠面板 fold 短代码 ===================== -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const foldReg = /\{\% fold (.*?)\%\}([\s\S]*?)\{\% endfold \%\}/g;
+    const contentBox = document.querySelector('.next-md-body');
+    if(contentBox) {
+        contentBox.innerHTML = contentBox.innerHTML.replace(foldReg, '<details><summary>$1</summary>$2</details>');
+    }
+});
+</script>
+<style>
+    details {
+        padding: 8px 12px;
+        margin: 8px 0;
+        border-radius: 4px;
+        border: 1px solid #e5e7eb !important;
+    }
+    summary {
+        cursor: pointer !important;
+        font-weight: 500 !important;
+    }
+</style>
+
+<!-- ===================== 3. Notice 带图标通知框【修复版-必生效】warning/info/note/tip ===================== -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const noticeIconMap = {
+        warning: '<svg xmlns="http://www.w3.org/2000/svg" class="notice-icon" viewBox="0 0 576 512" fill="hsl(0, 65%, 65%)"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6.0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6.0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"/></svg>',
+        info: '<svg xmlns="http://www.w3.org/2000/svg" class="notice-icon" viewBox="0 0 512 512" fill="hsl(30, 80%, 70%)"><path d="M256 8a248 248 0 100 496 248 248 0 000-496zm0 110a42 42 0 110 84 42 42 0 010-84zm56 254c0 7-5 12-12 12h-88c-7 0-12-5-12-12v-24c0-7 5-12 12-12h12v-64h-12c-7 0-12-5-12-12v-24c0-7 5-12 12-12h64c7 0 12 5 12 12v100h12c7 0 12 5 12 12v24z"/></svg>',
+        note: '<svg xmlns="http://www.w3.org/2000/svg" class="notice-icon" viewBox="0 0 512 512" fill="hsl(200, 65%, 65%)"><path d="M504 256a248 248 0 11-496 0 248 248 0 01496 0zm-248 50a46 46 0 100 92 46 46 0 000-92zm-44-165l8 136c0 6 5 11 12 11h48c7 0 12-5 12-11l8-136c0-7-5-13-12-13h-64c-7 0-12 6-12 13z"/></svg>',
+        tip: '<svg xmlns="http://www.w3.org/2000/svg" class="notice-icon" viewBox="0 0 512 512" fill="hsl(140, 65%, 65%)"><path d="M504 256a248 248 0 11-496 0 248 248 0 01496 0zM227 387l184-184c7-6 7-16 0-22l-22-23c-7-6-17-6-23 0L216 308l-70-70c-6-6-16-6-23 0l-22 23c-7 6-7 16 0 22l104 104c6 7 16 7 22 0z"/></svg>'
+    };
+    // 修复正则：匹配所有空格格式的notice，100%命中
+    const noticeReg = /\{\%\s*notice\s+(warning|info|note|tip)\s*\%\}([\s\S]*?)\{\%\s*endnotice\s*\%\}/g;
+    const contentBox = document.querySelector('.next-md-body');
+    if(contentBox) {
+        contentBox.innerHTML = contentBox.innerHTML.replace(noticeReg, (match, type, content) => {
+            return `<div class="notice ${type}"><div class="notice-title">${noticeIconMap[type]}</div>${content}</div>`;
+        });
+    }
+});
+</script>
+<style>
+    .notice {
+        position: relative !important;
+        padding: 1em 1em 1em 2.5em !important;
+        margin-bottom: 1em !important;
+        border-radius: 4px !important;
+    }
+    .notice p:last-child {
+        margin-bottom: 0 !important;
+    }
+    .notice .notice-title {
+        position: absolute !important;
+        left: 0.8em !important;
+        top: 1em !important;
+    }
+    .notice .notice-icon {
+        width: 1.2em !important;
+        height: 1.2em !important;
+    }
+    .notice.warning {
+        background: rgba(224, 108, 108, 0.15) !important;
+        border-left: 5px solid #e06c6c !important;
+    }
+    .notice.warning .notice-title {
+        color: #e06c6c !important;
+    }
+    .notice.info {
+        background: rgba(240, 179, 117, 0.15) !important;
+        border-left: 5px solid #f0b375 !important;
+    }
+    .notice.info .notice-title {
+        color: #f0b375 !important;
+    }
+    .notice.note {
+        background: rgba(108, 185, 224, 0.15) !important;
+        border-left: 5px solid #6cb9e0 !important;
+    }
+    .notice.note .notice-title {
+        color: #6cb9e0 !important;
+    }
+    .notice.tip {
+        background: rgba(108, 224, 146, 0.15) !important;
+        border-left: 5px solid #6ce092 !important;
+    }
+    .notice.tip .notice-title {
+        color: #6ce092 !important;
+    }
+    [data-theme="dark"] .notice.warning {
+        background: rgba(112, 67, 67, 0.15) !important;
+        border-left: 5px solid #704343 !important;
+    }
+    [data-theme="dark"] .notice.warning .notice-title {
+        color: #704343 !important;
+    }
+    [data-theme="dark"] .notice.info {
+        background: rgba(112, 89, 67, 0.15) !important;
+        border-left: 5px solid #705943 !important;
+    }
+    [data-theme="dark"] .notice.info .notice-title {
+        color: #705943 !important;
+    }
+    [data-theme="dark"] .notice.note {
+        background: rgba(67, 97, 112, 0.15) !important;
+        border-left: 5px solid #436170 !important;
+    }
+    [data-theme="dark"] .notice.note .notice-title {
+        color: #436170 !important;
+    }
+    [data-theme="dark"] .notice.tip {
+        background: rgba(67, 112, 82, 0.15) !important;
+        border-left: 5px solid #437052 !important;
+    }
+    [data-theme="dark"] .notice.tip .notice-title {
+        color: #437052 !important;
+    }
+</style>
+
+<!-- ===================== 4. 时间线 timeline 短代码【修复版-必生效】全标签支持 ===================== -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 修复正则：精准匹配带双引号参数的timeline，兼容所有空格格式，100%命中
+    const timelineReg = /\{\%\s*timeline\s+date="(.*?)"\s+title="(.*?)"\s+description="(.*?)"\s+tags="(.*?)"\s*\%\}/g;
+    const contentBox = document.querySelector('.next-md-body');
+    if(contentBox) {
+        contentBox.innerHTML = contentBox.innerHTML.replace(timelineReg, (match, date, title, description, tags) => {
+            let tagHtml = '';
+            const tagList = tags.split(', ');
+            tagList.forEach(tag => {
+                let tagClass = '';
+                if(tag === '样式') tagClass = 'timeline__tag-style';
+                else if(tag === '文章') tagClass = 'timeline__tag-article';
+                else if(tag === '页面') tagClass = 'timeline__tag-page';
+                tagHtml += `<span class="timeline__tag ${tagClass}">${tag}</span>`;
+            });
+            return `
+                <div class="timeline__row">
+                    <div class="timeline__time">
+                        <div>${date}</div>
+                        <div class="timeline__split-line"></div>
+                    </div>
+                    <div class="timeline__content">
+                        <div class="timeline__tags">${tagHtml}</div>
+                        <div class="timeline__title">${title}</div>
+                        <div class="timeline__description">${description}</div>
+                    </div>
+                </div>
+            `;
+        });
+    }
+});
+</script>
+<style>
+    .timeline {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    .timeline__row {
+        display: flex !important;
+        padding-left: 4% !important;
+        height: 90px !important;
+    }
+    .timeline__time {
+        flex: 0 0 110px !important;
+        color: #5d5d5d !important;
+        font-size: 17px !important;
+        text-transform: uppercase !important;
+        position: relative !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        padding: 0.5rem 0 !important;
+    }
+    .timeline__split-line {
+        position: absolute !important;
+        top: 0.5rem !important;
+        right: -20px !important;
+        height: 100% !important;
+        width: 2px !important;
+        background-color: #84c4e240 !important;
+        z-index: 0 !important;
+    }
+    .timeline__split-line:before {
+        content: "" !important;
+        position: absolute !important;
+        top: 24% !important;
+        right: -4px !important;
+        transform: translateY(-50%) !important;
+        width: 10px !important;
+        height: 10px !important;
+        background-color: #c9e5f2 !important;
+        box-shadow: 0 0 0 4px var(--theme) !important;
+        border-radius: 50% !important;
+        border: 0px solid #84c4e2 !important;
+        z-index: -1 !important;
+    }
+    .timeline__content {
+        flex: 1 !important;
+        margin-left: 2.5rem !important;
+        padding: 0.5rem 0 1.2rem 0 !important;
+    }
+    .timeline__title {
+        margin: 0 !important;
+        margin-bottom: 2px !important;
+        padding-top: 3px !important;
+        margin-left: 0.5rem !important;
+        color: var(--content) !important;
+        font-size: 19px !important;
+        font-weight: 600 !important;
+        width: fit-content !important;
+        display: inline-block !important;
+        vertical-align: middle !important;
+    }
+    .timeline__tags {
+        display: inline-block !important;
+        padding: 0 !important;
+        margin-left: 0.3rem !important;
+        align-items: center !important;
+        gap: 0.3rem !important;
+    }
+    .timeline__tag {
+        display: inline-block !important;
+        color: var(--secondary) !important;
+        background-color: #84c4e230 !important;
+        border: 1.5px solid #84c4e230 !important;
+        border-radius: 999px !important;
+        padding: 0rem 0.5rem !important;
+        font-size: 12px !important;
+        white-space: nowrap !important;
+        line-height: 1.4rem !important;
+        opacity: 0.8 !important;
+        vertical-align: middle !important;
+    }
+    .timeline__description {
+        font-size: 15px !important;
+        line-height: 1.6 !important;
+        color: #5d5d5d !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        margin: 0.5rem 0 0.4rem 1.5rem !important;
+    }
+    .timeline__tag-style {
+        background-color: #c581da !important;
+        border-color: #c581da !important;
+        color: #ffffff !important;
+    }
+    .timeline__tag-article {
+        background-color: #92d392 !important;
+        border-color: #92d392 !important;
+        color: #000000 !important;
+    }
+    .timeline__tag-page {
+        background-color: #707070 !important;
+        border-color: #707070 !important;
+        color: #ffffff !important;
+    }
+    @media screen and (max-width: 768px) {
+        .timeline__time { font-size: 14px !important; }
+        .timeline__title { font-size: 16px !important; }
+        .timeline__description { font-size: 14px !important; }
+    }
+</style>
+  <div class="head-top-line"></div>
+  <div class="header-box">
+    
+
+<div class="pisces">
+  <header class="header  ">
+    <div class="blog-header box-shadow-wrapper bg-color " id="header">
+      <div class="nav-toggle" id="nav_toggle">
+        <div class="toggle-box">
+          <div class="line line-top"></div>
+          <div class="line line-center"></div>
+          <div class="line line-bottom"></div>
+        </div>
+      </div>
+      <div class="site-meta">       
+        <div class="site-title">
+          
+            <a href="/" class="brand">
+              <span>生活 - 如形の小站</span>
+            </a>  
+          
+        </div>
+        
+          <p class="subtitle">如之影，随于形——The shadow of the sun.</p>
+        
+      </div>
+      <nav class="site-nav" id="site_nav">
+        <ul id="nav_ul">
+          
+            
+            
+              
+              <li class="nav-item ">
+                
+                
+                  <a href="https://life.rusin7.com" target="_self">
+                    <i class="fa fa-edit"></i> <span class="nav-text">首页</span>
+                  </a>
+                
+              </li>
+            
+          
+            
+            
+              
+              <li class="nav-item ">
+                
+                
+                  <a href="https://life.rusin7.com/articles" target="_self">
+                    <i class="fa fa-i-cursor"></i> <span class="nav-text">文章</span>
+                  </a>
+                
+              </li>
+            
+          
+            
+            
+              
+              <li class="nav-item ">
+                
+                
+                  <a href="https://life.rusin7.com/archives" target="_self">
+                    <i class="fa fa-archive"></i> <span class="nav-text">归档</span>
+                  </a>
+                
+              </li>
+            
+          
+            
+            
+              
+              <li class="nav-item ">
+                
+                
+                  <a href="https://life.rusin7.com/thinks" target="_self">
+                    <i class="fa fa-quote-left"></i> <span class="nav-text">思考</span>
+                  </a>
+                
+              </li>
+            
+          
+            
+            
+              
+              <li class="nav-item ">
+                
+                
+                  <a href="https://life.rusin7.com/tags" target="_self">
+                    <i class="fa fa-tags"></i> <span class="nav-text">标签</span>
+                  </a>
+                
+              </li>
+            
+          
+            
+            
+              
+              <li class="nav-item ">
+                
+                
+                  <a href="https://life.rusin7.com/friends" target="_self">
+                    <i class="fa fa-user-friends"></i> <span class="nav-text">友链</span>
+                  </a>
+                
+              </li>
+            
+          
+            
+            
+              
+              <li class="nav-item ">
+                
+                
+                  <a href="https://life.rusin7.com/about" target="_self">
+                    <i class="fa fa-user-lock"></i> <span class="nav-text">协议</span>
+                  </a>
+                
+              </li>
+            
+          
+            
+            
+              
+              <li class="nav-item ">
+                
+                
+                  <a href="https://life.rusin7.com/post/about" target="_self">
+                    <i class="fa fa-user"></i> <span class="nav-text">关于</span>
+                  </a>
+                
+              </li>
+            
+          
+            
+            
+          
+          
+
+          <!-- 其他下拉菜单 -->
+          <li class="nav-item other-nav-item">
+            <a href="javascript:void(0);" id="other_toggle" class="other-toggle">
+              <i class="fa fa-ellipsis-h"></i> <span class="nav-text">其他</span>
+              <i class="fa fa-angle-down other-arrow"></i>
+            </a>
+            <ul class="other-submenu" id="other_submenu">
+              <li class="subnav-item ">
+                <a href="/dujitang" target="_blank">
+                  <i class="fa fa-coffee"></i> <span class="nav-text">鸡汤</span>
+                </a>
+              </li>
+              <li class="subnav-item">
+                <a href="https://text.is/welcome_add" target="_blank">
+                  <i class="fa fa-paper-plane"></i> <span class="nav-text">投稿</span>
+                </a>
+              </li>
+              <li class="subnav-item ">
+                <a href="/pages/code" target="_blank">
+                  <i class="fa fa-code"></i> <span class="nav-text">代码</span>
+                </a>
+              </li>
+              <li class="subnav-item ">
+                <a href="/pages/click" target="_blank">
+                  <i class="fa fa-mouse-pointer"></i> <span class="nav-text">追击</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          
+
+          <!-- 🌐 语言切换按钮 -->
+          <li class="nav-item lang-switch">
+            <a href="javascript:void(0);" id="lang-toggle">
+              <i class="fas fa-language"></i> <span class="nav-text">English</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+</div>
+
+<script type="text/javascript"> 
+  let showNav = true;
+  let showOther = false;
+
+  // ✅ 正确的「中文 → 英文」映射表（补充你所有菜单文字）
+  const textMap = {
+    '首页': 'Home',
+    '文章': 'Posts',
+    '归档': 'Archives',
+    '思考': 'Thoughts',
+    '标签': 'Tags',
+    '友链': 'Friends',
+    '协议': 'Agreement',
+    '关于': 'About',
+    '文档': 'Docs',
+    '其他': 'More',
+    '鸡汤': 'Sentences',
+    '投稿': 'Contribute',
+    '代码': 'Code',
+    '追击': 'Click',
+    '搜索': 'Search'
+  };
+  
+  // ✅ 初始化语言：默认中文（第一次进入强制中文）
+  let isEnglish = localStorage.getItem('siteLang') === 'en';
+  if (localStorage.getItem('siteLang') === null) {
+    isEnglish = false;
+    localStorage.setItem('siteLang', 'zh');
+  }
+
+  // DOM 加载完成后初始化
+  document.addEventListener('DOMContentLoaded', function() {
+    updateNavText();
+    bindLangToggle();
+  });
+
+  // ✅ 核心修复：根据 isEnglish 状态切换文字，不再双向乱替换
+  function updateNavText() {
+    const navTexts = document.querySelectorAll('.nav-text');
+    navTexts.forEach(el => {
+      // 第一次加载时，保存原始中文到 data-original
+      if (!el.dataset.original) {
+        el.dataset.original = el.textContent.trim();
+      }
+      const originalText = el.dataset.original;
+      
+      // 根据当前语言状态设置文字
+      if (isEnglish) {
+        // 英文模式：显示英文，无映射则保持原样
+        el.textContent = textMap[originalText] || originalText;
+      } else {
+        // 中文模式：显示原始中文
+        el.textContent = originalText;
+      }
+    });
+
+    // 处理语言按钮文字
+    const langBtn = document.getElementById('lang-toggle');
+    if (langBtn) {
+      const langText = langBtn.querySelector('.nav-text');
+      if (langText) {
+        if (isEnglish) {
+          langText.textContent = '中文';
+          langBtn.title = '切换到中文模式';
+        } else {
+          langText.textContent = 'English';
+          langBtn.title = 'Switch to English mode';
+        }
+      }
+    }
+  }
+
+  // ✅ 绑定到整个语言切换区域（点击空白也能切）
+  function bindLangToggle() {
+    const langSwitch = document.querySelector('.lang-switch');
+    if (langSwitch) {
+      langSwitch.removeEventListener('click', toggleLanguage);
+      langSwitch.addEventListener('click', toggleLanguage);
+    }
+  }
+
+  // 切换语言逻辑
+  function toggleLanguage() {
+    isEnglish = !isEnglish;
+    localStorage.setItem('siteLang', isEnglish ? 'en' : 'zh');
+    updateNavText();
+  }
+
+  // 原有导航逻辑（保持不变）
+  let navToggle = document.querySelector('#nav_toggle'),
+      siteNav = document.querySelector('#site_nav'),
+      otherToggle = document.querySelector('#other_toggle'),
+      otherSubmenu = document.querySelector('#other_submenu'),
+      navUl = document.querySelector('#nav_ul');
+
+  document.addEventListener('DOMContentLoaded', function() {
+    otherSubmenu.classList.remove('other-submenu-active');
+    otherToggle.classList.remove('other-toggle-active');
+  });
+
+  function navClick() {
+    let sideBar = document.querySelector('.sidebar');
+    navToggle.classList.toggle('nav-toggle-active');
+    siteNav.classList.toggle('nav-menu-active');
+    if (siteNav.classList.contains('nav-menu-active')) {
+      let baseHeight = navUl.children.length * 42;
+      if (window.innerWidth <= 768 && showOther) {
+        baseHeight += otherSubmenu.children.length * 42;
+      }
+      siteNav.style = "height: " + baseHeight +"px !important";
+    } else {
+      siteNav.style = "";
+    }
+  }
+
+  function otherClick() {
+    showOther = !showOther;
+    otherSubmenu.classList.toggle('other-submenu-active');
+    otherToggle.classList.toggle('other-toggle-active');
+    if (siteNav.classList.contains('nav-menu-active')) {
+      navClick();
+    }
+  }
+
+  navToggle.addEventListener('click', navClick);  
+  otherToggle.addEventListener('click', otherClick);
+
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) {
+      siteNav.style = "";
+      siteNav.classList.remove('nav-menu-active');
+      navToggle.classList.remove('nav-toggle-active');
+    }
+  });
+</script>
+
+<style>
+  .other-nav-item {
+    position: relative;
+    z-index: 9999;
+  }
+  .other-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    color: inherit;
+    text-decoration: none;
+  }
+  .other-arrow {
+    font-size: 12px;
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+  }
+  .other-toggle-active .other-arrow {
+    transform: rotate(180deg);
+  }
+  .other-submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    min-width: 140px;
+    z-index: 99999;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    background-color: #fff;
+    border-radius: 4px;
+  }
+  .other-submenu-active {
+    max-height: 300px;
+    opacity: 1;
+  }
+  .subnav-item {
+    height: 42px;
+    line-height: 42px;
+    padding-left: 10px;
+    white-space: nowrap;
+  }
+  .subnav-item a {
+    color: #555 !important;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+    padding: 0 15px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .subnav-item i {
+    margin-right: 8px;
+    color: #748ffc !important;
+  }
+  .subnav-item a:hover {
+    color: #7048e8 !important;
+    background-color: #f5f7ff;
+  }
+  .nav-item a:hover {
+    color: #7048e8 !important;
+  }
+  .nav-item a:hover i {
+    color: inherit !important;
+  }
+  #site_nav, #nav_ul, .blog-header {
+    overflow: visible !important;
+  }
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    height: 42px;
+  }
+  .lang-link {
+    display: flex;
+    align-items: center;
+    padding: 0 5px !important;
+    height: 42px;
+    color: inherit !important;
+    text-decoration: none;
+    position: relative;
+  }
+  .lang-link::after {
+    content: attr(data-hover);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    z-index: 99999;
+  }
+  .lang-link:hover::after {
+    opacity: 1;
+    visibility: visible;
+    bottom: -28px;
+  }
+  .lang-link i {
+    margin-right: 5px;
+  }
+  .lang-text {
+    font-weight: 500;
+  }
+  @media (max-width: 768px) {
+    .other-nav-item {
+      width: 100%;
+      position: static;
+      z-index: inherit;
+    }
+    .other-toggle {
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .other-submenu {
+      position: relative;
+      bottom: auto;
+      top: 0;
+      left: 0;
+      min-width: auto;
+      box-shadow: none;
+      background-color: inherit;
+      border-radius: 0;
+      z-index: inherit;
+    }
+    .subnav-item {
+      padding-left: 20px;
+    }
+    .subnav-item a {
+      color: #748ffc !important;
+      padding: 0 10px;
+    }
+    .subnav-item a:hover {
+      background-color: transparent;
+    }
+    .subnav-item i {
+      color: inherit !important;
+    }
+    #site_nav, #nav_ul, .blog-header {
+      overflow: hidden !important;
+    }
+    /* 移动端语言切换项适配 */
+    .lang-switch {
+      width: 100%;
+      padding: 0;
+    }
+  }
+</style>
+  </div>
+  <div class="main-continer">
+    
+    <div class="section-layout pisces ">
+      <div class="section-layout-wrapper">
+        
+
+<div class="sidebar">
+  
+    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
+      
+        <div class="post-list-sidebar">
+          <div class="sidebar-title">
+            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active language" data-lan="index">文章目录</span>
+            <span id="metaSideBar" class="sidebar-title-item language" data-lan="preview">站点概览</span>
+          </div>
+        </div>
+      
+      <div class="sidebar-body pisces" id="sidebar_body">
+        
+          
+            <div class="post-side-meta" id="post_side_meta">
+              
+<div class="sidebar-wrapper box-shadow-wrapper bg-color">
+  <div class="sidebar-item">
+    <img class="site-author-image right-motion" src="/images/avatar.png"/>
+    <p class="site-author-name">ruying-suixing</p>
+    
+    <div class="site-description right-motion">
+      
+        <p id="binft">一个蒟蒻的建站初学者。\n洛谷：/user/1620655\nGithub：/ruying-suixing</p>
+      
+    </div>
+    
+  </div>
+  <div class="sidebar-item side-item-stat right-motion">
+    <div class="sidebar-item-box">
+      <a href="/archives/">
+        
+        <span class="site-item-stat-count">10</span>
+        <span class="site-item-stat-name language" data-lan="article">文章</span>
+      </a>
+    </div>
+    <div class="sidebar-item-box">
+      <a href="/tags/">
+        <span class="site-item-stat-count">3</span>
+        <span class="site-item-stat-name language" data-lan="tag">标签</span>
+      </a>
+    </div>
+  </div>
+  
+    
+      <div class="sidebar-item">
+        <span class="site-item-rss">
+            <i class="fa fa-rss"></i>
+            <a href="https://life.rusin7.com/atom.xml" target="_blank">RSS</a>
+        </span>
+      </div>
+    
+  
+  
+    <div class="sidebar-item sidebar-item-social">
+      <div class="social-item">
+        
+          
+            <a href="https://github.com/ruying-suxing">
+              <i class="fa fa-edit" title="Github"></i>
+            </a>
+          
+            <a href="https://www.luogu.com.cn/user/1620655">
+              <i class="fa fa-code" title="洛谷"></i>
+            </a>
+          
+        
+        
+      </div>
+    </div>
+  
+
+  
+    <div class="sidebar-item right-motion sidebar-item-friends">
+      
+        <p class="friends-title"><i class="fa fa-ship"></i> 友链</p>
+      
+      <div class="friends-box">
+        
+          <p>
+            <a href="https://www.luogu.com.cn/user/1620655">_ruyingsuixing_</a>
+          </p>
+        
+      </div>
+    </div>
+  
+
+
+
+  <div style="width: 100%; position: relative;">
+    <canvas id="canvasDiyBlock" style="width:100%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+    <script src="/media/js/magic/clock.js"></script>
+  </div>
+
+</div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number no_compress"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li><a href="#markdown%E8%AF%AD%E6%B3%95%E6%95%99%E7%A8%8B">Markdown语法教程</a>
+<ul>
+<li><a href="#markdown-%E8%AF%AD%E6%B3%95%E6%95%99%E7%A8%8B%E7%9B%AE%E5%BD%95">Markdown 语法教程目录</a>
+<ul>
+<li><a href="#%E9%A2%84%E8%A7%88">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81">源码</a></li>
+<li><a href="#%E5%8F%AF%E9%80%89%E8%AF%AD%E6%B3%95">可选语法</a>
+<ul>
+<li><a href="#%E9%A2%84%E8%A7%88-2"><strong>预览</strong></a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-2"><strong>源码</strong></a></li>
+</ul>
+</li>
+<li><a href="#%E9%A2%84%E8%A7%88-3">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-3">源码</a></li>
+<li><a href="#%E9%A2%84%E8%A7%88-4">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-4">源码</a></li>
+<li><a href="#%E5%A4%A7%E6%AE%B5%E4%BB%A3%E7%A0%81">大段代码</a>
+<ul>
+<li><a href="#%E9%A2%84%E8%A7%88-5">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-5">源码</a></li>
+</ul>
+</li>
+<li><a href="#%E5%B0%8F%E6%AE%B5%E4%BB%A3%E7%A0%81">小段代码</a>
+<ul>
+<li><a href="#%E9%A2%84%E8%A7%88-6">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-6">源码</a></li>
+</ul>
+</li>
+<li><a href="#%E9%A2%84%E8%A7%88-7">预览</a></li>
+<li><a href="#%E5%BC%95%E7%94%A8%E5%8C%BA%E5%9D%97%E5%86%85%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E6%A0%87%E9%A2%98%E8%AF%AD%E6%B3%95">引用区块内可以使用标题语法。</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-7">源码</a></li>
+<li><a href="#%E6%97%A0%E5%BA%8F%E5%88%97%E8%A1%A8">无序列表</a>
+<ul>
+<li><a href="#%E9%A2%84%E8%A7%88-8">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-8">源码</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9C%89%E5%BA%8F%E5%88%97%E8%A1%A8">有序列表</a>
+<ul>
+<li><a href="#%E9%A2%84%E8%A7%88-9">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-9">源码</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8">任务列表</a>
+<ul>
+<li><a href="#%E9%A2%84%E8%A7%88-10">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-10">源码</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BE%8E%E8%A7%82%E9%93%BE%E6%8E%A5">美观链接</a>
+<ul>
+<li><a href="#%E9%A2%84%E8%A7%88-11">预览</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E6%BA%90%E7%A0%81-11">源码</a></li>
+</ul>
+</li>
+<li><a href="#%E8%87%AA%E5%8A%A8%E9%93%BE%E6%8E%A5">自动链接</a>
+<ul>
+<li><a href="#%E9%A2%84%E8%A7%88-12">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-12">源码</a></li>
+</ul>
+</li>
+<li><a href="#%E9%A2%84%E8%A7%88-13">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-13">源码</a></li>
+<li><a href="#%E5%8F%AF%E5%81%9A%E8%BD%AC%E4%B9%89%E7%9A%84%E5%AD%97%E7%AC%A6">可做转义的字符</a></li>
+<li><a href="#%E9%A2%84%E8%A7%88-14">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-14">源码</a></li>
+<li><a href="#%E9%A2%84%E8%A7%88-15">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-15">源码</a></li>
+<li><a href="#%E9%A2%84%E8%A7%88-16">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-16">源码</a></li>
+<li><a href="#%E9%A2%84%E8%A7%88-17">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-17">源码</a></li>
+<li><a href="#%E9%A2%84%E8%A7%88-18">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-18">源码</a></li>
+<li><a href="#%E9%A2%84%E8%A7%88-19">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-19">源码</a></li>
+<li><a href="#%E9%A2%84%E8%A7%88-20">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-20">源码</a></li>
+<li><a href="#%E9%A2%84%E8%A7%88-21">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-21">源码</a></li>
+<li><a href="#%E9%A2%84%E8%A7%88-22">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-22">源码</a></li>
+<li><a href="#%E9%A2%84%E8%A7%88-23">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-23">源码</a></li>
+<li><a href="#%E9%A2%84%E8%A7%88-24">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-24">源码</a></li>
+<li><a href="#%E9%A2%84%E8%A7%88-25">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-25">源码</a></li>
+<li><a href="#%E9%A2%84%E8%A7%88-26">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-26">源码</a></li>
+<li><a href="#%E9%A2%84%E8%A7%88-27">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-27">源码</a></li>
+<li><a href="#%E9%A2%84%E8%A7%88-28">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-28">源码</a></li>
+<li><a href="#%E9%A2%84%E8%A7%88-29">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-29">源码</a></li>
+<li><a href="#%E9%A2%84%E8%A7%88-30">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-30">源码</a></li>
+<li><a href="#%E9%A2%84%E8%A7%88-31">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-31">源码</a></li>
+<li><a href="#%E9%A2%84%E8%A7%88-32">预览</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81-32">源码</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
+      }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
+    });
+  }
+
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
+            </div>
+          
+        
+      </div>
+    </div>
+  
+</div>
+<script>
+  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
+  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
+  const SLIDE_UP_IN = 'slide-up-in';
+
+  let sidebar = document.querySelector('#sidebar'),
+  tocSideBar = document.querySelector('#tocSideBar'),
+  metaSideBar = document.querySelector('#metaSideBar'),
+  postToc = document.querySelector('#post_toc'),
+  postSiteMeta = document.querySelector('#post_side_meta'),
+  sidebarTitle = document.querySelector('.sidebar-title'),
+  sidebarBody = document.querySelector('#sidebar_body');
+
+  tocSideBar && tocSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  metaSideBar && metaSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  function toggleSidebar(e) {
+    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
+    if (currentTitle == e.srcElement) {
+      return ;
+    }
+    let current, showElement, hideElement;
+    if (e.srcElement == metaSideBar) {
+      showElement = postSiteMeta;
+      hideElement = postToc;
+    } else if (e.srcElement == tocSideBar){
+      showElement = postToc;
+      hideElement = postSiteMeta;
+    }
+    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
+    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
+
+    jQuery.Velocity(hideElement, 'stop');
+    jQuery.Velocity(hideElement, 'transition.slideUpOut', {
+      display: 'none',
+      duration: 200,
+      complete: function () {
+        jQuery.Velocity(showElement, 'transition.slideDownIn', {
+          duration: 200
+        });
+      }
+    })
+    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
+    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
+  }
+
+  postToc && postToc.addEventListener('transitionend', function() {
+    this.classList.remove(SLIDE_UP_IN);
+  });
+
+  if (sidebarBody) {
+    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
+      let hasFix = false;
+      let scrollEl = document.querySelector('.main-continer');
+      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
+      window.addEventListener('scroll', function(e) {
+        if (document.scrollingElement.scrollTop >= limitTop) {
+          if (!hasFix) {
+            sidebar.classList.add('sidebar-fixed');
+            hasFix = true;
+          }
+        } else {
+          if (hasFix) {
+            sidebar.classList.remove('sidebar-fixed');
+            hasFix = false;
+          }
+        }
+      });
+    }
+  }
+  
+</script>
+        <div class="section-box box-shadow-wrapper">
+          <div class="section bg-color post post-page">
+            <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://life.rusin7.com/post/markdown/"> Markdown语法教程 </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item">
+      <i class="fa fa-thumb-tack"></i>
+      <span class="language" data-lan="top">置顶</span>
+      <span class="post-meta-divider">|</span>
+    </span>
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-open"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2025-12-14 11:06:35">2025-12-14</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-open"></i>
+      <span class="pc-show language" data-lan="category-in">标签:</span>
+       
+      <a href="https://life.rusin7.com/tag/Z2-t9CYEwa/">
+        <span>Markdown</span>
+      </a>
+       
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock"></i>
+      <span>20<span class="language" data-lan="minute">分钟</span></span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word"></i>
+      <span>5036<span class="pc-show language" data-lan="words">字数</span></span>
+    </span>
+      
+    <span
+      id="/post/markdown/"
+      data-flag-title="Markdown语法教程"
+      class="meta-item pc-show leancloud_visitors"
+    >
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-eye"></i>
+      <span><span class="language" data-lan="view">浏览量:</span><span id="busuanzi_page_pv"></span> 次</span>
+    </span>
+    
+  </div>
+</section>
+
+            <div class="post-body next-md-body" id="post_body">
+              <p>学习 Markdown 的基础语法，从入门到精通。</p>
+<!-- more -->
+<h1 id="markdown语法教程">Markdown语法教程</h1>
+<h2 id="markdown-语法教程目录">Markdown 语法教程目录</h2>
+<ul>
+<li><a href="#1">Markdown 是什么</a></li>
+<li><a href="#2">Markdown 编辑器</a></li>
+<li><a href="#3">Markdown 标题语法</a></li>
+<li><a href="#4">Markdown 强调语法</a></li>
+<li><a href="#5">Markdown 代码语法</a></li>
+<li><a href="#6">Markdown 引用语法</a></li>
+<li><a href="#7">Markdown 列表语法</a></li>
+<li><a href="#8">Markdown 链接语法</a></li>
+<li><a href="#9">Markdown 图片语法</a></li>
+<li><a href="#10">Markdown 转义语法</a></li>
+<li><a href="#11">Markdown 分隔线语法</a></li>
+<li><a href="#12">Markdown 表格语法</a></li>
+<li><a href="#13">Markdown 注释语法</a></li>
+<li><a href="#14">Markdown 内嵌 HTML 语法</a></li>
+<li><a href="#15">Markdown 下划线语法</a></li>
+<li><a href="#16">Markdown 缩进语法</a></li>
+<li><a href="#17">Markdown 对齐语法</a></li>
+<li><a href="#18">Markdown 注释语法</a></li>
+<li><a href="#19">Markdown 警告语法</a></li>
+<li><a href="#20">Markdown 调图语法</a></li>
+<li><a href="#21">Markdown 新标语法</a></li>
+<li><a href="#22">Markdown 符号语法</a></li>
+<li><a href="#23">Markdown 表格扩展</a></li>
+<li><a href="#24">Markdown 视频语法</a></li>
+<li><a href="#25">Markdown 折叠框语法</a></li>
+</ul>
+<h2 id="1">Markdown 是什么</h2>
+<p><a href="https://markdown.com.cn/" title="官网">Markdown</a> 是一种轻量级标记语言，排版语法简洁，让人们更多地关注内容本身而非排版。它使用易读易写的纯文本格式编写文档，可与HTML混编，可导出 HTML、PDF 以及本身的 .md 格式的文件。因简洁、高效、易读、易写，Markdown被大量使用，如Github、Wikipedia、简书等。</p>
+<h2 id="2">Markdown 编辑器</h2>
+<p>Markdown 入门的最佳方式就是多使用它。由于有大量免费工具的存在，上手 Markdown 是很方便的。比较遗憾的一点是<strong>各平台可能采用不同语言实现的 Markdown 解析引擎</strong>，例如 Gridea 和 Luogu 就不同，而且可能有不同程度的定制与扩展，这导致在不同平台上使用 Markdown 写作时体验并不完全一致。不过幸好对于大家公认的一些标准语法，各家都是支持的。<br>
+你甚至都不需要下载任何程序，就可以使用<a href="https://markdown.com.cn/editor/" title="右键以上链接选择 在新标签页中打开链接">在线 Markdown 编辑器</a>（右键以上链接选择 <code>在新标签页中打开链接</code>）来编写 Markdown。进入其站点就可以开始在左侧窗格中书写了。渲染后的文档在右侧窗格预览。</p>
+<p>阅读本指南时，你可以打开<a href="https://markdown.com.cn/editor/" title="右键以上链接选择 在新标签页中打开链接">在线 Markdown 编辑器</a>（右键以上链接选择 <code>在新标签页中打开链接</code>）。这样，你就可以一边学习 Markdown 语法一边练习了。熟悉 Markdown 之后，再选择一个顺手的 Markdown 的应用程序。</p>
+<h2 id="3">Markdown 标题语法</h2>
+<p>Markdown 的标题是在行首插入 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span></span></span></span> 个 <code>#</code>，<code>#</code> 和标题文字之间使用一个或多个空格，对应到标题 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span></span></span></span> 级。</p>
+<blockquote>
+<h3  style="color: red;">警告</h3>
+<p>标题<strong>不用来</strong>强调，滥用标题可能会让读者感到困惑。</p>
+</blockquote>
+<h3 id="预览">预览</h3>
+<figure data-type="image" tabindex="1"><img src="https://life.rusin7.com/post-images/1767618876453.png" alt="" loading="lazy"></figure>
+<h3 id="源码">源码</h3>
+<pre><code class="language-markdown"># 1级标题 
+## 2级标题 
+### 3级标题 
+#### 4级标题 
+##### 5级标题 
+###### 6级标题 
+这是正文
+</code></pre>
+<h3 id="可选语法">可选语法</h3>
+<p>还可以在文本下方添加任意数量的 <code>==</code> 号来标识一级标题，或者 <code>--</code> 号来标识二级标题。</p>
+<blockquote>
+<p><strong>警告</strong><br>
+如果你想在一句正文后添加分割线，请使用<code>***</code>而非<code>---</code>避免错误地标识二级标题。</p>
+</blockquote>
+<h4 id="预览-2"><strong>预览</strong></h4>
+<figure data-type="image" tabindex="2"><img src="https://life.rusin7.com/post-images/1767619061853.png" alt="" loading="lazy"></figure>
+<h4 id="源码-2"><strong>源码</strong></h4>
+<pre><code class="language-markdown">1级标题 
+===============
+2级标题
+---------------
+</code></pre>
+<h2 id="4">Markdown 强调语法</h2>
+<p>通过将文本设置为粗体、斜体、删除线、高亮来强调其重要性。</p>
+<h3 id="预览-3">预览</h3>
+<p><mark>双等于号高亮</mark><br>
+<em>单星号斜体</em><br>
+<em>单下划线斜体</em><br>
+<strong>双星号加粗</strong><br>
+<strong>双下划线加粗</strong><br>
+<s>删除线</s><br>
+<em><strong><mark>混合效果</mark></strong></em></p>
+<h3 id="源码-3">源码</h3>
+<pre><code class="language-markdown">==双等于号高亮==
+*单星号斜体*
+_单下划线斜体_
+**双星号加粗**
+__双下划线加粗__
+~~删除线~~
+***==混合效果==***
+</code></pre>
+<p>如果要在文字前后直接插入普通的星号或底线，可以用反斜线（<code>\</code>）（参见下面的<a href="#10">“转义字符”部分</a>）。</p>
+<h3 id="预览-4">预览</h3>
+<p>*使用反斜线开头的*被当做是普通的字符*</p>
+<h3 id="源码-4">源码</h3>
+<pre><code class="language-markdown">\*使用反斜线开头的\*被当做是普通的字符\*
+</code></pre>
+<h2 id="5">Markdown 代码语法</h2>
+<h3 id="大段代码">大段代码</h3>
+<p>Markdown 建立代码块的方法：将 ``` 置于这段代码的首行和末行，独立成一行。第一行的 ``` 后面可以加上语言名称，例如 c++、java、c、pascal、markdown、latex 等。</p>
+<h4 id="预览-5">预览</h4>
+<pre><code class="language-c++">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main(){
+  int a, b;
+  cin &gt;&gt; a &gt;&gt; b;
+  cout &lt;&lt; a + b &lt;&lt; endl;
+  return 0;
+}
+</code></pre>
+<h4 id="源码-5">源码</h4>
+<pre><code class="language-markdown">```c++
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main(){
+  int a, b;
+  cin &gt;&gt; a &gt;&gt; b;
+  cout &lt;&lt; a + b &lt;&lt; endl;
+  return 0;
+}
+```
+</code></pre>
+<h3 id="小段代码">小段代码</h3>
+<p>需要引用代码时，如果引用的语句只有一段，不分行，可以用 ` 将语句包起来。</p>
+<h4 id="预览-6">预览</h4>
+<p>这样 <code>不分行引用代码</code> 就行了。</p>
+<h4 id="源码-6">源码</h4>
+<pre><code class="language-markdown">这样 `不分行引用代码` 就行了。
+</code></pre>
+<h2 id="6">Markdown 引用语法</h2>
+<h3 id="预览-7">预览</h3>
+<blockquote>
+<p>Markdown 标记区块引用的方法是在行的最前面加 <code>&gt;</code>。</p>
+<p>也可以只在整个段落的第一行最前面加上 <code>&gt;</code>。</p>
+<blockquote>
+<p>区块引用内部可以嵌套，只要根据层次加上不同数量的 <code>&gt;</code> 即可。</p>
+<p><em>我是内部嵌套区块，我可以使用其他 Markdown 语法哦。</em></p>
+<h3 id="引用区块内可以使用标题语法">引用区块内可以使用标题语法。</h3>
+<ul class="contains-task-list">
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-5800870"><label class="task-list-item-label" for="task-item-5800870"> Yes，可以加入列表.</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7456866"><label class="task-list-item-label" for="task-item-7456866"> No，可以加入列表.</label></li>
+</ul>
+<pre><code class="language-java">//在引用区块内可以加入代码块
+import java.net.URL;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Set;
+</code></pre>
+</blockquote>
+</blockquote>
+<h3 id="源码-7">源码</h3>
+<pre><code class="language-markdown">&gt; Markdown 标记区块引用的方法是在行的最前面加 `&gt;`。
+&gt; 
+&gt; 也可以只在整个段落的第一行最前面加上 `&gt;`。
+&gt; &gt; 区块引用内部可以嵌套，只要根据层次加上不同数量的 `&gt;` 即可。
+&gt; &gt; 
+&gt; &gt; *我是内部嵌套区块，我可以使用其他 Markdown 语法哦。*
+&gt; &gt; 
+&gt; &gt; ### 引用区块内可以使用标题语法。
+&gt; &gt; - [x] Yes，可以加入列表.
+&gt; &gt; - [ ] No，可以加入列表.
+&gt; &gt; ```java
+&gt; &gt; //在引用区块内可以加入代码块
+&gt; &gt; import java.net.URL;
+&gt; &gt; import java.util.Arrays;
+&gt; &gt; import java.util.Date;
+&gt; &gt; import java.util.Set;
+&gt; &gt; ```
+</code></pre>
+<h2 id="7">Markdown 列表语法</h2>
+<p>Markdown 支持有序列表和无序列表以及任务列表。无序列表使用星号、加号或是减号作为列表标记，有序列表则使用数字接着一个英文句点。两种列表方式格式都是：列表标记 + 空格 + 列表项，即列表项目标记通常是放在最左边，也可以缩进最多 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span> 个空格，项目标记后面则一定要接着至少一个空格或制表符。<br>
+列表<strong>可以</strong>嵌套。</p>
+<h3 id="无序列表">无序列表</h3>
+<p>星号、加号或是减号三种列表方式效果等同。</p>
+<h4 id="预览-8">预览</h4>
+<ul>
+<li>Red</li>
+<li>Green</li>
+<li>Blue</li>
+</ul>
+<ul>
+<li>Red</li>
+<li>Green
+<ul>
+<li>Blue</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Red
+<ul>
+<li>Green
+<ul>
+<li>Blue</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="源码-8">源码</h4>
+<pre><code class="language-markdown">*   Red
+*   Green
+*   Blue
+
++   Red
++   Green
+    +   Blue
+
+-   Red
+    -   Green
+         -   Blue
+</code></pre>
+<h3 id="有序列表">有序列表</h3>
+<p>有序列表则使用数字接着一个英文句点 <code>.</code> 或英文括号 <code>(</code>，添加带有数字和周期的行项。数字<strong>不必</strong>按数字顺序排列，但列表应从数字 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 开始。</p>
+<h4 id="预览-9">预览</h4>
+<ol>
+<li>First item</li>
+<li>Second item</li>
+<li>Third item</li>
+<li>Fourth item</li>
+</ol>
+<hr>
+<ol>
+<li>First item</li>
+<li>Second item</li>
+<li>Third item</li>
+<li>Fourth item</li>
+</ol>
+<hr>
+<ol>
+<li>First item</li>
+<li>Second item</li>
+<li>Third item
+<ol>
+<li>缩进项</li>
+<li>缩进项</li>
+</ol>
+</li>
+<li>Fourth item</li>
+</ol>
+<h4 id="源码-9">源码</h4>
+<pre><code class="language-markdown">1. First item
+2. Second item
+3. Third item
+4. Fourth item
+---
+1. First item
+1. Second item
+1. Third item
+1. Fourth item
+---
+1) First item
+3) Second item
+8) Third item
+    1) 缩进项
+    2) 缩进项
+5) Fourth item
+</code></pre>
+<h3 id="任务列表">任务列表</h3>
+<p>务列表是一种特殊的列表，它可以在列表项前添加复选框，用于表示任务是否完成。任务列表的格式为：- [ ] 任务项 或 - [x] 任务项，其中 [ ] 表示未完成任务，[x] 表示已完成任务。</p>
+<h4 id="预览-10">预览</h4>
+<ul class="contains-task-list">
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6042368"><label class="task-list-item-label" for="task-item-6042368"> 学习 Markdown 语法</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3961903"><label class="task-list-item-label" for="task-item-3961903"> 完成 Markdown 语法学习</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5935085"><label class="task-list-item-label" for="task-item-5935085"> 编写 Markdown 文档</label></li>
+</ul>
+<h4 id="源码-10">源码</h4>
+<pre><code>- [ ] 学习 Markdown 语法
+- [x] 完成 Markdown 语法学习
+- [ ] 编写 Markdown 文档
+</code></pre>
+<h2 id="8">Markdown 链接语法</h2>
+<p>使用链接带给读者更好的网站跳转效果和渲染机制。</p>
+<h3 id="美观链接">美观链接</h3>
+<p>链接文本放在中括号内，链接地址放在后面的括号中，链接title是当鼠标悬停在链接上时会出现的文字，这个title是可选的，它放在圆括号中链接地址后面，跟链接地址之间以空格分隔。</p>
+<h4 id="预览-11">预览</h4>
+<p><a href="https://ruying-suixing.github.io/">行内式链接标题（无title）</a><br>
+<a href="https://ruying-suixing.github.io/" title="可选标题">行内式链接标题（有title），可将光标移至链接上查看 title 效果。</a></p>
+<h2 id=""><a href="https://ruying-suixing.github.io/"><strong>行内式</strong> <em>链接</em> 标题（含 Markdown 语法）</a></h2>
+<h4 id="源码-11">源码</h4>
+<pre><code class="language-markdown">[行内式链接标题（无title）](https://ruying-suixing.github.io/)
+[行内式链接标题（有title），可将光标移至链接上查看 title 效果。](https://ruying-suixing.github.io/ &quot;可选标题&quot;)
+## [**行内式** _链接_ 标题（含 Markdown 语法）](https://ruying-suixing.github.io/ &quot;可选标题&quot;)
+</code></pre>
+<h3 id="自动链接">自动链接</h3>
+<p>Markdown 支持以比较简短的自动链接形式来处理网址和电子邮件信箱，只要是用尖括号包起来，Markdown 就会自动把它转成链接。一般网址的链接文字就和链接地址一样。</p>
+<h4 id="预览-12">预览</h4>
+<p><a href="https://ruying-suixing.github.io/">https://ruying-suixing.github.io/</a> 这个是自动链接<br>
+https://ruying-suixing.github.io/  这个是文本</p>
+<h4 id="源码-12">源码</h4>
+<pre><code class="language-markdown">&lt;https://ruying-suixing.github.io/&gt;
+https://ruying-suixing.github.io/
+</code></pre>
+<h2 id="9">Markdown 图片语法</h2>
+<p>Markdown 使用一种和链接很相似的语法来标记图片。在互联网上发表含有图片的内容时，需要将该图片上传至可公开访问的存储空间内（也就是俗称的图床），可以使用图床上传图片后复制图片引用地址来使用该图片，行内式的图片语法如下：<br>
+<code>![图片下方文字](图片相对路径或绝对路径)</code><br>
+<code>![图片下方文字](图片相对路径或绝对路径 &quot;可选标题&quot;)</code><br>
+详细叙述如下：一个英文感叹号 <code>!</code>，接着一个方括号，里面放上图片的替代文字（这些文字将在图片加载失败的时候显示），接着一个普通括号，里面放上图片的网址，最后还可以用引号包住并加上选择性的 title 文字，像链接语法一样。</p>
+<h3 id="预览-13">预览</h3>
+<p>无title：<img src="https://cdn.luogu.com.cn/upload/usericon/1620655.png" alt="我的博客图片" loading="lazy"><br>
+有title，可将光标移至图片上查看 title 效果：<img src="https://cdn.luogu.com.cn/upload/usericon/1620655.png" alt="我的博客图片" title="可选标题" loading="lazy"><br>
+无用链接，有title，可将光标移至错误文字上查看 title 效果：<img src="https://cdn.luogu.com.cn/upload/usericon/9999999.png" alt="我的博客图片" title="可选标题" loading="lazy"><br>
+图片套链接：<a href="https://ruying-suixing.github.io/"><img src="https://cdn.luogu.com.cn/upload/usericon/1620655.png" alt="我的博客图片" title="可选标题" loading="lazy"> </a></p>
+<h3 id="源码-13">源码</h3>
+<pre><code class="language-markdown">无title：![我的博客图片](https://cdn.luogu.com.cn/upload/usericon/1620655.png) 
+有title，可将光标移至图片上查看 title 效果：![我的博客图片](https://cdn.luogu.com.cn/upload/usericon/1620655.png &quot;可选标题&quot;) 
+无用链接，有title，可将光标移至错误文字上查看 title 效果：![我的博客图片](https://cdn.luogu.com.cn/upload/usericon/9999999.png &quot;可选标题&quot;)
+图片套链接：[![我的博客图片](https://cdn.luogu.com.cn/upload/usericon/1620655.png &quot;可选标题&quot;) ](https://ruying-suixing.github.io/)
+</code></pre>
+<h2 id="10">Markdown 转义语法</h2>
+<p>要显示原本用于格式化 Markdown 文档的字符，请在字符前面添加反斜杠字符 \ 。</p>
+<p>渲染效果如下：</p>
+<p>* Without the backslash, this would be a bullet in an unordered list.</p>
+<h3 id="可做转义的字符">可做转义的字符</h3>
+<p>以下列出的字符都可以通过使用反斜杠字符从而达到转义目的。</p>
+<table>
+<thead>
+<tr>
+<th>Character</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\</td>
+<td>backslash</td>
+</tr>
+<tr>
+<td>`</td>
+<td>backtick</td>
+</tr>
+<tr>
+<td>*</td>
+<td>asterisk</td>
+</tr>
+<tr>
+<td>_</td>
+<td>underscore</td>
+</tr>
+<tr>
+<td>{ }</td>
+<td>curly braces</td>
+</tr>
+<tr>
+<td>[ ]</td>
+<td>brackets</td>
+</tr>
+<tr>
+<td>( )</td>
+<td>parentheses</td>
+</tr>
+<tr>
+<td>#</td>
+<td>pound sign</td>
+</tr>
+<tr>
+<td>+</td>
+<td>plus sign</td>
+</tr>
+<tr>
+<td>-</td>
+<td>minus sign (hyphen)</td>
+</tr>
+<tr>
+<td>.</td>
+<td>dot</td>
+</tr>
+<tr>
+<td>!</td>
+<td>exclamation mark</td>
+</tr>
+</tbody>
+</table>
+<h3 id="预览-14">预览</h3>
+<p>\   反斜线<br>
+`   反引号<br>
+*   星号<br>
+_   底线<br>
+{}  花括号<br>
+[]  方括号<br>
+()  括弧<br>
+#   井字号<br>
++   加号<br>
+-   减号<br>
+.   英文句点<br>
+!   惊叹号</p>
+<h3 id="源码-14">源码</h3>
+<pre><code class="language-markdown">\\   反斜线
+\`   反引号
+\*   星号
+\_   底线
+\{}  花括号
+\[]  方括号
+\()  括弧
+\#   井字号
+\+   加号
+\-   减号
+\.   英文句点
+\!   惊叹号
+</code></pre>
+<h2 id="11">Markdown 分隔线语法</h2>
+<p>要创建分隔线，请在单独一行上使用三个或多个星号 (<code>***</code>)、破折号 (<code>---</code>) 或下划线 (<code>___</code>) ，并且不能包含其他内容。</p>
+<h3 id="预览-15">预览</h3>
+<p>这是第一段内容。</p>
+<hr>
+<hr>
+<hr>
+<p>这是第二段内容。</p>
+<h3 id="源码-15">源码</h3>
+<pre><code class="language-markdown">这是第一段内容。
+***
+
+---
+
+_________________
+这是第二段内容。
+</code></pre>
+<h2 id="12">Markdown 表格语法</h2>
+<p>使用 <code>|</code> 划分单元格，并使用 <code>:</code> 与三个及以上的 <code>-</code> 在第二行用于调整对齐。</p>
+<h3 id="预览-16">预览</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">我是左对齐</th>
+<th style="text-align:center">我是居中对齐</th>
+<th style="text-align:right">我是右侧对齐</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">内容</td>
+<td style="text-align:center">内容</td>
+<td style="text-align:right">内容</td>
+</tr>
+</tbody>
+</table>
+<h3 id="源码-16">源码</h3>
+<pre><code class="language-markdown">| 我是左对齐 | 我是居中对齐 | 我是右侧对齐 |
+|:---|:---:|---:|
+| 内容 | 内容 | 内容 |
+</code></pre>
+<p><strong>源码中</strong>单元格宽度可以变化，如下所示。呈现的输出将看起来相同。</p>
+<h3 id="预览-17">预览</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">我是左对齐</th>
+<th style="text-align:center">我是居中对齐</th>
+<th style="text-align:right">我是右侧对齐</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">内容</td>
+<td style="text-align:center">内容</td>
+<td style="text-align:right">内容</td>
+</tr>
+</tbody>
+</table>
+<h3 id="源码-17">源码</h3>
+<pre><code class="language-markdown">| 我是左对齐 | 我是居中对齐 | 我是右侧对齐 |
+|    :---    |    :---:     |    ---:     |
+|    内容    |     内容     |     内容     |
+</code></pre>
+<p>表格行数可以变化，如下所示。</p>
+<h3 id="预览-18">预览</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">我是左对齐</th>
+<th style="text-align:center">我是居中对齐</th>
+<th style="text-align:right">我是右侧对齐</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">内容</td>
+<td style="text-align:center">内容</td>
+<td style="text-align:right">内容</td>
+</tr>
+<tr>
+<td style="text-align:left">内容</td>
+<td style="text-align:center">内容</td>
+<td style="text-align:right">内容</td>
+</tr>
+<tr>
+<td style="text-align:left">内容</td>
+<td style="text-align:center">内容</td>
+<td style="text-align:right">内容</td>
+</tr>
+<tr>
+<td style="text-align:left">内容</td>
+<td style="text-align:center">内容</td>
+<td style="text-align:right">内容</td>
+</tr>
+<tr>
+<td style="text-align:left">内容</td>
+<td style="text-align:center">内容</td>
+<td style="text-align:right">内容</td>
+</tr>
+</tbody>
+</table>
+<h3 id="源码-18">源码</h3>
+<pre><code class="language-markdown">| 我是左对齐 | 我是居中对齐 | 我是右侧对齐 |
+|:---|:---:|---:|
+| 内容 | 内容 | 内容 |
+| 内容 | 内容 | 内容 |
+| 内容 | 内容 | 内容 |
+| 内容 | 内容 | 内容 |
+| 内容 | 内容 | 内容 |
+</code></pre>
+<p>表格可以使用 HTML 合并单元格，如下所示。</p>
+<h3 id="预览-19">预览</h3>
+<table>
+    <thead>
+        <tr>
+            <th>我是标题1</th>
+            <th>我是标题2</th>
+        <tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="2">我是第 1 行</td>
+        </tr>
+        <tr>
+            <td>内容</td>
+            <td rowspan="2">我是第 2 列</td>
+        </tr>
+        <tr>
+            <td>内容</td>
+        <tr>
+    </tbody>
+<table>    
+<h3 id="源码-19">源码</h3>
+<pre><code class="language-html">&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;我是标题1&lt;/th&gt;
+            &lt;th&gt;我是标题2&lt;/th&gt;
+        &lt;tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td colspan=&quot;2&quot;&gt;我是第 1 行&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;内容&lt;/td&gt;
+            &lt;td rowspan=&quot;2&quot;&gt;我是第 2 列&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;内容&lt;/td&gt;
+        &lt;tr&gt;
+    &lt;/tbody&gt;
+&lt;table&gt;    
+</code></pre>
+<blockquote>
+<p><strong>❗️警告</strong><br>
+现在即将进入</p>
+<h3  style="color: red;">高难度扩展部分。</h3>
+请做好准备。
+</blockquote>
+<h2 id="13">Markdown 注释语法</h2>
+<p  style="color: red;">部分网站不可用。</p>
+<p>脚注使您可以添加注释和参考，而不会使文档正文混乱。当您创建脚注时，带有脚注的上标数字会出现在您添加脚注参考的位置。读者可以单击链接以跳至页面底部的脚注内容。<br>
+要创建脚注参考，请在方括号（<code>[^1]</code>）内添加插入符号和标识符。标识符可以是数字或单词，但不能包含空格或制表符。标识符仅将脚注参考与脚注本身相关联-在输出中，脚注按顺序编号。 在括号内使用另一个插入符号和数字添加脚注，并用冒号和文本（<code>[^1]: My footnote.</code>）。您不必在文档末尾添加脚注。您可以将它们放在除列表，块引号和表之类的其他元素之外的任何位置。</p>
+<h3 id="预览-20">预览</h3>
+<p>体验放在文尾了，这里先放图片。<br>
+<img src="https://life.rusin7.com/post-images/1765801312084.png" alt="" loading="lazy"></p>
+<h3 id="源码-20">源码</h3>
+<pre><code class="language-markdown">这里有个简单的脚注，[^1] 这里有个更长的例子。[^2]
+[^1]: 这是第一个脚注。
+[^2]: 这里有一个有多段代码的文章。
+      缩进段落以包含在脚注中。
+      `{ 我的代码 }`
+      ### 你可以添加任意**多段**的段落和语法。
+</code></pre>
+<h2 id="14">Markdown 内嵌 HTML 语法</h2>
+<p>HTML 的行级內联标签不受限制，可以在 Markdown 的段落、列表或是标题里任意使用。依照个人习惯，甚至可以不用 Markdown 格式，而采用 HTML 标签来格式化。可以直接使用这些标签，而不用 Markdown 提供的语法。当你需要更改元素的属性时（例如为文本指定颜色或更改图像的宽度），使用 HTML 标签更方便些。</p>
+<h3 id="预览-21">预览</h3>
+<p>这是一个<strong>普通</strong>的段落。</p>
+<p style="color: red;">这是红色文字。</p>
+<p style="color: cyan;">这是绿色文字。</p>
+<img src="https://cdn.luogu.com.cn/upload/usericon/1620655.png" alt="我的博客图片" title="Magic Gardens" class="medium-zoom-image">
+<table>
+    <tr>
+        <td>Foo</td>
+    </tr>
+</table>
+<p>这也是一个<strong>普通</strong>的段落。</p>
+<h3 id="源码-21">源码</h3>
+<pre><code class="language-html">这是一个&lt;strong&gt;普通&lt;/strong&gt;的段落。
+&lt;p style=&quot;color: red;&quot;&gt;这是红色文字。&lt;/p&gt;
+&lt;p style=&quot;color: cyan;&quot;&gt;这是绿色文字。&lt;/p&gt;
+&lt;img src=&quot;https://cdn.luogu.com.cn/upload/usericon/1620655.png&quot; alt=&quot;我的博客图片&quot; title=&quot;Magic Gardens&quot; class=&quot;medium-zoom-image&quot;&gt;
+
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Foo&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+这也是一个&lt;strong&gt;普通&lt;/strong&gt;的段落。
+</code></pre>
+<h2 id="15">Markdown 下划线语法</h2>
+<p>Markdown 不支持下划线，可能是因为网页文本中的下划线通常表示超链接。然而，可能需要使用下划线。一些应用支持文本下划线，但如果你的 Markdown 处理器<strong>支持 HTML</strong>，可以使用 <code>&lt;ins&gt;</code> 标签。</p>
+<h3 id="预览-22">预览</h3>
+<p>一些文字<ins>将被加下划线</ins>。</p>
+<h3 id="源码-22">源码</h3>
+<pre><code class="language-html">一些文字&lt;ins&gt;将被加下划线&lt;/ins&gt;。
+</code></pre>
+<h2 id="16">Markdown 缩进语法</h2>
+<p>Markdown 里的空格和制表符有特殊用途，比如创建换行或代码块。如果你想用 Tab 缩进段落（如在段落前空两格），可以尝试以下方法。</p>
+<h3 id="预览-23">预览</h3>
+<p>    这是一个缩进的段落。</p>
+<h3 id="源码-23">源码</h3>
+<pre><code class="language-markdown">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;这是一个缩进的段落。
+</code></pre>
+<h2 id="17">Markdown 对齐语法</h2>
+<p>Markdown 没有文本对齐的语法，但可以使用 HTML 标签 <code>&lt;center&gt;</code>（已废弃）或 <strong>CSS</strong> 解决。</p>
+<h3 id="预览-24">预览</h3>
+<p style="text-align:left">这段文字居左显示（默认居左）。</p>
+<p style="text-align:center">这段文字居中显示。</p>
+<p style="text-align:right">这段文字居右显示。</p>
+<h3 id="源码-24">源码</h3>
+<pre><code class="language-html">&lt;p style=&quot;text-align:left&quot;&gt;这段文字居左显示（默认居左）。&lt;/p&gt;
+&lt;p style=&quot;text-align:center&quot;&gt;这段文字居中显示。&lt;/p&gt;
+&lt;p style=&quot;text-align:right&quot;&gt;这段文字居右显示。&lt;/p&gt;
+</code></pre>
+<h2 id="18">Markdown 注释语法</h2>
+<p>Markdown 没有内置的注释功能，但可以使用一种非官方的 Hack 方法。</p>
+<h3 id="预览-25">预览</h3>
+<p>这是可见的段落。</p>
+<p>这是另一个可见的段落。</p>
+<h3 id="源码-25">源码</h3>
+<pre><code class="language-markdown">这是可见的段落。
+
+[这是一个隐藏的注释]: # 
+
+这是另一个可见的段落。
+</code></pre>
+<h2 id="19">Markdown 警告语法</h2>
+<p>Markdown 没有警告框功能，但可以使用引用块（&gt;）+ Emoji + 加粗模拟。<br>
+<strong>Emoji</strong>：在大多数情况下，您可以简单地从 <a href="https://emojipedia.org/" title="Emojipedia">Emojipedia</a> 等来源复制表情符号并将其粘贴到文档中。许多Markdown应用程序会自动以Markdown格式的文本显示表情符号。</p>
+<h3 id="预览-26">预览</h3>
+<blockquote>
+<p>⚠️ <strong>警告：</strong> 不要按下大红色按钮！</p>
+</blockquote>
+<blockquote>
+<p>📝 <strong>注意：</strong> 日出很美。</p>
+</blockquote>
+<blockquote>
+<p>💡 <strong>提示：</strong> 记得珍惜生活中的小事。</p>
+</blockquote>
+<h3 id="源码-26">源码</h3>
+<pre><code class="language-markdown">&gt; ⚠️ **警告：** 不要按下大红色按钮！
+
+&gt; 📝 **注意：** 日出很美。
+
+&gt; 💡 **提示：** 记得珍惜生活中的小事。
+</code></pre>
+<h2 id="20">Markdown 调图语法</h2>
+<p>Markdown 不能指定图片尺寸，但可以用 HTML 设定宽高，图片将以 n×m 像素显示。</p>
+<h3 id="预览-27">预览</h3>
+<figure data-type="image" tabindex="3"><img src="https://life.rusin7.com/post-images/1765889863945.png" alt="" loading="lazy"></figure>
+<h3 id="源码-27">源码</h3>
+<pre><code class="language-html">&lt;img src=&quot;file://C:/Users/22790/Documents/Gridea/post-images/1765888137261.png&quot; width=&quot;200&quot; height=&quot;200&quot;&gt;
+&lt;img src=&quot;file://C:/Users/22790/Documents/Gridea/post-images/1765888137261.png&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;
+&lt;img src=&quot;file://C:/Users/22790/Documents/Gridea/post-images/1765888137261.png&quot; width=&quot;50&quot; height=&quot;50&quot;&gt;
+</code></pre>
+<h2 id="21">Markdown 新标语法</h2>
+<p>Markdown 不能指定在新标签页打开链接，但 HTML 可以。</p>
+<h3 id="预览-28">预览</h3>
+<p><a href="https://ruying-suixing.github.io/" target="_blank">打开我的博客！</a></p>
+<h3 id="源码-28">源码</h3>
+<pre><code class="language-html">&lt;a href=&quot;https://ruying-suixing.github.io/&quot; target=&quot;_blank&quot;&gt;打开我的博客！&lt;/a&gt;
+</code></pre>
+<h2 id="22">Markdown 符号语法</h2>
+<p>Markdown <strong>不能</strong>直接插入特殊符号，但可以<strong>复制粘贴</strong>，或者使用 HTML。</p>
+<h3 id="预览-29">预览</h3>
+<p>版权 (©) — ©<br>
+注册商标 (®) — ®<br>
+商标 (™) — ™<br>
+欧元 (€) — €<br>
+左箭头 (←) — ←<br>
+上箭头 (↑) — ↑<br>
+右箭头 (→) — →<br>
+下箭头 (↓) — ↓<br>
+度数 (°) — °<br>
+圆周率 (π) — π</p>
+<h3 id="源码-29">源码</h3>
+<pre><code class="language-html">版权 (©) — &amp;copy;
+注册商标 (®) — &amp;reg;
+商标 (™) — &amp;trade;
+欧元 (€) — &amp;euro;
+左箭头 (←) — &amp;larr;
+上箭头 (↑) — &amp;uarr;
+右箭头 (→) — &amp;rarr;
+下箭头 (↓) — &amp;darr;
+度数 (°) — &amp;#176;
+圆周率 (π) — &amp;#960;
+</code></pre>
+<h2 id="23">Markdown 表格扩展</h2>
+<p>Markdown 不能直接在表格中换行或插入列表，但可以用 HTML 解决。</p>
+<h3 id="预览-30">预览</h3>
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>换行</td>
+<td>第一段。<br><br>第二段。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>列表</td>
+<td><ul><li>项目一</li><li>项目二</li></ul></td>
+</tr>
+</tbody>
+</table>
+<h3 id="源码-30">源码</h3>
+<pre><code class="language-html">| 语法      | 描述         |
+| --------- | ----------- |
+| 换行      | 第一段。&lt;br&gt;&lt;br&gt;第二段。 |
+
+| 语法      | 描述         |
+| --------- | ----------- |
+| 列表      | &lt;ul&gt;&lt;li&gt;项目一&lt;/li&gt;&lt;li&gt;项目二&lt;/li&gt;&lt;/ul&gt; |
+</code></pre>
+<h2 id="24">Markdown 视频语法</h2>
+<p>Markdown 不能直接嵌入视频，但可以使用 HTML，点击B站的分享图标，然后选择嵌入链接，会获得代码。</p>
+<h3 id="预览-31">预览</h3>
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=114201066479129&bvid=BV1GPX1YpErE&cid=28993847393&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<h3 id="源码-31">源码</h3>
+<pre><code class="language-html">&lt;iframe src=&quot;//player.bilibili.com/player.html?isOutside=true&amp;aid=114201066479129&amp;bvid=BV1GPX1YpErE&amp;cid=28993847393&amp;p=1&quot; scrolling=&quot;no&quot; border=&quot;0&quot; frameborder=&quot;no&quot; framespacing=&quot;0&quot; allowfullscreen=&quot;true&quot;&gt;&lt;/iframe&gt;
+</code></pre>
+<h2 id="25">Markdown 折叠框语法</h2>
+<p>Markdown 不能直接使用可点击打开的折叠框，但可以使用 HTML，请在 <code>summary</code> 和 <code>p</code> 间键入词句以改变效果。</p>
+<h3 id="预览-32">预览</h3>
+<details><details>
+    <summary>
+        点我打开
+    </summary>
+    <p>真好玩！</p>
+</details>
+<details open>
+    <summary>
+        我已自动打开，点我关闭
+    </summary>
+    <p>求别关我😖。</p>
+</details>
+    <summary>
+        点我打开
+    </summary>
+    <p>真好玩！</p>
+</details>
+<h3 id="源码-32">源码</h3>
+<pre><code class="language-html">&lt;details&gt;&lt;details&gt;
+    &lt;summary&gt;
+        点我打开
+    &lt;/summary&gt;
+    &lt;p&gt;真好玩！&lt;/p&gt;
+&lt;/details&gt;
+&lt;details open&gt;
+    &lt;summary&gt;
+        我已自动打开，点我关闭
+    &lt;/summary&gt;
+    &lt;p&gt;求别关我😖。&lt;/p&gt;
+&lt;/details&gt;
+    &lt;summary&gt;
+        点我打开
+    &lt;/summary&gt;
+    &lt;p&gt;真好玩！&lt;/p&gt;
+&lt;/details&gt;
+</code></pre>
+
+            </div>
+            
+              <div class="reward-btn">
+                <div class="reward-btn-text">订阅</div>
+              </div>
+            
+            
+              <div class="post-footer">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong class="language" data-lan="author">本文作者：</strong>
+      ruying-suixing
+    </li>
+    <li class="post-copyright-link">
+      <strong class="language" data-lan="link">本文链接：</strong>
+      <a href="https://life.rusin7.com/post/markdown/" title="Markdown语法教程" style="color: #4dabf7;">https://life.rusin7.com/post/markdown/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong class="language" data-lan="copyright">版权声明： </strong>
+      本博客所有文章除特别声明外，均采用<a href="/about" rel="noopener" target="_blank" style="color: #4dabf7;">©️ BY-NC-SA</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+  <div class="tags">
+    
+      <a href="https://life.rusin7.com/tag/Z2-t9CYEwa/"># Markdown</a>
+    
+  </div>
+  <div class="nav">
+    <div class="nav-prev">
+      
+        <i class="fa fa-chevron-left"></i>
+        <a class="nav-pc-next" title="Dev C++美化——对现代编译器的极致追求" href="https://life.rusin7.com/post/Dev-C++/">Dev C++美化——对现代编译器的极致追求</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="Dev C++美化——对现代编译器的极致追求" href="https://life.rusin7.com/post/Dev-C++/">上一篇</a>
+      
+    </div>
+    <div class="nav-next">
+      
+        <a class="nav-pc-next" title="第22届浙大宁波理工学院程序设计大赛题解" href="https://life.rusin7.com/post/22nd-NBTUC-solution/">第22届浙大宁波理工学院程序设计大赛题解</a>
+        <a class="nav-mobile-next" title="第22届浙大宁波理工学院程序设计大赛题解" href="https://life.rusin7.com/post/22nd-NBTUC-solution/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
+      
+    </div>
+  </div>
+</div>
+            
+            
+  <script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<div id="vcomments" style="padding: 10px 0px 0px 0px"></div>
+
+<style>
+  .v .veditor {
+    min-height: 10rem;
+    background-image: url('https://cdn.luogu.com.cn/upload/usericon/1620655.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-color: rgba(255, 255, 255, 0);
+    resize: none;
+  }
+
+  .v .vwrap {
+    border: 1px solid #000 !important;
+  }
+
+  .v .vbtn {
+    padding: .4rem 1.2rem !important;
+    border-color: #fff !important;
+    background-color: #49b1f5 !important;
+    color: #fff !important;
+    font-size: .7rem !important;
+  }
+
+  .v .vcards .vcard .vh .vmeta .vat {
+    padding: 0 .8rem !important;
+    border: 1px solid #00c4b6 !important;
+    border-radius: 5px !important;
+    color: #00c4b6 !important;
+  }
+</style>
+<script>
+  new Valine({
+    el: '#vcomments',
+    appId: 'MAAasDLv2NYMtEEAn4QnnU3l-gzGzoHsz',
+    appKey: 'dISXAmwDUYme6vJqsc5HgYw1',
+    avatar: 'identicon',
+    placeholder: '来都来了，确定不留下点痕迹吗？',
+    pageSize: '10',
+    lang: 'zh-cn',
+    enableQQ: 'true' === 'true',
+    visitor: 'true' === 'true',
+    highlight: 'true' === 'true',
+    avatarForce: 'true' === 'false',
+    serverURLs: 'https://ruying-suixing.github.io/',
+		recordIP: 'true' === 'false',
+  });
+</script>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-box">
+  <footer class="footer">
+    <!-- 访问统计 -->
+    <span id="busuanzi_container_site_pv">浏览数:<span id="busuanzi_value_site_pv"></span> 次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">访客数:<span id="busuanzi_value_site_uv"></span> 人</span>
+    <span id="busuanzi_container_today_pv">今日总访问量 <span id="busuanzi_today_pv">加载中...</span> 次</span>
+    <!-- 站点运行时间（配置文件读取） -->
+    <script>
+      BirthDay = new Date('2025-12-12');
+      if (BirthDay.getTime()) {
+        function runTime() {
+          const today = new Date();
+          const daysold = Math.floor((today.getTime() - BirthDay.getTime()) / (24 * 60 * 60 * 1000));
+          return daysold + "天";
+        }
+        setInterval(() => $("#run_time").html(runTime()), 1000);
+      } else {
+        document.querySelector('#runTimeBox') && document.querySelector('.footer').removeChild(document.querySelector('#runTimeBox'));
+      }
+    </script>
+
+    <!-- 站点运行时间（固定时间） -->
+    <div>
+      <span id="runtimeSpan" style="color: #ff0000;"></span>
+      <script>
+        function showRuntime() {
+          const startTime = new Date("12/12/2025 00:00:00");
+          const timestamp = Date.now() - startTime.getTime();
+          const oneDay = 24*60*60*1000;
+          const totalDays = Math.floor(timestamp / oneDay);
+          const remain = timestamp % oneDay;
+          const yuHours = Math.floor(remain / 3600000).toString().padStart(2, '0');
+          const yuMinutes = Math.floor((remain % 3600000) / 60000).toString().padStart(2, '0');
+          const yuSeconds = Math.floor((remain % 60000) / 1000).toString().padStart(2, '0');
+          runtimeSpan.innerHTML = `本站已安全运行: ${totalDays}天${yuHours}小时${yuMinutes}分${yuSeconds}秒`;
+          setTimeout(showRuntime, 1000);
+        }
+        showRuntime();
+      </script>
+    </div>
+
+    <!-- 页脚信息 -->
+    <div class="poweredby"></div>
+  </footer>
+
+  <!-- 侧边栏抽屉按钮（仅muse/mist主题） -->
+  
+  
+
+  <!-- 返回顶部按钮 -->
+  <div class="pisces back-to-top" id="back_to_top">
+    <i class="fa fa-arrow-up"></i>
+    
+      <span class="scrollpercent"> <span id="back_to_top_text">0</span>% </span>
+    
+  </div>
+
+  <!-- 背景图片 -->
+  
+
+  <!-- 引入子组件 -->
+  
+  
+  <!-- 替换 APlayer CSS -->
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/aplayer/1.10.1/APlayer.min.css">
+  <!-- 替换 APlayer JS -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
+  <div class="aplayer" id="aplayer"></div>
+  <script>
+  let musics = JSON.parse('[{"author":"Axero","cover":"http://p1.music.126.net/IHBaP2FnLibUS4JxTKmAAg==/109951164415666404.jpg?param=130y130","lrc":"","musicLink":"http://music.163.com/song/media/outer/url?id=36492599.mp3","musicName":"trip"},{"author":"Salder4cash","cover":"http://p1.music.126.net/QJoBtToXBScsEnWfZZa6fw==/109951164380775587.jpg?param=130y130","lrc":"","musicLink":"http://music.163.com/song/media/outer/url?id=1392600538.mp3","musicName":"【FREE】lucky"}]');
+  let mediaMusic = [];
+  for (let i = 0; i < musics.length; i++) {
+    let item = musics[i];
+    mediaMusic.push({
+      name: item.musicName,
+      artist: item.author,
+      url: item.musicLink,
+      lrc: item.lrc,
+      cover: item.cover
+    });
+  }
+
+  const ap = new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      lrcType: 3,
+      listFolded: false,
+      listMaxHeight: 90,
+      audio: mediaMusic
+  });
+  window.addEventListener('load', function() {
+    let postBody = document.querySelector('#post_body');
+    let hs = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+    postBody && hs.forEach(h => {
+      let helems = postBody.querySelectorAll(h);
+      if (helems.length > 0) {
+        helems.forEach(elem => {
+          elem.id = encodeURI(elem.id);
+        })
+      }
+    })
+  })
+  </script>
+
+
+</div>
+
+<!-- 样式合集 -->
+<style>
+  /* 运行时间文字动画 */
+  #runtimeSpan {animation: change 10s infinite;font-weight: 800;}
+  @keyframes change {
+    0%{color:#AAC9CE;}25%{color:#F56A79;}50%{color:#1AA6B7;}75%{color:#FCF9F0;}100%{color:#E73B3E;}
+  }
+  /* 模糊文本样式 */
+  .blur {filter: blur(5px);transition: filter 0.3s;}
+  .blur:hover {filter: none;}
+</style>
+
+<!-- 核心功能脚本 -->
+<script>
+  // ========== 返回顶部功能 ==========
+  const back2Top = document.querySelector("#back_to_top");
+  const back2TopText = document.querySelector("#back_to_top_text");
+  
+  // 平滑滚动到顶部
+  function scrollAnimation(currentY, targetY) {
+    const needScrollTop = targetY - currentY;
+    let _currentY = currentY;
+    setTimeout(() => {
+      const dist = Math.ceil(needScrollTop / 10);
+      _currentY += dist;
+      window.scrollTo(_currentY, currentY);
+      if (Math.abs(needScrollTop) > 10) scrollAnimation(_currentY, targetY);
+      else window.scrollTo(_currentY, targetY);
+    }, 1);
+  }
+
+  // 绑定返回顶部点击事件
+  back2Top?.addEventListener("click", (e) => {
+    scrollAnimation(document.scrollingElement.scrollTop, 0);
+    e.stopPropagation();
+    return false;
+  });
+
+  // 滚动监听（返回顶部按钮显示/百分比更新）
+  window.addEventListener("scroll", () => {
+    const scrollTop = document.scrollingElement.scrollTop;
+    const scrollHeight = document.scrollingElement.scrollHeight;
+    const clientHeight = document.scrollingElement.clientHeight;
+    const percent = Math.min(100, (scrollTop / (scrollHeight - clientHeight)) * 100);
+
+    // 更新返回顶部按钮状态
+    if (percent > 1) back2Top?.classList.add("back-top-active");
+    else back2Top?.classList.remove("back-top-active");
+
+    // 更新滚动百分比
+    if (back2TopText) back2TopText.textContent = Math.floor(percent);
+  });
+
+  // ========== 侧边栏高度计算 ==========
+  let hasCacu = false;
+  function calcuHeight() {
+    if ((!hasCacu && back2Top?.classList.contains("pisces")) || back2Top?.classList.contains("gemini")) {
+      const sideBar = document.querySelector(".sidebar");
+      const navUl = document.querySelector("#site_nav");
+      if (sideBar && navUl) {
+        sideBar.style.marginTop = `${navUl.offsetHeight + navUl.offsetTop + 15}px`;
+        hasCacu = true;
+      }
+    }
+  }
+  calcuHeight();
+  window.addEventListener("resize", calcuHeight);
+
+  // ========== 侧边栏抽屉功能 ==========
+  const drawerBox = document.querySelector("#drawer_box");
+  const rightSideBar = document.querySelector(".sidebar");
+  const viewport = document.body;
+  
+  if (drawerBox && rightSideBar) {
+    let open = false;
+    const MOTION_TIME = 300;
+    const RIGHT_MOVE_DIS = "320px";
+    const right = drawerBox.classList.contains("right");
+    const transitionDir = right ? "transition.slideRightIn" : "transition.slideLeftIn";
+    const rightMotions = document.querySelectorAll(".right-motion");
+    
+    // 定义位移属性
+    const openProp = right ? { paddingRight: RIGHT_MOVE_DIS } : { paddingLeft: RIGHT_MOVE_DIS };
+    const closeProp = right ? { paddingRight: "0px" } : { paddingLeft: "0px" };
+
+    // 抽屉点击事件
+    drawerBox.onclick = function () {
+      open = !open;
+      jQuery.Velocity(rightSideBar, "stop");
+      jQuery.Velocity(viewport, "stop");
+      jQuery.Velocity(rightMotions, "stop");
+
+      if (open) {
+        jQuery.Velocity(rightSideBar, { width: RIGHT_MOVE_DIS }, {
+          duration: MOTION_TIME,
+          begin: () => jQuery.Velocity(rightMotions, transitionDir, {})
+        });
+        jQuery.Velocity(viewport, openProp, { duration: MOTION_TIME });
+      } else {
+        jQuery.Velocity(rightSideBar, { width: "0px" }, {
+          duration: MOTION_TIME,
+          begin: () => jQuery.Velocity(rightMotions, { opacity: 0 })
+        });
+        jQuery.Velocity(viewport, closeProp, { duration: MOTION_TIME });
+      }
+
+      // 切换线条样式
+      Array.from(drawerBox.children).forEach(child => child.classList.toggle("muse-line"));
+      drawerBox.classList.toggle("sidebar-open");
+    };
+  }
+
+  // ========== 链接新窗口打开 ==========
+  const newWindow = "true";
+  if (newWindow === "true") {
+    document.querySelectorAll(".post-body a:not(.btn)").forEach(link => {
+      link.setAttribute("target", "_blank");
+    });
+  }
+
+  // ========== 搜索按钮事件 ==========
+  document.querySelector("#fa_search")?.addEventListener("click", () => {
+    document.querySelector("#search_mask").style = "";
+  });
+
+  // ========== 代码高亮 ==========
+  hljs.initHighlightingOnLoad();
+
+  // ========== 页面离开标题变化 ==========
+  const leaveTitle = "o(>﹏<)o不要离开我";
+  if (leaveTitle) {
+    let normal_title = document.title;
+    document.addEventListener("visibilitychange", () => {
+      document.title = document.visibilityState === "hidden" ? leaveTitle : normal_title;
+    });
+  }
+
+  // ========== 图片fancybox处理 ==========
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".section img").forEach(image => {
+      const parent = image.parentElement;
+      const next = image.nextElementSibling;
+      parent.removeChild(image);
+      
+      const aelem = document.createElement("a");
+      aelem.href = image.src;
+      aelem.dataset.fancybox = "images";
+      aelem.dataset.rel = "fancybox-button";
+      aelem.classList.add("fancybox");
+      aelem.appendChild(image);
+      
+      parent.insertBefore(aelem, next);
+    });
+  });
+
+  // ========== 控制台打印信息 ==========
+  console.log(`
+██████╗ ███████╗ █████╗ ███╗   ██╗██╗   ██╗███████╗
+██╔══██╗██╔════╝██╔══██╗████╗  ██║██║   ██║██╔════╝
+██████╔╝█████╗  ███████║██╔██╗ ██║██║   ██║█████╗  
+██╔══██╗██╔══╝  ██╔══██║██║╚██╗██║██║   ██║██╔══╝  
+██████╔╝███████╗██║  ██║██║ ╚████║╚██████╔╝███████╗
+╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝
+  `);
+  if (window.console?.log) {
+    console.log("%c毒鸡汤（https://ruying-suixing.github.io/dujitang）","color:#fff; background-color:#333333; padding:5px; border-radius:10px; font-size:16px;");
+    console.log('%c在我的网站打开控制台，您想做什么？','color:#fff; background-color:#333333; padding:5px; border-radius:10px; font-size:16px;');
+  }
+</script>
+
+<!-- 第三方资源 -->
+<link rel="stylesheet" href="/media/css/jquery.fancybox.css" />
+<script src="/media/js/jquery.fancybox.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+<!-- 特效合集 -->
+<script>
+  // 1. 顶部进度条
+  (function(w, d) {
+    const domDiv = d.createElement('div');
+    domDiv.style.cssText = 'position: fixed; top: 0; left: 0; width: 0; height: 3px;box-shadow: 0 0 3px #999; background: -webkit-linear-gradient(left, red,orange,yellow,green,blue,indigo,violet );z-index: 999999;-webkit-transition:width .3s linear;';
+    d.body.appendChild(domDiv);
+    const domH = w.innerHeight || d.documentElement.clientHeight || d.body.clientHeight;
+    w.addEventListener('scroll', () => {
+      domDiv.style.width = Math.round(w.pageYOffset / (d.body.offsetHeight - domH) * 100) + '%';
+    });
+  })(window, document);
+
+  // 2. 鼠标光晕特效
+  (function() {
+    const circle = document.createElement('div');
+    circle.style.cssText = `
+      position: fixed; border-radius: 50%; pointer-events: none;
+      background: radial-gradient(circle, #ff7676 0%, #74b9ff 25%, #a29bfe 50%, #fd79a8 75%, #fdcb6e 100%);
+      filter: blur(15px); opacity: 0.6; z-index: 99999999;
+      transform: translate(-50%, -50%); transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+      width: 80px; height: 80px;
+    `;
+    document.body.appendChild(circle);
+    
+    document.addEventListener('mousemove', (e) => {
+      circle.style.left = e.clientX + 'px';
+      circle.style.top = e.clientY + 'px';
+    });
+    document.addEventListener('mouseleave', () => circle.style.opacity = '0');
+    document.addEventListener('mouseenter', () => circle.style.opacity = '0.6');
+  })();
+
+  // 3. 绿色小圆鼠标跟随
+  (function() {
+    const cursorDot = document.createElement('div');
+    cursorDot.style.cssText = `
+      position: fixed; width: 16px; height: 16px; background-color: #34d859;
+      border-radius: 50%; z-index: 999999999; pointer-events: none;
+      opacity: 0.5; transform: translate(-50%, -50%);
+    `;
+    document.body.appendChild(cursorDot);
+
+    let dotX = 0, dotY = 0, mouseX = 0, mouseY = 0;
+    const speed = 0.16;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateDot() {
+      dotX += (mouseX - dotX) * speed;
+      dotY += (mouseY - dotY) * speed;
+      cursorDot.style.left = dotX + "px";
+      cursorDot.style.top = dotY + "px";
+      requestAnimationFrame(animateDot);
+    }
+    animateDot();
+  })();
+
+  // 4. 屏蔽F12
+  window.onload = function() {
+    document.onkeydown = function(e) {
+      e = e || window.event;
+      // 监听 F12 键（查看源代码）
+      if (e.keyCode === 123) {
+        Swal.fire({
+          title: '错误',
+          text: '请尊重本站版权，本站不允许查看源代码。',
+          icon: 'error',
+          timer: 1200,
+          customClass: { 
+            container: 'swal-zindex-fix',
+            popup: 'swal-large-popup',
+            title: 'swal-large-title',
+            content: 'swal-large-content',
+            confirmButton: 'swal-custom-button-1'
+          }
+        });
+        setTimeout(() => {
+          document.querySelector('.swal-zindex-fix')?.style.setProperty('z-index', '999999');
+        }, 0);
+        return false;
+      }
+    }
+  }
+</script>
+<!-- ============================= -->
+<!-- ============================= -->
+<!-- 右键菜单自定义，使用AI辅助完成 -->
+<!-- ============================= -->
+<!-- ============================= -->
+<!-- ============================= -->
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/sweetalert2/11.10.8/sweetalert2.min.css">
+<script src="https://cdn.bootcdn.net/ajax/libs/sweetalert2/11.10.8/sweetalert2.min.js"></script>
+
+<!-- 增加SweetAlert2样式覆盖，提升弹窗层级 -->
+<style type="text/css">
+/* 右键菜单样式（纯文本图标，无字体依赖） */
+.usercm {
+    background: #fff !important;
+    font-size: 13px !important;
+    width: 200px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    position: absolute;
+    display: none;
+    z-index: 9999999; /* 右键菜单层级 */
+    opacity: 0.95;
+    border-radius: 8px;
+    padding: 5px 0;
+    margin: 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.usercm ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.usercm li {
+    margin: 0;
+    padding: 0;
+    line-height: 35px;
+}
+.usercm li a {
+    color: #666;
+    padding: 0 15px;
+    display: block;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+.usercm li a:hover {
+    color: #fff;
+    background: rgba(170,222,18,0.88);
+}
+/* 纯文本图标（替代FontAwesome，避免乱码） */
+.usercm li a .icon {
+    margin-right: 10px;
+    display: inline-block;
+    width: 16px;
+    text-align: center;
+}
+.usercm li.line {
+    height: 1px;
+    background: #e5e5e5;
+    margin: 2px 0;
+    padding: 0;
+}
+/* 隐藏不需要的菜单 */
+.usercm .text-menu,
+.usercm .img-menu,
+.usercm .link-menu,
+.usercm .history-forward,
+.usercm .history-back {
+    display: none;
+}
+
+/* 提升SweetAlert2弹窗层级，避免被遮挡 */
+.swal2-container {
+    z-index: 999999 !important; /* 比右键菜单更高 */
+}
+</style>
+
+<!-- 右键菜单DOM（新增文本搜索） -->
+<div class="usercm" style="left: 0; top: 0;">
+    <ul>
+        <!-- 首页 -->
+        <li><a href="https://ruying-suixing.github.io/"><span class="icon">🏠</span><span>首页</span></a></li>
+        
+        <!-- 文字相关菜单 -->
+        <li class="text-menu"><a onclick="copyText()"><span class="icon">📋</span><span>复制文字（Ctrl+C）</span></a></li>
+        <!-- 新增：划词搜索按钮 -->
+        <li class="text-menu"><a onclick="showSearchEnginePopup()"><span class="icon">🔍</span><span>文本搜索</span></a></li>
+        
+        <!-- 页面导航 -->
+        <li class="history-forward"><a href="javascript:history.go(1)"><span class="icon">▶</span><span>前进</span></a></li>
+        <li class="history-back"><a href="javascript:history.go(-1)"><span class="icon">◀</span><span>后退</span></a></li>
+        <li><a href="javascript:location.reload()"><span class="icon">🔄</span><span>刷新页面（F5）</span></a></li>
+        <li><a onclick="openNewTab()"><span class="icon">🖼️</span><span>复制页面（Ctrl+Shift+K）</span></a></li>
+        
+        <!-- 分享链接 -->
+        <li><a onclick="copyPageLink()"><span class="icon">🔗</span><span>分享链接</span></a></li>
+        
+        <li class="line"></li>
+        
+        <!-- 图片专属 -->
+        <li class="img-menu"><a onclick="copyImgUrl()"><span class="icon">🔗</span><span>复制图片链接</span></a></li>
+        <li class="img-menu"><a onclick="openImg()"><span class="icon">↗</span><span>新页打开图片</span></a></li>
+        <li class="line img-menu"></li>
+        
+        <!-- 链接专属 -->
+        <li class="link-menu"><a onclick="copyLink()"><span class="icon">📎</span><span>复制链接地址</span></a></li>
+        <li class="link-menu"><a onclick="openLink()"><span class="icon">↗</span><span>新页打开链接</span></a></li>
+        <li class="line link-menu"></li>
+        
+        <!-- 通用功能 -->
+        <li><a href="https://ruying-suixing.github.io/404.html"><span class="icon">🤝</span><span>申请友链</span></a></li>
+        <li><a href="mailto:Haoxuanzhang2014@outlook.com?subject=来自博客读者的联系&body=您好，我从您的博客找到您..."><span class="icon">✉️</span><span>E-mail</span></a></li>
+    </ul>
+</div>
+
+<script>
+let curImg = null;
+let curLink = null;
+const menu = document.querySelector('.usercm');
+
+// 封装提示函数
+function showToast(message, isSuccess = true) {
+    if (typeof Swal !== 'undefined') {
+        Swal.fire({
+            title: isSuccess ? '成功' : '提示',
+            text: message,
+            icon: isSuccess ? 'success' : 'info',
+            timer: 1000, // 1秒自动关闭
+            timerProgressBar: true,
+            showConfirmButton: false,
+            position: 'top-end',
+            toast: true,
+            backdrop: false
+        });
+    } else {
+        alert(message);
+    }
+}
+
+// 检测浏览器历史记录
+function checkHistoryState() {
+    const forwardItem = document.querySelector('.history-forward');
+    const backItem = document.querySelector('.history-back');
+    const canForward = window.history.length > (window.history.state?.idx || 0) + 1;
+    const canBack = window.history.state?.idx > 0 || window.history.length > 1;
+    forwardItem.style.display = canForward ? 'block' : 'none';
+    backItem.style.display = canBack ? 'block' : 'none';
+}
+
+// 禁用原生右键+显示菜单
+document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    resetMenu();
+    checkHistoryState();
+
+    curImg = e.target.tagName === 'IMG' ? e.target : e.target.closest('img');
+    curLink = e.target.tagName === 'A' ? e.target : e.target.closest('a');
+    const selectedText = window.getSelection().toString().trim();
+
+    if (selectedText) document.querySelectorAll('.text-menu').forEach(item => item.style.display = 'block');
+    if (curImg) document.querySelectorAll('.img-menu').forEach(item => item.style.display = 'block');
+    if (curLink) document.querySelectorAll('.link-menu').forEach(item => item.style.display = 'block');
+
+    const scrollX = window.scrollX || document.documentElement.scrollLeft;
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    const finalLeft = Math.min(e.clientX + scrollX, window.innerWidth - menu.offsetWidth + scrollX);
+    const finalTop = Math.min(e.clientY + scrollY, window.innerHeight - menu.offsetHeight + scrollY);
+    
+    menu.style.left = `${finalLeft}px`;
+    menu.style.top = `${finalTop}px`;
+    menu.style.display = 'block';
+});
+
+// 点击空白关闭
+document.addEventListener('click', (e) => {
+    if (!menu.contains(e.target)) {
+        menu.style.display = 'none';
+        resetMenu();
+    }
+});
+
+// 重置菜单
+function resetMenu() {
+    curImg = null;
+    curLink = null;
+    document.querySelectorAll('.text-menu, .img-menu, .link-menu, .history-forward, .history-back').forEach(item => {
+        item.style.display = 'none';
+    });
+}
+// ==================== 划词搜索功能（精简版） ====================
+function showSearchEnginePopup() {
+    const text = window.getSelection().toString().trim();
+    if (!text) {
+        showToast("未选中任何文字", false);
+        menu.style.display = 'none';
+        return;
+    }
+
+    menu.style.display = 'none';
+
+    // SweetAlert2 选择弹窗
+    Swal.fire({
+        title: '选择搜索引擎',
+        text: `搜索：${text}`,
+        icon: 'question',
+        showCancelButton: true,
+        cancelButtonText: '取消',
+        // 核心按钮
+        showConfirmButton: true,
+        confirmButtonText: '百度',
+        confirmButtonColor: '#b81111',
+        showDenyButton: true,
+        denyButtonText: '必应',
+        denyButtonColor: '#0078d4',
+        showNeutralButton: true,
+        neutralButtonText: '谷歌',
+        neutralButtonColor: '#4285f4',
+        // 仅保留DuckDuckGo按钮
+        footer: `
+            <div style="margin-top: 15px; display: flex; gap: 10px; justify-content: center;">
+                <button class="swal2-custom-engine-btn" style="padding: 8px 16px; background: #de5833; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                    DuckDuckGo
+                </button>
+            </div>
+        `,
+        customClass: {
+            container: 'swal-zindex-fix',
+            popup: 'swal-large-popup',
+            title: 'swal-large-title',
+            content: 'swal-large-content',
+            actions: 'swal2-actions-flex'
+        }
+    }).then((result) => {
+        let url = '';
+        if (result.isConfirmed) {
+            url = `https://www.baidu.com/s?wd=${encodeURIComponent(text)}`;
+        } else if (result.isDenied) {
+            url = `https://cn.bing.com/search?q=${encodeURIComponent(text)}`;
+        } else if (result.isNeutral) {
+            url = `https://www.google.com/search?q=${encodeURIComponent(text)}`;
+        } else {
+            return;
+        }
+        Swal.fire({
+          title: '成功',
+          text: `搜索成功！正在跳转...`,
+          icon: 'success',
+          showConfirmButton: false
+        })
+        setTimeout(() => window.open(url, '_blank'), 1500);
+    });
+
+    // 监听 DuckDuckGo 按钮点击
+    document.querySelector('.swal2-custom-engine-btn')?.addEventListener('click', () => {
+        Swal.close();
+        Swal.fire({
+          title: '成功',
+          text: `搜索成功！正在跳转...`,
+          icon: 'success',
+          showConfirmButton: false
+        })
+        setTimeout(() => window.open(`https://duckduckgo.com/?q=${encodeURIComponent(text)}`, '_blank'), 1500);
+    });
+}
+
+// 复制当前页面链接
+function copyPageLink() {
+    const pageUrl = window.location.href;
+    menu.style.display = 'none';
+    
+    if (!navigator.clipboard) {
+        const textArea = document.createElement('textarea');
+        textArea.value = pageUrl;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showToast('复制成功 已复制到剪切板');
+        } catch (err) {
+            showToast('复制失败，请手动复制', false);
+        } finally {
+            document.body.removeChild(textArea);
+        }
+        return;
+    }
+
+    navigator.clipboard.writeText(pageUrl)
+        .then(() => showToast('复制成功 已复制到剪切板'))
+        .catch(() => showToast('复制失败，请手动复制', false));
+}
+
+// 复制文字
+function copyText() {
+    const text = window.getSelection().toString().trim();
+    if (!text) return;
+    
+    menu.style.display = 'none';
+    
+    if (!navigator.clipboard) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showToast('文字复制成功！');
+        } catch (err) {
+            showToast('复制失败，请手动复制', false);
+        } finally {
+            document.body.removeChild(textArea);
+        }
+        return;
+    }
+
+    navigator.clipboard.writeText(text)
+        .then(() => showToast('文字复制成功！'))
+        .catch(() => showToast('复制失败，请手动复制', false));
+}
+
+function openNewTab() {
+    window.open(location.href, '_blank');
+    menu.style.display = 'none';
+}
+
+function copyImgUrl() {
+    if (!curImg) return;
+    menu.style.display = 'none';
+    const imgUrl = curImg.src;
+    
+    if (!navigator.clipboard) {
+        const textArea = document.createElement('textarea');
+        textArea.value = imgUrl;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showToast('图片链接复制成功！');
+        } catch (err) {
+            showToast('复制失败，请手动复制', false);
+        } finally {
+            document.body.removeChild(textArea);
+        }
+        return;
+    }
+
+    navigator.clipboard.writeText(imgUrl)
+        .then(() => showToast('图片链接复制成功！'))
+        .catch(() => showToast('复制失败，请手动复制', false));
+}
+
+function openImg() {
+    curImg && window.open(curImg.src, '_blank');
+    menu.style.display = 'none';
+}
+
+function copyLink() {
+    if (!curLink) return;
+    menu.style.display = 'none';
+    const linkUrl = curLink.href;
+    
+    if (!navigator.clipboard) {
+        const textArea = document.createElement('textarea');
+        textArea.value = linkUrl;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showToast('链接地址复制成功！');
+        } catch (err) {
+            showToast('复制失败，请手动复制', false);
+        } finally {
+            document.body.removeChild(textArea);
+        }
+        return;
+    }
+
+    navigator.clipboard.writeText(linkUrl)
+        .then(() => showToast('链接地址复制成功！'))
+        .catch(() => showToast('复制失败，请手动复制', false));
+}
+
+function openLink() {
+    curLink && window.open(curLink.href, '_blank');
+    menu.style.display = 'none';
+}
+
+window.addEventListener('load', () => {
+    if (typeof Swal === 'undefined') {
+        console.warn('SweetAlert2 加载失败，将使用原生alert替代');
+    }
+});
+</script>
+    <div class="reward-mask" style="display: none;">
+  <div class="reward-relative">
+    <span class="close" aria-hidden="true">x</span>
+    <div class="reward-body">
+      <h2>感谢您的订阅，我会继续努力的!</h2>
+      <a href="https://github.com/ruying-suixing/ruying-suixing.github.io/issues/4" target="_blank"><strong>在 github 上订阅本博客月刊</strong></a>
+      <br>
+      <div class="reward-img-box">
+        <div style="position: relative; width: 140px; height: 140px;">
+                   
+          
+            <img id="zfb" class="reward-img" src="https://cdn.luogu.com.cn/upload/usericon/1620655.png" alt="赞赏码">
+          
+          
+            <img id="wx" class="reward-img" src="https://tuchuang.org.cn/imgs/2026/01/09/55266142be9c7a23.png" alt="赞赏码">
+          
+        </div>
+      </div>
+      <p class="reward-word">点击蓝字订阅月刊，每月初获取最新文章，详情请查看以上链接中的订阅须知。</p>
+      <p class="reward-tip">感谢您的订阅！</p>
+      <blockquote> <p>Tip：您需要拥有一个 github 账号，如没有请<a href="https://github.com/signup" title="创建 github 账号">点此创建</a>。</p> </blockquote>
+    </div>
+    <div class="bottom">
+      
+      <div id="zfbBtn" class="pay-text">
+        绿勾
+      </div>
+      
+      
+      <div id="wxBtn" class="pay-text">
+        红叉
+      </div>
+      
+    </div>
+  </div>
+</div>
+<style>
+  .reward-mask {
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #00000054;
+  }
+
+  .reward-relative {
+    position: relative;
+    width: 480px;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: #fff;
+    top: 50%;
+    margin-top: -205px;
+  }
+
+  .reward-relative .close {
+    position: absolute;
+    right: 10px;
+    font-weight: normal;
+    font-size: 16px;
+    color: #929292;
+  }
+
+  .reward-body {
+    padding: 40px 20px 20px;
+  }
+
+  .bottom {
+    display: flex;
+  }
+
+  .reward-btn {
+    text-align: center;
+  }
+
+  .reward-btn-text {
+    display: inline-block;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 50%;
+    background-color: #ff9734;
+    color: #FFF;
+    margin-top: 20px;
+  }
+
+  .pay-text {
+    margin-top: 10px;
+    padding: 10px;
+    flex: 1;
+    transition: all .2s linear;
+  }
+
+  .pay-text:hover {
+    background-color: #a5a5a536;
+  }
+
+  .reward-body h2 {
+    padding-top: 10px;
+    text-align: center;
+    color: #a3a3a3;
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0 0 20px;
+  }
+
+  .reward-body h2:after,
+  .reward-body h2:before {
+    font-family: Arial, Helvetica, sans-serif;
+    background: 0 0;
+    width: 0;
+    height: 0;
+    font-style: normal;
+    color: #eee;
+    font-size: 80px;
+    position: absolute;
+    top: 20px;
+  }
+
+  .reward-body h2:before {
+    content: '\201c';
+    left: 50px;
+  }
+
+  .reward-body h2:after {
+    content: '\201d';
+    right: 80px;
+  }
+
+  .reward-img-box {
+    display: inline-block;
+    padding: 10px;
+    border: 6px solid #ea5f00;
+    margin: 0 auto;
+    border-radius: 3px;
+    position: relative;
+  }
+
+  .reward-img {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 767px) {
+    .reward-relative {
+      height: 100%;
+      top: 0px;
+      margin-top: 0;
+      width: auto;
+    }
+
+    .reward-relative .bottom {
+      flex-direction: column;
+    }
+
+    .reward-relative .pay-text {
+      width: 80%;
+      margin: 5px auto;
+      border: 1px solid silver;
+      padding: 6px;
+      border-radius: 4px;
+    }
+
+    .reward-body h2:after {
+      right: 40px;
+    }
+
+    .reward-body h2:after,
+    .reward-body h2:before {
+      font-size: 60px;
+    }
+
+    .reward-body h2:before {
+      left: 20px;
+    }
+  }
+</style>
+<script>
+  !function () {
+    var mask = document.querySelector('.reward-mask');
+    let close = document.querySelector('.reward-relative .close');
+    let rewardBtn = document.querySelector('.reward-btn');
+
+    let zfb = document.querySelector('#zfb'),
+      wx = document.querySelector('#wx'),
+      zfbBtn = document.querySelector('#zfbBtn'),
+      wxBtn = document.querySelector('#wxBtn');
+
+    if (zfbBtn && wxBtn) {
+      zfbBtn.addEventListener('click', () => {
+        jQuery.Velocity(zfb, 'transition.slideLeftIn', {
+          duration: 400
+        });
+        jQuery.Velocity(wx, 'transition.slideRightOut', {
+          display: 'none',
+          duration: 400
+        });
+      });
+
+      wxBtn.addEventListener('click', () => {
+        jQuery.Velocity(wx, 'transition.slideRightIn', {
+          duration: 400
+        });
+        jQuery.Velocity(zfb, 'transition.slideLeftOut', {
+          display: 'none',
+          duration: 400
+        });
+      });
+    }
+
+    rewardBtn.addEventListener('click', (e) => {
+      jQuery.Velocity(mask, 'transition.slideDownIn', {
+        duration: 400
+      })
+    });
+
+    close.addEventListener('click', (e) => {
+      e.preventDefault();
+      jQuery.Velocity(mask, 'transition.slideUpOut', {
+        duration: 400
+      })
+    })
+  }()
+</script>
+
+  </div>
+</body>
+
+<input hidden id="copy" />
+<style>
+  /* 复制按钮样式 - 放大图标并美化 */
+  .copy-code {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
+    color: #666;
+    background: #f5f5f5;
+    border-radius: 4px;
+    padding: 4px 8px;
+    transition: all 0.3s;
+    z-index: 10;
+  }
+  
+  .copy-code:hover {
+    color: #0078e7;
+    background: #e8f4ff;
+  }
+  
+  /* 放大fa-copy图标 */
+  .copy-code i {
+    font-size: 18px; /* 图标大小，可根据需要调整 */
+    margin-right: 4px;
+  }
+  
+  /* 给pre添加相对定位，让按钮定位生效 */
+  pre {
+    position: relative;
+  }
+</style>
+<script>
+  !function () {
+    let times = document.querySelectorAll('.publish-time');
+    for (let i = 0; i < times.length; i++) {
+      let date = times[i].dataset.t;
+      let time = Math.floor((new Date().getTime() - new Date(date).getTime()) / 1000);
+      if (time < 60) {
+        str = time + '秒之前';
+      } else if (time < 3600) {
+        str = Math.floor(time / 60) + '分钟之前';
+      } else if (time >= 3600 && time < 86400) {
+        str = Math.floor(time / 3600) + '小时之前';
+      } else if (time >= 86400 && time < 259200) {
+        str = Math.floor(time / 86400) + '天之前';
+      } else {
+        str = times[i].textContent;
+      }
+      times[i].textContent = str;
+    }
+  }();
+</script>
+
+<script>
+  let language = '';
+  if (language !== '') {
+    let map = new Map();
+    if (language === 'en') {
+      map.set('search', 'Search');
+      map.set('category', 'Categories');
+      map.set('article', 'Articles');
+      map.set('tag', 'Tags');
+      map.set('top', 'Top');
+      map.set('publish', 'published');
+      map.set('minute', ' minutes');
+      map.set('read-more', 'Read More');
+      map.set('view', 'View');
+      map.set('words', ' words');
+      map.set('category-in', 'category in');
+      map.set('preview', 'Meta');
+      map.set('index', 'Toc');
+      map.set('no-archives', "You haven't created yet");
+      map.set('archives', " articles in total");
+      map.set('cloud-tags', " tags in total");
+      map.set('copyright', "Copyright: ");
+      map.set('author', "Author: ");
+      map.set('link', "Link: ");
+      map.set('leave-message', "Leave a message");
+      map.set('format', "Links Format");
+      map.set('site-name', "Name: ");
+      map.set('site-link', "Link: ");
+      map.set('site-desc', "Desc: ");
+      map.set('stat', " related results, taking ");
+      map.set('stat-time', " ms");
+      map.set('site-img', "Image: ");
+    }
+
+    if (map.size > 0) {
+      let lanElems = document.querySelectorAll('.language');
+      lanElems.forEach(elem => {
+        let lan = elem.dataset.lan, text = map.get(lan);
+        if (elem.__proto__ === HTMLInputElement.prototype) {
+          elem.placeholder = text
+        } else {
+          if (elem.dataset.count) {
+            text = elem.dataset.count + text;
+          }
+          elem.textContent = text;
+        }
+      })
+    }
+  }
+
+  window.Clipboard = (function (window, document, navigator) {
+    var textArea,
+      copy;
+
+    // 判断是不是ios端
+    function isOS() {
+      return navigator.userAgent.match(/ipad|iphone/i);
+    }
+    //创建文本元素
+    function createTextArea(text) {
+      textArea = document.createElement('textArea');
+      textArea.value = text;
+      textArea.style.width = 0;
+      textArea.style.height = 0;
+      textArea.clientHeight = 0;
+      textArea.clientWidth = 0;
+      document.body.appendChild(textArea);
+    }
+    //选择内容
+    function selectText() {
+      var range,
+        selection;
+
+      if (isOS()) {
+        range = document.createRange();
+        range.selectNodeContents(textArea);
+        selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        textArea.setSelectionRange(0, 999999);
+      } else {
+        textArea.select();
+      }
+    }
+
+    //复制到剪贴板
+    function copyToClipboard() {
+      try {
+        document.execCommand("Copy")
+      } catch (err) {
+        alert("复制错误！请手动复制！")
+      }
+      document.body.removeChild(textArea);
+    }
+
+    copy = function (text) {
+      createTextArea(text);
+      selectText();
+      copyToClipboard();
+    };
+
+    return {
+      copy: copy
+    };
+  })(window, document, navigator);
+
+  function copyCode(e) {
+    if (e.srcElement.tagName === 'SPAN' && e.srcElement.classList.contains('copy-code')) {
+      let code = e.currentTarget.querySelector('code');
+      var text = code.innerText;
+      // 修改判断逻辑 - 检查图标+文字组合
+      if (e.srcElement.innerHTML.includes('复制成功')) {
+        return;
+      }
+      // 修改：替换为复制成功的图标+文字
+      e.srcElement.innerHTML = '<i class="fas fa-check"></i> 复制成功';
+      (function (elem) {
+        setTimeout(() => {
+          // 修改：恢复为复制图标+文字
+          elem.innerHTML = '<i class="fas fa-copy"></i> 复制代码';
+        }, 1000);
+      })(e.srcElement)
+      Clipboard.copy(text);
+    }
+  }
+
+  let pres = document.querySelectorAll('pre');
+  pres.forEach(pre => {
+    let code = pre.querySelector('code');
+    let copyElem = document.createElement('span');
+    copyElem.classList.add('copy-code');
+    // 修改：替换为fa-copy图标+文字
+    copyElem.innerHTML = '<i class="fas fa-copy"></i> 复制代码';
+    pre.appendChild(copyElem);
+    pre.onclick = copyCode
+  })
+
+</script>
+<script src="/media/js/motion.js"></script>
+
+
+
+
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+<script type="text/javascript" src="/media/js/mouse/fireworks.js"></script>
+
+
+  <script src="/media/js/cool.js"></script>
+
+
+
+  <div class="snow-container"></div>
+  <script src="/media/js/bg/snow.js"></script>
+
+</html>

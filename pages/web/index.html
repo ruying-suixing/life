@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的网站收藏夹</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+        body {
+            background-image: url('https://files.codelife.cc/itab/defaultWallpaper/videos/40.jpg');  
+            /* 保持图片比例，覆盖可视区域（不会拉伸） */
+            background-size: cover; 
+            /* 背景固定，不随页面滚动 */
+            background-attachment: fixed;
+            background-position: center; 
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        /* 文件夹样式 */
+        .folder {
+            margin: 10px 0;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 15px;
+        }
+        .folder-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .folder-title::before {
+            content: "📁";
+            font-size: 20px;
+        }
+        /* 书签样式 */
+        .bookmark-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 10px;
+            margin-left: 20px;
+        }
+        .bookmark-item {
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            padding: 10px;
+            transition: transform 0.2s;
+        }
+        .bookmark-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .bookmark-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #3498db;
+        }
+        .bookmark-link:hover{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #12649b;
+        }
+        .bookmark-icon {
+            width: 16px;
+            height: 16px;
+            border-radius: 2px;
+        }
+        .bookmark-name {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        /* 无文件夹的书签样式 */
+        .root-bookmarks {
+            margin: 10px 0;
+        }
+        /* 嵌套文件夹缩进 */
+        .folder .folder {
+            margin-left: 20px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="color: aqua;">我的书签</h1>
+        <div id="bookmarks-container"></div>
+    </div>
+
+    <script>
+        // ========== 你的 Pintree 导出 JSON 数据（无需修改，已包含） ==========
+        const PINTREE_BOOKMARKS = {
+            "id": "root",
+            "name": "根目录",
+            "children": [
+  {
+    "type": "folder",
+    "addDate": 1750478507414,
+    "title": "置顶",
+    "children": [
+      {
+        "type": "link",
+        "addDate": 1754721839421,
+        "title": "洛谷",
+        "icon": "https://favicon.im/www.luogu.com.cn",
+        "url": "https://www.luogu.com.cn/auth/login"
+      },
+      {
+        "type": "link",
+        "addDate": 1760014830598,
+        "title": "实获信息系统",
+        "icon": "https://favicon.im/www.zjshoj.com",
+        "url": "http://www.zjshoj.com/"
+      },
+      {
+        "type": "link",
+        "addDate": 1754306999837,
+        "title": "VJudge",
+        "icon": "https://favicon.im/vjudge.net",
+        "url": "https://vjudge.net/"
+      },
+      {
+        "type": "link",
+        "addDate": 1755057739937,
+        "title": "智码",
+        "icon": "https://favicon.im/www.zhimaoi.cn",
+        "url": "https://www.zhimaoi.cn/auth/login/password"
+      },
+      {
+        "type": "link",
+        "addDate": 1760790257621,
+        "title": "豆包",
+        "icon": "https://favicon.im/www.doubao.com",
+        "url": "https://www.doubao.com/chat/?channel=drrFu"
+      },
+      {
+        "type": "link",
+        "addDate": 1765198335714,
+        "title": "GitHub仪表盘",
+        "icon": "https://favicon.im/github.com",
+        "url": "https://github.com/dashboard"
+      },
+      {
+        "type": "link",
+        "addDate": 1765679766760,
+        "title": "Ruyingsuixing's blog",
+        "icon": "https://favicon.im/ruying-suixing.github.io",
+        "url": "https://ruying-suixing.github.io/"
+      },
+      {
+        "type": "link",
+        "addDate": 1763295207390,
+        "title": "Note.ms",
+        "icon": "https://favicon.im/note.ms",
+        "url": "https://note.ms/"
+      },
+      {
+        "type": "link",
+        "addDate": 1750489699337,
+        "title": "DeepSeek - 探索未至之境",
+        "icon": "https://favicon.im/chat.deepseek.com",
+        "url": "https://chat.deepseek.com/"
+      },
+      {
+        "type": "link",
+        "addDate": 1750594084559,
+        "title": "新浪网",
+        "icon": "https://favicon.im/www.sina.com.cn",
+        "url": "https://www.sina.com.cn/"
+      },
+      {
+        "type": "link",
+        "addDate": 1753967164271,
+        "title": "信息学奥赛一本通（C++版）在线评测系统",
+        "icon": "https://favicon.im/ybt.ssoier.cn",
+        "url": "http://ybt.ssoier.cn:8088/index.php"
+      },
+      {
+        "type": "link",
+        "addDate": 1754889620772,
+        "title": "Koalas to the Max dot Com",
+        "icon": "https://favicon.im/koalastothemax.com",
+        "url": "https://koalastothemax.com/?aHR0cDovL3d3dy5sdW9ndS5jb20uY24vaW1hZ2VzL2NvbmdyYXR1bGF0aW9uLnBuZw=="
+      },
+      {
+        "type": "link",
+        "addDate": 1760100409253,
+        "title": "实获信息系统",
+        "icon": "https://favicon.im/www.zjshoj.com",
+        "url": "http://www.zjshoj.com/reinfo.php?sid=219256"
+      },
+      {
+        "type": "link",
+        "addDate": 1761824774732,
+        "title": "你最喜欢的博客-your best blog",
+        "icon": "https://favicon.im/_ruyingsuixing_.ongridea.com",
+        "url": "https://_ruyingsuixing_.ongridea.com/"
+      },
+      {
+        "type": "link",
+        "addDate": 1762427812413,
+        "title": "绕开CSDN登录后拷贝的限制 - 知乎",
+        "icon": "https://favicon.im/zhuanlan.zhihu.com",
+        "url": "https://zhuanlan.zhihu.com/p/673685122"
+      },
+      {
+        "type": "link",
+        "addDate": 1763467235891,
+        "title": "Markdown 内嵌 HTML 标签 | Markdown 教程",
+        "icon": "https://favicon.im/markdown.com.cn",
+        "url": "https://markdown.com.cn/basic-syntax/htmls.html"
+      },
+      {
+        "type": "link",
+        "addDate": 1763467741914,
+        "title": "未命名绘图 - 第 1 页",
+        "icon": "https://favicon.im/app.diagrams.net",
+        "url": "https://app.diagrams.net/"
+      },
+      {
+        "type": "link",
+        "addDate": 1763639998639,
+        "title": "想出OI题？用最简洁的C/C++测试数据生成工具——makedata.h库_c++生成算法测试数据-CSDN博客",
+        "icon": "https://favicon.im/blog.csdn.net",
+        "url": "https://blog.csdn.net/tkzlfg/article/details/111071467"
+      },
+      {
+        "type": "link",
+        "addDate": 1763641914346,
+        "title": "松子快享 - 安全免费的在线剪贴板",
+        "icon": "https://favicon.im/share.szfx.top",
+        "url": "https://share.szfx.top/"
+      },
+      {
+        "type": "link",
+        "addDate": 1764077295669,
+        "title": "ASCII文字艺术生成器 - 免费在线创建FIGlet字符画横幅工具",
+        "icon": "https://favicon.im/www.ol-tools.com",
+        "url": "https://www.ol-tools.com/ascii-text-drawer"
+      },
+      {
+        "type": "link",
+        "addDate": 1764395111652,
+        "title": "通过动画可视化数据结构和算法<br> - VisuAlgo",
+        "icon": "https://favicon.im/visualgo.net",
+        "url": "https://visualgo.net/zh"
+      },
+      {
+        "type": "link",
+        "addDate": 1764509841066,
+        "title": "StackEdit",
+        "icon": "https://favicon.im/stackedit.io",
+        "url": "https://stackedit.io/app#"
+      },
+      {
+        "type": "link",
+        "addDate": 1764854362733,
+        "title": "用户中心 - DKFile",
+        "icon": "https://favicon.im/deepseek.idoxu.com",
+        "url": "https://deepseek.idoxu.com/dashboard"
+      },
+      {
+        "type": "link",
+        "addDate": 1764942896950,
+        "title": "宁波理工信息系统",
+        "icon": "https://favicon.im/www.nitacm.com",
+        "url": "https://www.nitacm.com/"
+      },
+      {
+        "type": "link",
+        "addDate": 1765286900124,
+        "title": "网站IP查询_IP反查域名_同IP网站查询 - 站长工具",
+        "icon": "https://favicon.im/tool.chinaz.com",
+        "url": "https://tool.chinaz.com/same/19.65.240.240"
+      },
+      {
+        "type": "link",
+        "addDate": 1766233154436,
+        "title": "洛谷图床（阿里云OSS）高级使用方法 - 洛谷专栏",
+        "icon": "https://favicon.im/www.luogu.com.cn",
+        "url": "https://www.luogu.com.cn/article/jj6pglty"
+      },
+      {
+        "type": "link",
+        "addDate": 1766926664643,
+        "title": "unDraw - Open source illustrations for any idea",
+        "icon": "https://favicon.im/undraw.co",
+        "url": "https://undraw.co/"
+      },
+      {
+        "type": "link",
+        "addDate": 1767251491086,
+        "title": "Markdown Viewer——Free Online Markdown Editor",
+        "icon": "https://favicon.im/onlinenotepad101.org",
+        "url": "https://onlinenotepad101.org/markdown-editor"
+      },
+      {
+        "type": "link",
+        "addDate": 1767437590774,
+        "title": "Gitalk 评论插件使用指南平时看人家博客的时候，看到文章末尾能评论的，以为都是自己搭建的，有后台数据库的，后来才知 - 掘金",
+        "icon": "https://favicon.im/juejin.cn",
+        "url": "https://juejin.cn/post/6956892118363144229"
+      },
+      {
+        "type": "link",
+        "addDate": 1767962052653,
+        "title": "[Win] 存在文件路径相关Bug，导致“在‘自定义配置’内添加图片后，所有主题相关设置均无法保存”的问题 · Issue #34 · hsxyhao/gridea-theme-next",
+        "icon": "https://favicon.im/github.com",
+        "url": "https://github.com/hsxyhao/gridea-theme-next/issues/34"
+      },
+      {
+        "type": "link",
+        "addDate": 1767962608817,
+        "title": "tuchuang.org.cn - 免费稳定图床工具_图片外链存储_自媒体/站长专用图床:图床图片分享",
+        "icon": "https://favicon.im/tuchuang.org.cn",
+        "url": "https://tuchuang.org.cn/vip/manage/upload"
+      },
+      {
+        "type": "link",
+        "addDate": 1768019554691,
+        "title": "nic.eu.org/arf/en/domain/new/",
+        "icon": "https://favicon.im/nic.eu.org",
+        "url": "https://nic.eu.org/arf/en/domain/new/"
+      },
+      {
+        "type": "link",
+        "addDate": 1768020709051,
+        "title": "获取网易云音乐外链地址 - 知乎",
+        "icon": "https://favicon.im/zhuanlan.zhihu.com",
+        "url": "https://zhuanlan.zhihu.com/p/266060655"
+      },
+      {
+        "type": "link",
+        "addDate": 1768040401710,
+        "title": "星图 |Ruying-suixing/Ruying-Suixing.GitHub.io",
+        "icon": "https://favicon.im/starchart.cc",
+        "url": "https://starchart.cc/ruying-suixing/ruying-suixing.github.io"
+      },
+      {
+        "type": "link",
+        "addDate": 1768211651926,
+        "title": "Favicon.is - 快速且免费的开发者 Favicon API |获取网站图标",
+        "icon": "https://favicon.im/favicon.is",
+        "url": "https://favicon.is/"
+      },
+      {
+        "type": "link",
+        "addDate": 1768294269867,
+        "title": "如何用github搭建图床（亲测有效）_github tuchuang-CSDN博客",
+        "icon": "https://favicon.im/blog.csdn.net",
+        "url": "https://blog.csdn.net/xdnxl/article/details/129466060"
+      },
+      {
+        "type": "link",
+        "addDate": 1768568640573,
+        "title": "抽象",
+        "icon": "https://favicon.im/asdf123asdf123asdf123.github.io",
+        "url": "https://asdf123asdf123asdf123.github.io/%E6%8A%BD%E8%B1%A1%E6%B8%B8%E6%88%8F/main"
+      },
+      {
+        "type": "link",
+        "addDate": 1769259680507,
+        "title": "实现网页自动跳到其他页面的几种方法-腾讯云开发者社区-腾讯云",
+        "icon": "https://favicon.im/cloud.tencent.com",
+        "url": "https://cloud.tencent.com/developer/article/1538494"
+      },
+      {
+        "type": "link",
+        "addDate": 1769774529754,
+        "title": "应ying_12190140 - 个人中心 - 洛谷",
+        "icon": "https://favicon.im/www.luogu.com.cn",
+        "url": "https://www.luogu.com.cn/user/29984"
+      },
+      {
+        "type": "link",
+        "addDate": 1769947878804,
+        "title": "常用网站（娱乐版） - 洛谷保存站",
+        "icon": "https://favicon.im/www.luogu.me",
+        "url": "https://www.luogu.me/article/5r6hyyi3"
+      },
+      {
+        "type": "link",
+        "addDate": 1769948094014,
+        "title": "Counter 计数器 | Jerry Zhou的个人博客",
+        "icon": "https://favicon.im/blog.jerryz.com.cn",
+        "url": "https://blog.jerryz.com.cn/article/counter/"
+      },
+      {
+        "type": "link",
+        "addDate": 1770039050648,
+        "title": "web/README.zh.md at gh-pages · tsh1203/web",
+        "icon": "https://favicon.im/github.com",
+        "url": "https://github.com/tsh1203/web/blob/gh-pages/README.zh.md"
+      },
+      {
+        "type": "link",
+        "addDate": 1770298150447,
+        "title": "[Tool] edge书签清理 - 风惊庭前叶 - 博客园",
+        "icon": "https://favicon.im/www.cnblogs.com",
+        "url": "https://www.cnblogs.com/migrator/p/19536984"
+      }
+    ]
+  },
+  {
+    "type": "folder",
+    "addDate": 1750478507414,
+    "title": "完整收藏夹",
+    "children": [
+      {
+        "type": "link",
+        "addDate": 1754121760330,
+        "title": "自述输入 SVG - 演示站点",
+        "icon": "https://favicon.im/readme-typing-svg.demolab.com",
+        "url": "https://readme-typing-svg.demolab.com/demo/"
+      },
+      {
+        "type": "link",
+        "addDate": 1755492759516,
+        "title": "Saobby 的主页",
+        "icon": "https://favicon.im/www.saobby.com",
+        "url": "https://www.saobby.com/"
+      },
+      {
+        "type": "link",
+        "addDate": 1756553955281,
+        "title": "“Zalgo”文本转换器",
+        "icon": "https://favicon.im/tw.piliapp.com",
+        "url": "https://tw.piliapp.com/cool-text/zalgo-text/"
+      },
+      {
+        "type": "link",
+        "addDate": 1758028434884,
+        "title": "物理画线",
+        "icon": "https://favicon.im/www.xiwnn.com",
+        "url": "https://www.xiwnn.com/huaxian#id=5e3d0377f8cbb5299128956a"
+      },
+      {
+        "type": "link",
+        "addDate": 1763292580361,
+        "title": "U632484 绘制矩形【无数据点】 - 洛谷",
+        "icon": "https://favicon.im/www.luogu.com.cn",
+        "url": "https://www.luogu.com.cn/problem/U632484"
+      },
+      {
+        "type": "folder",
+        "addDate": 1770298993333,
+        "title": "编程刷题",
+        "children": [
+          {
+            "type": "folder",
+            "addDate": 1770298993333,
+            "title": "在线评测",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "洛谷 [国内直连] - 提供信息学奥赛相关的在线编程评测与学习资源",
+                "icon": "https://favicon.im/www.luogu.com.cn",
+                "url": "https://www.luogu.com.cn/auth/login"
+              },
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "实获信息系统 [国内直连] - 信息学奥赛相关的在线评测平台",
+                "icon": "https://favicon.im/www.zjshoj.com",
+                "url": "http://www.zjshoj.com/"
+              },
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "VJudge [国内直连] - 汇集多个OJ题目资源的在线编程评测平台",
+                "icon": "https://favicon.im/vjudge.net",
+                "url": "https://vjudge.net/"
+              },
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "智码 [国内直连] - 提供编程相关学习与评测服务的平台",
+                "icon": "https://favicon.im/www.zhimaoi.cn",
+                "url": "https://www.zhimaoi.cn/auth/login/password"
+              },
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "信息学奥赛一本通（C++版）在线评测系统 [国内直连] - 配套《信息学奥赛一本通》的在线评测平台",
+                "icon": "https://favicon.im/ybt.ssoier.cn",
+                "url": "http://ybt.ssoier.cn:8088/index.php"
+              },
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "实获信息系统 [国内直连] - 信息学奥赛相关的在线评测平台",
+                "icon": "https://favicon.im/www.zjshoj.com",
+                "url": "http://www.zjshoj.com/reinfo.php?sid=219256"
+              },
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "宁波理工信息系统 [国内直连] - 宁波理工学院相关的信息学在线评测平台",
+                "icon": "https://favicon.im/www.nitacm.com",
+                "url": "https://www.nitacm.com/"
+              }
+            ]
+          },
+          {
+            "type": "folder",
+            "addDate": 1770298993341,
+            "title": "个人中心",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "应ying_12190140 [国内直连] - - 个人中心 - 洛谷 洛谷平台的用户个人中心页面",
+                "icon": "https://favicon.im/www.luogu.com.cn",
+                "url": "https://www.luogu.com.cn/user/29984"
+              }
+            ]
+          },
+          {
+            "type": "folder",
+            "addDate": 1770298993342,
+            "title": "题目页面",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "U632484 [国内直连] - 绘制矩形【无数据点】 - 洛谷 洛谷平台上的编程题目页面",
+                "icon": "https://favicon.im/www.luogu.com.cn",
+                "url": "https://www.luogu.com.cn/problem/U632484"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "addDate": 1770298993342,
+        "title": "AI工具",
+        "children": [
+          {
+            "type": "folder",
+            "addDate": 1770298993342,
+            "title": "对话助手",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "豆包 [国内直连] - 字节跳动推出的智能对话与内容生成工具",
+                "icon": "https://favicon.im/www.doubao.com",
+                "url": "https://www.doubao.com/chat/?channel=drrFu"
+              },
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "DeepSeek [国内直连] - - 探索未至之境 深度求索推出的大模型对话平台",
+                "icon": "https://favicon.im/chat.deepseek.com",
+                "url": "https://chat.deepseek.com/"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "addDate": 1770298993345,
+        "title": "代码托管",
+        "children": [
+          {
+            "type": "folder",
+            "addDate": 1770298993345,
+            "title": "项目管理",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "GitHub仪表盘 [需FQ] - 全球知名的代码托管与协作开发平台",
+                "icon": "https://favicon.im/github.com",
+                "url": "https://github.com/dashboard"
+              }
+            ]
+          },
+          {
+            "type": "folder",
+            "addDate": 1770298993346,
+            "title": "问题反馈",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "[Win] [需FQ] - 存在文件路径相关Bug 导致“在‘自定义配置’内添加图片后 所有主题相关设置均无法保存”的问题 · Issue #34 · hsxyhao/gridea-theme-next GitHub上关于Gridea主题的Bug反馈与讨论",
+                "icon": "https://favicon.im/github.com",
+                "url": "https://github.com/hsxyhao/gridea-theme-next/issues/34"
+              }
+            ]
+          },
+          {
+            "type": "folder",
+            "addDate": 1770298993346,
+            "title": "星图统计",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "星图 [需FQ] - Ruying-suixing/Ruying-Suixing.GitHub.io 展示GitHub项目星标统计的星图工具",
+                "icon": "https://favicon.im/starchart.cc",
+                "url": "https://starchart.cc/ruying-suixing/ruying-suixing.github.io"
+              }
+            ]
+          },
+          {
+            "type": "folder",
+            "addDate": 1770298993347,
+            "title": "项目文档",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "web/README.zh.md [需FQ] - at gh-pages · tsh1203/web GitHub上web项目的中文说明文档",
+                "icon": "https://favicon.im/github.com",
+                "url": "https://github.com/tsh1203/web/blob/gh-pages/README.zh.md"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "addDate": 1770298993347,
+        "title": "博客建站",
+        "children": [
+          {
+            "type": "folder",
+            "addDate": 1770298993347,
+            "title": "个人博客",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "Ruyingsuixing's [国内直连] - blog 个人技术博客网站",
+                "icon": "https://favicon.im/ruying-suixing.github.io",
+                "url": "https://ruying-suixing.github.io/"
+              },
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "你最喜欢的博客-your [国内直连] - best blog 个人博客网站",
+                "icon": "https://favicon.im/_ruyingsuixing_.ongridea.com",
+                "url": "https://_ruyingsuixing_.ongridea.com/"
+              }
+            ]
+          },
+          {
+            "type": "folder",
+            "addDate": 1770298993348,
+            "title": "插件教程",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "Gitalk [国内直连] - 评论插件使用指南平时看人家博客的时候 看到文章末尾能评论的 以为都是自己搭建的 有后台数据库的 后来才知 - 掘金 掘金上分享的Gitalk评论插件使用教程",
+                "icon": "https://favicon.im/juejin.cn",
+                "url": "https://juejin.cn/post/6956892118363144229"
+              }
+            ]
+          },
+          {
+            "type": "folder",
+            "addDate": 1770298993348,
+            "title": "功能插件",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "Counter [国内直连] - 计数器 Jerry Zhou的个人博客 个人博客分享的计数器插件相关内容",
+                "icon": "https://favicon.im/blog.jerryz.com.cn",
+                "url": "https://blog.jerryz.com.cn/article/counter/"
+              }
+            ]
+          },
+          {
+            "type": "folder",
+            "addDate": 1770298993349,
+            "title": "个人主页",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "Saobby [国内直连] - 的主页 个人技术主页网站",
+                "icon": "https://favicon.im/www.saobby.com",
+                "url": "https://www.saobby.com/"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "addDate": 1770298993349,
+        "title": "笔记工具",
+        "children": [
+          {
+            "type": "folder",
+            "addDate": 1770298993349,
+            "title": "在线便签",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "Note.ms [国内直连] - 简洁的在线笔记记录与分享工具",
+                "icon": "https://favicon.im/note.ms",
+                "url": "https://note.ms/"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "addDate": 1770298993350,
+        "title": "新闻资讯",
+        "children": [
+          {
+            "type": "folder",
+            "addDate": 1770298993350,
+            "title": "综合门户",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "新浪网 [国内直连] - 国内综合类新闻资讯门户网站",
+                "icon": "https://favicon.im/www.sina.com.cn",
+                "url": "https://www.sina.com.cn/"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "addDate": 1770298993350,
+        "title": "休闲娱乐",
+        "children": [
+          {
+            "type": "folder",
+            "addDate": 1770298993351,
+            "title": "趣味网页",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "Koalas [国内直连] - to the Max dot Com 以考拉为主题的趣味交互网页",
+                "icon": "https://favicon.im/koalastothemax.com",
+                "url": "https://koalastothemax.com/?aHR0cDovL3d3dy5sdW9ndS5jb20uY24vaW1hZ2VzL2NvbmdyYXR1bGF0aW9uLnBuZw=="
+              },
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "抽象 [国内直连] - 趣味交互类网页",
+                "icon": "https://favicon.im/asdf123asdf123asdf123.github.io",
+                "url": "https://asdf123asdf123asdf123.github.io/%E6%8A%BD%E8%B1%A1%E6%B8%B8%E6%88%8F/main"
+              }
+            ]
+          },
+          {
+            "type": "folder",
+            "addDate": 1770298993353,
+            "title": "趣味游戏",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "物理画线 [国内直连] - 物理画线类趣味小游戏",
+                "icon": "https://favicon.im/www.xiwnn.com",
+                "url": "https://www.xiwnn.com/huaxian#id=5e3d0377f8cbb5299128956a"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "addDate": 1770298993353,
+        "title": "技巧教程",
+        "children": [
+          {
+            "type": "folder",
+            "addDate": 1770298993353,
+            "title": "实用技巧",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "绕开CSDN登录后拷贝的限制 [国内直连] - - 知乎 知乎上分享的绕开CSDN登录复制限制的方法教程",
+                "icon": "https://favicon.im/zhuanlan.zhihu.com",
+                "url": "https://zhuanlan.zhihu.com/p/673685122"
+              }
+            ]
+          },
+          {
+            "type": "folder",
+            "addDate": 1770298993354,
+            "title": "图床使用",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "洛谷图床（阿里云OSS）高级使用方法 [国内直连] - - 洛谷专栏 洛谷专栏分享的图床高级使用教程",
+                "icon": "https://favicon.im/www.luogu.com.cn",
+                "url": "https://www.luogu.com.cn/article/jj6pglty"
+              }
+            ]
+          },
+          {
+            "type": "folder",
+            "addDate": 1770298993354,
+            "title": "音乐外链",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "获取网易云音乐外链地址 [国内直连] - - 知乎 知乎上分享的获取网易云音乐外链的方法教程",
+                "icon": "https://favicon.im/zhuanlan.zhihu.com",
+                "url": "https://zhuanlan.zhihu.com/p/266060655"
+              }
+            ]
+          },
+          {
+            "type": "folder",
+            "addDate": 1770298993355,
+            "title": "图床搭建",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "如何用github搭建图床（亲测有效）_github [国内直连] - tuchuang-CSDN博客 CSDN博客分享的GitHub图床搭建教程",
+                "icon": "https://favicon.im/blog.csdn.net",
+                "url": "https://blog.csdn.net/xdnxl/article/details/129466060"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "addDate": 1770298993355,
+        "title": "写作工具",
+        "children": [
+          {
+            "type": "folder",
+            "addDate": 1770298993355,
+            "title": "语法教程",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "Markdown [国内直连] - 内嵌 HTML 标签 Markdown 教程 讲解Markdown内嵌HTML标签用法的教程页面",
+                "icon": "https://favicon.im/markdown.com.cn",
+                "url": "https://markdown.com.cn/basic-syntax/htmls.html"
+              }
+            ]
+          },
+          {
+            "type": "folder",
+            "addDate": 1770298993356,
+            "title": "在线编辑器",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "StackEdit [国内直连] - 在线Markdown编辑器",
+                "icon": "https://favicon.im/stackedit.io",
+                "url": "https://stackedit.io/app#"
+              },
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "Markdown [国内直连] - Viewer——Free Online Markdown Editor 免费在线Markdown编辑器与查看工具",
+                "icon": "https://favicon.im/onlinenotepad101.org",
+                "url": "https://onlinenotepad101.org/markdown-editor"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "addDate": 1770298993357,
+        "title": "绘图工具",
+        "children": [
+          {
+            "type": "folder",
+            "addDate": 1770298993357,
+            "title": "流程图",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "未命名绘图 [国内直连] - - 第 1 页 在线流程图与思维导图绘制工具",
+                "icon": "https://favicon.im/app.diagrams.net",
+                "url": "https://app.diagrams.net/"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "addDate": 1770298993361,
+        "title": "插画素材",
+        "children": [
+          {
+            "type": "link",
+            "addDate": 1770298978000,
+            "title": "unDraw [需FQ] - - Open source illustrations for any idea 提供开源插画素材的网站",
+            "icon": "https://favicon.im/undraw.co",
+            "url": "https://undraw.co/"
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "addDate": 1770298993357,
+        "title": "编程工具",
+        "children": [
+          {
+            "type": "folder",
+            "addDate": 1770298993357,
+            "title": "数据生成",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "想出OI题？用最简洁的C/C++测试数据生成工具——makedata.h库_c++生成算法测试数据-CSDN博客 [国内直连] - 介绍C/C++测试数据生成工具的技术博客",
+                "icon": "https://favicon.im/blog.csdn.net",
+                "url": "https://blog.csdn.net/tkzlfg/article/details/111071467"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "addDate": 1770298993358,
+        "title": "工具资源",
+        "children": [
+          {
+            "type": "folder",
+            "addDate": 1770298993358,
+            "title": "在线剪贴板",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "松子快享 [国内直连] - - 安全免费的在线剪贴板 安全免费的在线文本剪贴板工具",
+                "icon": "https://favicon.im/share.szfx.top",
+                "url": "https://share.szfx.top/"
+              }
+            ]
+          },
+          {
+            "type": "folder",
+            "addDate": 1770298993358,
+            "title": "字符生成",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "ASCII文字艺术生成器 [国内直连] - - 免费在线创建FIGlet字符画横幅工具 免费在线生成ASCII文字艺术的工具",
+                "icon": "https://favicon.im/www.ol-tools.com",
+                "url": "https://www.ol-tools.com/ascii-text-drawer"
+              }
+            ]
+          },
+          {
+            "type": "folder",
+            "addDate": 1770298993359,
+            "title": "文件管理",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "用户中心 [国内直连] - - DKFile 提供文件管理相关服务的平台",
+                "icon": "https://favicon.im/deepseek.idoxu.com",
+                "url": "https://deepseek.idoxu.com/dashboard"
+              }
+            ]
+          },
+          {
+            "type": "folder",
+            "addDate": 1770298993359,
+            "title": "图床工具",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "tuchuang.org.cn [国内直连] - - 免费稳定图床工具_图片外链存储_自媒体/站长专用图床:图床图片分享 免费稳定的图片外链存储图床工具",
+                "icon": "https://favicon.im/tuchuang.org.cn",
+                "url": "https://tuchuang.org.cn/vip/manage/upload"
+              }
+            ]
+          },
+          {
+            "type": "folder",
+            "addDate": 1770298993360,
+            "title": "文本转换",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "“Zalgo”文本转换器 [国内直连] - 可生成Zalgo风格特效文本的转换工具",
+                "icon": "https://favicon.im/tw.piliapp.com",
+                "url": "https://tw.piliapp.com/cool-text/zalgo-text/"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "addDate": 1770298993360,
+        "title": "编程学习",
+        "children": [
+          {
+            "type": "folder",
+            "addDate": 1770298993360,
+            "title": "算法可视化",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "通过动画可视化数据结构和算法<br> [国内直连] - - VisuAlgo 以动画形式可视化数据结构与算法的学习平台",
+                "icon": "https://favicon.im/visualgo.net",
+                "url": "https://visualgo.net/zh"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "addDate": 1770298993361,
+        "title": "站长工具",
+        "children": [
+          {
+            "type": "folder",
+            "addDate": 1770298993361,
+            "title": "IP查询",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "网站IP查询_IP反查域名_同IP网站查询 [国内直连] - - 站长工具 提供IP查询、域名反查等服务的站长工具",
+                "icon": "https://favicon.im/tool.chinaz.com",
+                "url": "https://tool.chinaz.com/same/19.65.240.240"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "addDate": 1770298993361,
+        "title": "设计资源",
+        "children": []
+      },
+      {
+        "type": "folder",
+        "addDate": 1770298993362,
+        "title": "域名服务",
+        "children": [
+          {
+            "type": "folder",
+            "addDate": 1770298993362,
+            "title": "域名注册",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "nic.eu.org/arf/en/domain/new/ [需FQ] - 提供.eu.org域名注册服务的网站",
+                "icon": "https://favicon.im/nic.eu.org",
+                "url": "https://nic.eu.org/arf/en/domain/new/"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "addDate": 1770298993362,
+        "title": "开发工具",
+        "children": [
+          {
+            "type": "folder",
+            "addDate": 1770298993362,
+            "title": "图标生成",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "Favicon.is [国内直连] - - 快速且免费的开发者 Favicon API 获取网站图标 快速生成网站图标的开发者工具",
+                "icon": "https://favicon.im/favicon.is",
+                "url": "https://favicon.is/"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "addDate": 1770298993363,
+        "title": "开发教程",
+        "children": [
+          {
+            "type": "folder",
+            "addDate": 1770298993363,
+            "title": "网页跳转",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "实现网页自动跳到其他页面的几种方法-腾讯云开发者社区-腾讯云 [国内直连] - 腾讯云分享的网页自动跳转方法教程",
+                "icon": "https://favicon.im/cloud.tencent.com",
+                "url": "https://cloud.tencent.com/developer/article/1538494"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "addDate": 1770298993363,
+        "title": "资源整理",
+        "children": [
+          {
+            "type": "folder",
+            "addDate": 1770298993363,
+            "title": "网站合集",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "常用网站（娱乐版） [国内直连] - - 洛谷保存站 洛谷保存站分享的娱乐类常用网站合集",
+                "icon": "https://favicon.im/www.luogu.me",
+                "url": "https://www.luogu.me/article/5r6hyyi3"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "folder",
+        "addDate": 1770298993364,
+        "title": "设计工具",
+        "children": [
+          {
+            "type": "folder",
+            "addDate": 1770298993364,
+            "title": "SVG生成",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1770298978000,
+                "title": "自述输入 [国内直连] - SVG - 演示站点 可生成自述输入效果SVG的演示网站",
+                "icon": "https://favicon.im/readme-typing-svg.demolab.com",
+                "url": "https://readme-typing-svg.demolab.com/demo/"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
+        };
+
+        // 递归渲染书签（适配你的字段：link=书签，folder=文件夹，title=名称）
+        function renderBookmarks(data, container) {
+            // 分离文件夹和根级书签
+            const folders = [];
+            const rootBookmarks = [];
+            
+            // 分类节点类型（关键修改：识别你的字段）
+            if (data.children && data.children.length > 0) {
+                data.children.forEach(node => {
+                    if (node.type === "folder") {
+                        folders.push(node);
+                    } else if (node.type === "link") { // 关键：你的书签类型是link
+                        rootBookmarks.push(node);
+                    }
+                });
+            }
+
+            // 渲染根级书签（无文件夹的书签）
+            if (rootBookmarks.length > 0) {
+                const rootDiv = document.createElement("div");
+                rootDiv.className = "root-bookmarks";
+                
+                const bookmarkList = document.createElement("div");
+                bookmarkList.className = "bookmark-list";
+                
+                rootBookmarks.forEach(bookmark => {
+                    bookmarkList.appendChild(createBookmarkItem(bookmark));
+                });
+                
+                rootDiv.appendChild(bookmarkList);
+                container.appendChild(rootDiv);
+            }
+
+            // 渲染文件夹及内部书签
+            folders.forEach(folder => {
+                const folderDiv = document.createElement("div");
+                folderDiv.className = "folder";
+                
+                // 文件夹标题（关键修改：用title字段替代name）
+                const folderTitle = document.createElement("div");
+                folderTitle.className = "folder-title";
+                folderTitle.textContent = folder.title || "未命名文件夹"; // 你的文件夹名称是title
+                folderDiv.appendChild(folderTitle);
+                
+                // 递归渲染文件夹内的所有子节点（包括嵌套文件夹）
+                const folderContent = document.createElement("div");
+                if (folder.children && folder.children.length > 0) {
+                    renderBookmarks(folder, folderContent); // 递归处理嵌套文件夹
+                }
+                
+                folderDiv.appendChild(folderContent);
+                container.appendChild(folderDiv);
+            });
+        }
+
+        // 创建单个书签节点（适配你的字段）
+        function createBookmarkItem(bookmark) {
+            const itemDiv = document.createElement("div");
+            itemDiv.className = "bookmark-item";
+            
+            const link = document.createElement("a");
+            link.className = "bookmark-link";
+            link.href = bookmark.url || "#";
+            link.target = "_blank"; // 新标签页打开
+            
+            // 书签图标
+            const icon = document.createElement("img");
+            icon.className = "bookmark-icon";
+            // 处理图标加载失败的情况
+            icon.src = bookmark.icon || "https://cdn.luogu.com.cn/upload/usericon/1620655.png";
+            icon.alt = bookmark.title || "书签图标";
+            // 图标加载失败时显示默认图标
+            icon.onerror = function() {
+                this.src = "https://cdn.luogu.com.cn/upload/usericon/1620655.png";
+            };
+            link.appendChild(icon);
+            
+            // 书签名称（关键修改：用title字段替代name）
+            const name = document.createElement("span");
+            name.className = "bookmark-name";
+            name.textContent = bookmark.title || "未命名书签"; // 你的书签名称是title
+            link.appendChild(name);
+            
+            itemDiv.appendChild(link);
+            return itemDiv;
+        }
+
+        // 初始化渲染
+        window.onload = function() {
+            const container = document.getElementById("bookmarks-container");
+            renderBookmarks(PINTREE_BOOKMARKS, container);
+        };
+    </script>
+</body>
+</html>

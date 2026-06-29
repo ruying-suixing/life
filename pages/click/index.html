@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>追击按钮 | Ruyingsuixing's blog</title>
+	<script>
+		mox=0;
+		moy=0;
+		bpx=0;
+		bpy=0;
+		closed=true;
+		cnt=0;
+		acnt=0;
+		cd=99999999;
+		window.onload=function(){
+			b=document.getElementById("game");
+			if(typeof localStorage["ahigh"]=="undefined")
+				localStorage["ahigh"]=0;
+			if(typeof localStorage["high"]=="undefined")
+				localStorage["high"]=0;
+			document.getElementById("nowclosed").innerText="当前成功次数:"+acnt+"\t历史最高成功次数:"+localStorage["ahigh"]+"\n当前难度:"+cnt+"\t历史最高难度:"+localStorage["high"];
+		};
+		window.addEventListener("mousemove",function(evt){
+			mox=evt.x;
+			moy=evt.y;
+		})
+		document.addEventListener('keyup',function(evt){
+			if(evt.key==' '){
+				cnt+=10;
+				document.getElementById("nowclosed").innerText="当前成功次数:"+acnt+"\t历史最高成功次数:"+localStorage["ahigh"]+"\n当前难度:"+cnt+"\t历史最高难度:"+localStorage["high"];
+			}
+		});
+		function ok(){
+			b.style.display="none";
+			cnt++;
+			acnt++;
+			localStorage["ahigh"]=Math.max(localStorage["ahigh"],acnt);
+			localStorage["high"]=Math.max(localStorage["high"],cnt);
+			document.getElementById("nowclosed").innerText="当前成功次数:"+acnt+"\t历史最高成功次数:"+localStorage["ahigh"]+"\n当前难度:"+cnt+"\t历史最高难度:"+localStorage["high"];
+			closed=true;
+		}
+		window.addEventListener("mousedown",function (evt){
+			if(b.style.display!="none"){
+				if(cd==0){
+					mox=evt.x;
+					moy=evt.y;
+					if(b.style.display!="none"&&bpx<=mox&&mox<=bpx+100&&bpy<=moy&&moy<=bpy+100)
+						ok();
+				}
+			}else{
+				cd=10;
+				bpx=mox+Math.random()*10-5-50;
+				bpy=moy+Math.random()*10-5-50;
+				mox=evt.x;
+				moy=evt.y;
+				closed=false;
+				b.style.left=bpx+"px";
+				b.style.top=bpy+"px";
+				b.style.display="block";
+			}
+		})
+		document.addEventListener('contextmenu',function(e){
+			e.preventDefault();
+		})
+		function play(){
+			if(b.style.display!="none"){
+				if(cd==0)
+					b.innerText="😝点击我!";
+				else{
+					cd--;
+					b.innerText="😌等一等...";
+				}
+				var dx=mox-bpx-50,dy=moy-bpy-50,sqs=Math.sqrt(dx*dx+dy*dy);
+				dx/=sqs;
+				dy/=sqs;
+				bpx-=dx*cnt;
+				bpy-=dy*cnt;
+				b.style.left=bpx+"px";
+				b.style.top=bpy+"px";
+				if(bpx<=-100||bpy<=-100||bpx>=innerWidth||bpy>=innerHeight){
+					cnt--;
+					b.style.display="none";
+					document.getElementById("nowclosed").innerText="当前成功次数:"+acnt+"\t历史最高成功次数:"+localStorage["ahigh"]+"\n当前难度:"+cnt+"\t历史最高难度:"+localStorage["high"];
+					closed=true;
+				}
+			}
+		}
+		setInterval(play,20);
+	</script>
+    <style> 
+        body { 
+            margin: 0; 
+            padding: 0; 
+            position: relative; 
+            min-height: 100vh; 
+            font-family: Arial, sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+			overflow: hidden;
+			user-select: none;
+        } 
+ 
+        body::before { 
+            content: ""; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0; 
+            background-image: url('https://files.codelife.cc/itab/defaultWallpaper/videos/40.jpg');  
+            background-size: cover; 
+            background-position: center; 
+            filter: blur(5px); 
+            z-index: -1; 
+        } 
+ 
+        .content { 
+            position: relative; 
+            background-color: rgba(255, 255, 255, 0.85); 
+            padding: 30px; 
+            margin: 70px; 
+            border-radius: 15px; 
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
+            text-align: center; 
+        } 
+    </style> 
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+<body>
+	<div class="content">
+		<h1 id="nowclosed"></h1>
+		<text>点击鼠标生成按钮，生成后等待一小会儿再用鼠标点击它。多试几次试试？</text>
+		<br>
+		<text>太简单了？按<strong>键盘空格键</strong>直接加 10 级难度！</text>
+		<br>
+		<text>你能通过难度为 30 级吗？</text>
+		<br>
+	</div>
+	<img style="display:none" src="https://badges.toozhao.com/badges/01JT5TX9336VNN91EEXDH24HRZ/green.svg"/>
+	<button id="game" style="position:absolute;width:100px;height:100px;display:none;left:0px;top:0px;">Wait...</button>
+</body>
+</html>

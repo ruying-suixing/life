@@ -1,0 +1,30 @@
+[
+  {
+    "title": "1",
+    "permalink": "/posts/1.html"
+  },
+  {
+    "title": "第22届浙大宁波理工学院程序设计大赛题解",
+    "permalink": "/posts/22nd-NBTUC-solution.html"
+  },
+  {
+    "title": "2025 年度总结",
+    "permalink": "/posts/Bye-2025.html"
+  },
+  {
+    "title": "Dev C++美化——对现代编译器的极致追求",
+    "permalink": "/posts/Dev-C++.html"
+  },
+  {
+    "title": "Hello Gridea",
+    "permalink": "/posts/hello-gridea.html"
+  },
+  {
+    "title": "Markdown语法教程",
+    "permalink": "/posts/markdown.html"
+  },
+  {
+    "title": "2025周六提高组期末测试题目",
+    "permalink": "/posts/sol_of_qimo.html"
+  }
+]

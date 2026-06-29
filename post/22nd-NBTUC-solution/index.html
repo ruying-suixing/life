@@ -1,0 +1,3047 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="keywords" content="Gridea 静态个人博客 | 如影随形">
+<meta name="description" content="">
+<meta name="theme-color" content="#5f3dc4">
+<meta name="msvalidate.01" content="834934A21966752BEE6AF6E075C3C653" />
+<title>第22届浙大宁波理工学院程序设计大赛题解 | 生活 - 如形の小站</title>
+<link rel="shortcut icon" href="/favicon.ico?v=1782735875191">
+<link rel="stylesheet" href="/media/css/pisces.css">
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.cn/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto+Slab:300,300italic,400,400italic,700,700italic|Rosario:300,300italic,400,400italic,700,700italic|PT+Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="/media/hljs/styles/gradient-dark.css" rel="stylesheet">
+
+<script src="https://cdn.bootcdn.net/ajax/libs/pace/1.2.1/pace.min.js"></script>
+<link href="https://cdn.jsdelivr.net/gh/soyaine/PaceJS-Custom-Theme/image-loading.js?img=https://ruyingsuixing.dpdns.org/favicon.ico" rel="stylesheet" />
+
+<link rel="stylesheet" href="/styles/main.css">
+<!-- Scripts begin -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="/media/js/jquery.js"></script>
+<script src="/media/hljs/highlight.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/velocity/1.5.0/velocity.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/velocity/1.5.0/velocity.ui.min.js"></script>
+<script src="/media/js/random-bg.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<!-- Scripts end -->
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.4/katex.min.css">
+
+
+<script defer src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.4/katex.min.js"></script>
+<script defer src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.4/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body);"></script>
+
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?37a462fa40f92378c48b38ae7e80a64c";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+<script defer type="text/javascript" src="https://www.daoblog.top/js/console-text.js"></script>
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+<script src="https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
+
+
+
+<style>
+  @font-face {
+    font-family: '霞鹜文楷';
+    src: url('/media/fonts/霞鹜文楷.ttf'); 
+    font-weight: normal;
+    font-style: normal;
+  }
+  * {
+    font-family: '霞鹜文楷';
+    font-display: swap;
+  }
+</style>
+  <meta name="description" content="第22届浙大宁波理工学院程序设计大赛题解" />
+  <meta name="keywords" content="C++" />
+</head>
+<body>
+  <!-- ===================== 1. 模糊遮罩 blur 短代码 ===================== -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const blurReg = /\{\% blur (.*?)\%\}/g;
+    const contentBox = document.querySelector('.next-md-body');
+    if(contentBox) {
+        contentBox.innerHTML = contentBox.innerHTML.replace(blurReg, '<span class="blur">$1</span>');
+    }
+});
+</script>
+<style>
+    .blur {
+        filter: blur(5px) !important;
+        -webkit-filter: blur(5px) !important;
+        transition: filter 0.3s ease !important;
+        cursor: pointer !important;
+    }
+    .blur:hover {
+        filter: none !important;
+        -webkit-filter: none !important;
+    }
+</style>
+
+<!-- ===================== 2. 折叠面板 fold 短代码 ===================== -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const foldReg = /\{\% fold (.*?)\%\}([\s\S]*?)\{\% endfold \%\}/g;
+    const contentBox = document.querySelector('.next-md-body');
+    if(contentBox) {
+        contentBox.innerHTML = contentBox.innerHTML.replace(foldReg, '<details><summary>$1</summary>$2</details>');
+    }
+});
+</script>
+<style>
+    details {
+        padding: 8px 12px;
+        margin: 8px 0;
+        border-radius: 4px;
+        border: 1px solid #e5e7eb !important;
+    }
+    summary {
+        cursor: pointer !important;
+        font-weight: 500 !important;
+    }
+</style>
+
+<!-- ===================== 3. Notice 带图标通知框【修复版-必生效】warning/info/note/tip ===================== -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const noticeIconMap = {
+        warning: '<svg xmlns="http://www.w3.org/2000/svg" class="notice-icon" viewBox="0 0 576 512" fill="hsl(0, 65%, 65%)"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6.0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6.0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"/></svg>',
+        info: '<svg xmlns="http://www.w3.org/2000/svg" class="notice-icon" viewBox="0 0 512 512" fill="hsl(30, 80%, 70%)"><path d="M256 8a248 248 0 100 496 248 248 0 000-496zm0 110a42 42 0 110 84 42 42 0 010-84zm56 254c0 7-5 12-12 12h-88c-7 0-12-5-12-12v-24c0-7 5-12 12-12h12v-64h-12c-7 0-12-5-12-12v-24c0-7 5-12 12-12h64c7 0 12 5 12 12v100h12c7 0 12 5 12 12v24z"/></svg>',
+        note: '<svg xmlns="http://www.w3.org/2000/svg" class="notice-icon" viewBox="0 0 512 512" fill="hsl(200, 65%, 65%)"><path d="M504 256a248 248 0 11-496 0 248 248 0 01496 0zm-248 50a46 46 0 100 92 46 46 0 000-92zm-44-165l8 136c0 6 5 11 12 11h48c7 0 12-5 12-11l8-136c0-7-5-13-12-13h-64c-7 0-12 6-12 13z"/></svg>',
+        tip: '<svg xmlns="http://www.w3.org/2000/svg" class="notice-icon" viewBox="0 0 512 512" fill="hsl(140, 65%, 65%)"><path d="M504 256a248 248 0 11-496 0 248 248 0 01496 0zM227 387l184-184c7-6 7-16 0-22l-22-23c-7-6-17-6-23 0L216 308l-70-70c-6-6-16-6-23 0l-22 23c-7 6-7 16 0 22l104 104c6 7 16 7 22 0z"/></svg>'
+    };
+    // 修复正则：匹配所有空格格式的notice，100%命中
+    const noticeReg = /\{\%\s*notice\s+(warning|info|note|tip)\s*\%\}([\s\S]*?)\{\%\s*endnotice\s*\%\}/g;
+    const contentBox = document.querySelector('.next-md-body');
+    if(contentBox) {
+        contentBox.innerHTML = contentBox.innerHTML.replace(noticeReg, (match, type, content) => {
+            return `<div class="notice ${type}"><div class="notice-title">${noticeIconMap[type]}</div>${content}</div>`;
+        });
+    }
+});
+</script>
+<style>
+    .notice {
+        position: relative !important;
+        padding: 1em 1em 1em 2.5em !important;
+        margin-bottom: 1em !important;
+        border-radius: 4px !important;
+    }
+    .notice p:last-child {
+        margin-bottom: 0 !important;
+    }
+    .notice .notice-title {
+        position: absolute !important;
+        left: 0.8em !important;
+        top: 1em !important;
+    }
+    .notice .notice-icon {
+        width: 1.2em !important;
+        height: 1.2em !important;
+    }
+    .notice.warning {
+        background: rgba(224, 108, 108, 0.15) !important;
+        border-left: 5px solid #e06c6c !important;
+    }
+    .notice.warning .notice-title {
+        color: #e06c6c !important;
+    }
+    .notice.info {
+        background: rgba(240, 179, 117, 0.15) !important;
+        border-left: 5px solid #f0b375 !important;
+    }
+    .notice.info .notice-title {
+        color: #f0b375 !important;
+    }
+    .notice.note {
+        background: rgba(108, 185, 224, 0.15) !important;
+        border-left: 5px solid #6cb9e0 !important;
+    }
+    .notice.note .notice-title {
+        color: #6cb9e0 !important;
+    }
+    .notice.tip {
+        background: rgba(108, 224, 146, 0.15) !important;
+        border-left: 5px solid #6ce092 !important;
+    }
+    .notice.tip .notice-title {
+        color: #6ce092 !important;
+    }
+    [data-theme="dark"] .notice.warning {
+        background: rgba(112, 67, 67, 0.15) !important;
+        border-left: 5px solid #704343 !important;
+    }
+    [data-theme="dark"] .notice.warning .notice-title {
+        color: #704343 !important;
+    }
+    [data-theme="dark"] .notice.info {
+        background: rgba(112, 89, 67, 0.15) !important;
+        border-left: 5px solid #705943 !important;
+    }
+    [data-theme="dark"] .notice.info .notice-title {
+        color: #705943 !important;
+    }
+    [data-theme="dark"] .notice.note {
+        background: rgba(67, 97, 112, 0.15) !important;
+        border-left: 5px solid #436170 !important;
+    }
+    [data-theme="dark"] .notice.note .notice-title {
+        color: #436170 !important;
+    }
+    [data-theme="dark"] .notice.tip {
+        background: rgba(67, 112, 82, 0.15) !important;
+        border-left: 5px solid #437052 !important;
+    }
+    [data-theme="dark"] .notice.tip .notice-title {
+        color: #437052 !important;
+    }
+</style>
+
+<!-- ===================== 4. 时间线 timeline 短代码【修复版-必生效】全标签支持 ===================== -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 修复正则：精准匹配带双引号参数的timeline，兼容所有空格格式，100%命中
+    const timelineReg = /\{\%\s*timeline\s+date="(.*?)"\s+title="(.*?)"\s+description="(.*?)"\s+tags="(.*?)"\s*\%\}/g;
+    const contentBox = document.querySelector('.next-md-body');
+    if(contentBox) {
+        contentBox.innerHTML = contentBox.innerHTML.replace(timelineReg, (match, date, title, description, tags) => {
+            let tagHtml = '';
+            const tagList = tags.split(', ');
+            tagList.forEach(tag => {
+                let tagClass = '';
+                if(tag === '样式') tagClass = 'timeline__tag-style';
+                else if(tag === '文章') tagClass = 'timeline__tag-article';
+                else if(tag === '页面') tagClass = 'timeline__tag-page';
+                tagHtml += `<span class="timeline__tag ${tagClass}">${tag}</span>`;
+            });
+            return `
+                <div class="timeline__row">
+                    <div class="timeline__time">
+                        <div>${date}</div>
+                        <div class="timeline__split-line"></div>
+                    </div>
+                    <div class="timeline__content">
+                        <div class="timeline__tags">${tagHtml}</div>
+                        <div class="timeline__title">${title}</div>
+                        <div class="timeline__description">${description}</div>
+                    </div>
+                </div>
+            `;
+        });
+    }
+});
+</script>
+<style>
+    .timeline {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    .timeline__row {
+        display: flex !important;
+        padding-left: 4% !important;
+        height: 90px !important;
+    }
+    .timeline__time {
+        flex: 0 0 110px !important;
+        color: #5d5d5d !important;
+        font-size: 17px !important;
+        text-transform: uppercase !important;
+        position: relative !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        padding: 0.5rem 0 !important;
+    }
+    .timeline__split-line {
+        position: absolute !important;
+        top: 0.5rem !important;
+        right: -20px !important;
+        height: 100% !important;
+        width: 2px !important;
+        background-color: #84c4e240 !important;
+        z-index: 0 !important;
+    }
+    .timeline__split-line:before {
+        content: "" !important;
+        position: absolute !important;
+        top: 24% !important;
+        right: -4px !important;
+        transform: translateY(-50%) !important;
+        width: 10px !important;
+        height: 10px !important;
+        background-color: #c9e5f2 !important;
+        box-shadow: 0 0 0 4px var(--theme) !important;
+        border-radius: 50% !important;
+        border: 0px solid #84c4e2 !important;
+        z-index: -1 !important;
+    }
+    .timeline__content {
+        flex: 1 !important;
+        margin-left: 2.5rem !important;
+        padding: 0.5rem 0 1.2rem 0 !important;
+    }
+    .timeline__title {
+        margin: 0 !important;
+        margin-bottom: 2px !important;
+        padding-top: 3px !important;
+        margin-left: 0.5rem !important;
+        color: var(--content) !important;
+        font-size: 19px !important;
+        font-weight: 600 !important;
+        width: fit-content !important;
+        display: inline-block !important;
+        vertical-align: middle !important;
+    }
+    .timeline__tags {
+        display: inline-block !important;
+        padding: 0 !important;
+        margin-left: 0.3rem !important;
+        align-items: center !important;
+        gap: 0.3rem !important;
+    }
+    .timeline__tag {
+        display: inline-block !important;
+        color: var(--secondary) !important;
+        background-color: #84c4e230 !important;
+        border: 1.5px solid #84c4e230 !important;
+        border-radius: 999px !important;
+        padding: 0rem 0.5rem !important;
+        font-size: 12px !important;
+        white-space: nowrap !important;
+        line-height: 1.4rem !important;
+        opacity: 0.8 !important;
+        vertical-align: middle !important;
+    }
+    .timeline__description {
+        font-size: 15px !important;
+        line-height: 1.6 !important;
+        color: #5d5d5d !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        margin: 0.5rem 0 0.4rem 1.5rem !important;
+    }
+    .timeline__tag-style {
+        background-color: #c581da !important;
+        border-color: #c581da !important;
+        color: #ffffff !important;
+    }
+    .timeline__tag-article {
+        background-color: #92d392 !important;
+        border-color: #92d392 !important;
+        color: #000000 !important;
+    }
+    .timeline__tag-page {
+        background-color: #707070 !important;
+        border-color: #707070 !important;
+        color: #ffffff !important;
+    }
+    @media screen and (max-width: 768px) {
+        .timeline__time { font-size: 14px !important; }
+        .timeline__title { font-size: 16px !important; }
+        .timeline__description { font-size: 14px !important; }
+    }
+</style>
+  <div class="head-top-line"></div>
+  <div class="header-box">
+    
+
+<div class="pisces">
+  <header class="header  ">
+    <div class="blog-header box-shadow-wrapper bg-color " id="header">
+      <div class="nav-toggle" id="nav_toggle">
+        <div class="toggle-box">
+          <div class="line line-top"></div>
+          <div class="line line-center"></div>
+          <div class="line line-bottom"></div>
+        </div>
+      </div>
+      <div class="site-meta">       
+        <div class="site-title">
+          
+            <a href="/" class="brand">
+              <span>生活 - 如形の小站</span>
+            </a>  
+          
+        </div>
+        
+          <p class="subtitle">如之影，随于形——The shadow of the sun.</p>
+        
+      </div>
+      <nav class="site-nav" id="site_nav">
+        <ul id="nav_ul">
+          
+            
+            
+              
+              <li class="nav-item ">
+                
+                
+                  <a href="https://life.rusin7.com" target="_self">
+                    <i class="fa fa-edit"></i> <span class="nav-text">首页</span>
+                  </a>
+                
+              </li>
+            
+          
+            
+            
+              
+              <li class="nav-item ">
+                
+                
+                  <a href="https://life.rusin7.com/articles" target="_self">
+                    <i class="fa fa-i-cursor"></i> <span class="nav-text">文章</span>
+                  </a>
+                
+              </li>
+            
+          
+            
+            
+              
+              <li class="nav-item ">
+                
+                
+                  <a href="https://life.rusin7.com/archives" target="_self">
+                    <i class="fa fa-archive"></i> <span class="nav-text">归档</span>
+                  </a>
+                
+              </li>
+            
+          
+            
+            
+              
+              <li class="nav-item ">
+                
+                
+                  <a href="https://life.rusin7.com/thinks" target="_self">
+                    <i class="fa fa-quote-left"></i> <span class="nav-text">思考</span>
+                  </a>
+                
+              </li>
+            
+          
+            
+            
+              
+              <li class="nav-item ">
+                
+                
+                  <a href="https://life.rusin7.com/tags" target="_self">
+                    <i class="fa fa-tags"></i> <span class="nav-text">标签</span>
+                  </a>
+                
+              </li>
+            
+          
+            
+            
+              
+              <li class="nav-item ">
+                
+                
+                  <a href="https://life.rusin7.com/friends" target="_self">
+                    <i class="fa fa-user-friends"></i> <span class="nav-text">友链</span>
+                  </a>
+                
+              </li>
+            
+          
+            
+            
+              
+              <li class="nav-item ">
+                
+                
+                  <a href="https://life.rusin7.com/about" target="_self">
+                    <i class="fa fa-user-lock"></i> <span class="nav-text">协议</span>
+                  </a>
+                
+              </li>
+            
+          
+            
+            
+              
+              <li class="nav-item ">
+                
+                
+                  <a href="https://life.rusin7.com/post/about" target="_self">
+                    <i class="fa fa-user"></i> <span class="nav-text">关于</span>
+                  </a>
+                
+              </li>
+            
+          
+            
+            
+          
+          
+
+          <!-- 其他下拉菜单 -->
+          <li class="nav-item other-nav-item">
+            <a href="javascript:void(0);" id="other_toggle" class="other-toggle">
+              <i class="fa fa-ellipsis-h"></i> <span class="nav-text">其他</span>
+              <i class="fa fa-angle-down other-arrow"></i>
+            </a>
+            <ul class="other-submenu" id="other_submenu">
+              <li class="subnav-item ">
+                <a href="/dujitang" target="_blank">
+                  <i class="fa fa-coffee"></i> <span class="nav-text">鸡汤</span>
+                </a>
+              </li>
+              <li class="subnav-item">
+                <a href="https://text.is/welcome_add" target="_blank">
+                  <i class="fa fa-paper-plane"></i> <span class="nav-text">投稿</span>
+                </a>
+              </li>
+              <li class="subnav-item ">
+                <a href="/pages/code" target="_blank">
+                  <i class="fa fa-code"></i> <span class="nav-text">代码</span>
+                </a>
+              </li>
+              <li class="subnav-item ">
+                <a href="/pages/click" target="_blank">
+                  <i class="fa fa-mouse-pointer"></i> <span class="nav-text">追击</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          
+
+          <!-- 🌐 语言切换按钮 -->
+          <li class="nav-item lang-switch">
+            <a href="javascript:void(0);" id="lang-toggle">
+              <i class="fas fa-language"></i> <span class="nav-text">English</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+</div>
+
+<script type="text/javascript"> 
+  let showNav = true;
+  let showOther = false;
+
+  // ✅ 正确的「中文 → 英文」映射表（补充你所有菜单文字）
+  const textMap = {
+    '首页': 'Home',
+    '文章': 'Posts',
+    '归档': 'Archives',
+    '思考': 'Thoughts',
+    '标签': 'Tags',
+    '友链': 'Friends',
+    '协议': 'Agreement',
+    '关于': 'About',
+    '文档': 'Docs',
+    '其他': 'More',
+    '鸡汤': 'Sentences',
+    '投稿': 'Contribute',
+    '代码': 'Code',
+    '追击': 'Click',
+    '搜索': 'Search'
+  };
+  
+  // ✅ 初始化语言：默认中文（第一次进入强制中文）
+  let isEnglish = localStorage.getItem('siteLang') === 'en';
+  if (localStorage.getItem('siteLang') === null) {
+    isEnglish = false;
+    localStorage.setItem('siteLang', 'zh');
+  }
+
+  // DOM 加载完成后初始化
+  document.addEventListener('DOMContentLoaded', function() {
+    updateNavText();
+    bindLangToggle();
+  });
+
+  // ✅ 核心修复：根据 isEnglish 状态切换文字，不再双向乱替换
+  function updateNavText() {
+    const navTexts = document.querySelectorAll('.nav-text');
+    navTexts.forEach(el => {
+      // 第一次加载时，保存原始中文到 data-original
+      if (!el.dataset.original) {
+        el.dataset.original = el.textContent.trim();
+      }
+      const originalText = el.dataset.original;
+      
+      // 根据当前语言状态设置文字
+      if (isEnglish) {
+        // 英文模式：显示英文，无映射则保持原样
+        el.textContent = textMap[originalText] || originalText;
+      } else {
+        // 中文模式：显示原始中文
+        el.textContent = originalText;
+      }
+    });
+
+    // 处理语言按钮文字
+    const langBtn = document.getElementById('lang-toggle');
+    if (langBtn) {
+      const langText = langBtn.querySelector('.nav-text');
+      if (langText) {
+        if (isEnglish) {
+          langText.textContent = '中文';
+          langBtn.title = '切换到中文模式';
+        } else {
+          langText.textContent = 'English';
+          langBtn.title = 'Switch to English mode';
+        }
+      }
+    }
+  }
+
+  // ✅ 绑定到整个语言切换区域（点击空白也能切）
+  function bindLangToggle() {
+    const langSwitch = document.querySelector('.lang-switch');
+    if (langSwitch) {
+      langSwitch.removeEventListener('click', toggleLanguage);
+      langSwitch.addEventListener('click', toggleLanguage);
+    }
+  }
+
+  // 切换语言逻辑
+  function toggleLanguage() {
+    isEnglish = !isEnglish;
+    localStorage.setItem('siteLang', isEnglish ? 'en' : 'zh');
+    updateNavText();
+  }
+
+  // 原有导航逻辑（保持不变）
+  let navToggle = document.querySelector('#nav_toggle'),
+      siteNav = document.querySelector('#site_nav'),
+      otherToggle = document.querySelector('#other_toggle'),
+      otherSubmenu = document.querySelector('#other_submenu'),
+      navUl = document.querySelector('#nav_ul');
+
+  document.addEventListener('DOMContentLoaded', function() {
+    otherSubmenu.classList.remove('other-submenu-active');
+    otherToggle.classList.remove('other-toggle-active');
+  });
+
+  function navClick() {
+    let sideBar = document.querySelector('.sidebar');
+    navToggle.classList.toggle('nav-toggle-active');
+    siteNav.classList.toggle('nav-menu-active');
+    if (siteNav.classList.contains('nav-menu-active')) {
+      let baseHeight = navUl.children.length * 42;
+      if (window.innerWidth <= 768 && showOther) {
+        baseHeight += otherSubmenu.children.length * 42;
+      }
+      siteNav.style = "height: " + baseHeight +"px !important";
+    } else {
+      siteNav.style = "";
+    }
+  }
+
+  function otherClick() {
+    showOther = !showOther;
+    otherSubmenu.classList.toggle('other-submenu-active');
+    otherToggle.classList.toggle('other-toggle-active');
+    if (siteNav.classList.contains('nav-menu-active')) {
+      navClick();
+    }
+  }
+
+  navToggle.addEventListener('click', navClick);  
+  otherToggle.addEventListener('click', otherClick);
+
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) {
+      siteNav.style = "";
+      siteNav.classList.remove('nav-menu-active');
+      navToggle.classList.remove('nav-toggle-active');
+    }
+  });
+</script>
+
+<style>
+  .other-nav-item {
+    position: relative;
+    z-index: 9999;
+  }
+  .other-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    color: inherit;
+    text-decoration: none;
+  }
+  .other-arrow {
+    font-size: 12px;
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+  }
+  .other-toggle-active .other-arrow {
+    transform: rotate(180deg);
+  }
+  .other-submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    min-width: 140px;
+    z-index: 99999;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    background-color: #fff;
+    border-radius: 4px;
+  }
+  .other-submenu-active {
+    max-height: 300px;
+    opacity: 1;
+  }
+  .subnav-item {
+    height: 42px;
+    line-height: 42px;
+    padding-left: 10px;
+    white-space: nowrap;
+  }
+  .subnav-item a {
+    color: #555 !important;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+    padding: 0 15px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .subnav-item i {
+    margin-right: 8px;
+    color: #748ffc !important;
+  }
+  .subnav-item a:hover {
+    color: #7048e8 !important;
+    background-color: #f5f7ff;
+  }
+  .nav-item a:hover {
+    color: #7048e8 !important;
+  }
+  .nav-item a:hover i {
+    color: inherit !important;
+  }
+  #site_nav, #nav_ul, .blog-header {
+    overflow: visible !important;
+  }
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    height: 42px;
+  }
+  .lang-link {
+    display: flex;
+    align-items: center;
+    padding: 0 5px !important;
+    height: 42px;
+    color: inherit !important;
+    text-decoration: none;
+    position: relative;
+  }
+  .lang-link::after {
+    content: attr(data-hover);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    z-index: 99999;
+  }
+  .lang-link:hover::after {
+    opacity: 1;
+    visibility: visible;
+    bottom: -28px;
+  }
+  .lang-link i {
+    margin-right: 5px;
+  }
+  .lang-text {
+    font-weight: 500;
+  }
+  @media (max-width: 768px) {
+    .other-nav-item {
+      width: 100%;
+      position: static;
+      z-index: inherit;
+    }
+    .other-toggle {
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .other-submenu {
+      position: relative;
+      bottom: auto;
+      top: 0;
+      left: 0;
+      min-width: auto;
+      box-shadow: none;
+      background-color: inherit;
+      border-radius: 0;
+      z-index: inherit;
+    }
+    .subnav-item {
+      padding-left: 20px;
+    }
+    .subnav-item a {
+      color: #748ffc !important;
+      padding: 0 10px;
+    }
+    .subnav-item a:hover {
+      background-color: transparent;
+    }
+    .subnav-item i {
+      color: inherit !important;
+    }
+    #site_nav, #nav_ul, .blog-header {
+      overflow: hidden !important;
+    }
+    /* 移动端语言切换项适配 */
+    .lang-switch {
+      width: 100%;
+      padding: 0;
+    }
+  }
+</style>
+  </div>
+  <div class="main-continer">
+    
+    <div class="section-layout pisces ">
+      <div class="section-layout-wrapper">
+        
+
+<div class="sidebar">
+  
+    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
+      
+        <div class="post-list-sidebar">
+          <div class="sidebar-title">
+            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active language" data-lan="index">文章目录</span>
+            <span id="metaSideBar" class="sidebar-title-item language" data-lan="preview">站点概览</span>
+          </div>
+        </div>
+      
+      <div class="sidebar-body pisces" id="sidebar_body">
+        
+          
+            <div class="post-side-meta" id="post_side_meta">
+              
+<div class="sidebar-wrapper box-shadow-wrapper bg-color">
+  <div class="sidebar-item">
+    <img class="site-author-image right-motion" src="/images/avatar.png"/>
+    <p class="site-author-name">ruying-suixing</p>
+    
+    <div class="site-description right-motion">
+      
+        <p id="binft">一个蒟蒻的建站初学者。\n洛谷：/user/1620655\nGithub：/ruying-suixing</p>
+      
+    </div>
+    
+  </div>
+  <div class="sidebar-item side-item-stat right-motion">
+    <div class="sidebar-item-box">
+      <a href="/archives/">
+        
+        <span class="site-item-stat-count">10</span>
+        <span class="site-item-stat-name language" data-lan="article">文章</span>
+      </a>
+    </div>
+    <div class="sidebar-item-box">
+      <a href="/tags/">
+        <span class="site-item-stat-count">3</span>
+        <span class="site-item-stat-name language" data-lan="tag">标签</span>
+      </a>
+    </div>
+  </div>
+  
+    
+      <div class="sidebar-item">
+        <span class="site-item-rss">
+            <i class="fa fa-rss"></i>
+            <a href="https://life.rusin7.com/atom.xml" target="_blank">RSS</a>
+        </span>
+      </div>
+    
+  
+  
+    <div class="sidebar-item sidebar-item-social">
+      <div class="social-item">
+        
+          
+            <a href="https://github.com/ruying-suxing">
+              <i class="fa fa-edit" title="Github"></i>
+            </a>
+          
+            <a href="https://www.luogu.com.cn/user/1620655">
+              <i class="fa fa-code" title="洛谷"></i>
+            </a>
+          
+        
+        
+      </div>
+    </div>
+  
+
+  
+    <div class="sidebar-item right-motion sidebar-item-friends">
+      
+        <p class="friends-title"><i class="fa fa-ship"></i> 友链</p>
+      
+      <div class="friends-box">
+        
+          <p>
+            <a href="https://www.luogu.com.cn/user/1620655">_ruyingsuixing_</a>
+          </p>
+        
+      </div>
+    </div>
+  
+
+
+
+  <div style="width: 100%; position: relative;">
+    <canvas id="canvasDiyBlock" style="width:100%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+    <script src="/media/js/magic/clock.js"></script>
+  </div>
+
+</div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number no_compress"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li><a href="#%E7%AC%AC-22-%E5%B1%8A%E6%B5%99%E5%A4%A7%E5%AE%81%E6%B3%A2%E7%90%86%E5%B7%A5%E5%AD%A6%E9%99%A2%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%A4%A7%E8%B5%9B%E9%A2%98%E8%A7%A3">第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>22</mn></mrow><annotation encoding="application/x-tex">22</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">2</span></span></span></span> 届浙大宁波理工学院程序设计大赛题解</a>
+<ul>
+<li><a href="#a%E5%AD%97%E7%AC%A6%E4%B8%B2">A.字符串</a></li>
+<li><a href="#b%E4%BB%B7%E6%A0%BC%E8%B7%A8%E5%BA%A6">B.价格跨度</a></li>
+<li><a href="#c%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0">C.斐波那契数</a></li>
+<li><a href="#d%E5%9B%9E%E6%94%B6%E7%A4%BC%E7%89%A9">D.回收礼物</a></li>
+<li><a href="#e%E6%88%91%E4%BB%AC%E9%83%BD%E6%98%AF%E5%B0%8F%E6%80%AA%E5%85%BD-rescue-qfish">E.我们都是小怪兽 (Rescue Qfish)</a></li>
+<li><a href="#f%E7%88%B1%E7%9A%84%E9%AD%94%E5%8A%9B%E8%BD%AC%E5%9C%88%E5%9C%88%E7%BB%88%E6%9E%81%E5%B9%B8%E5%AD%98%E8%80%85%E6%8C%91%E6%88%98%E8%B5%9B">F.爱的魔力转圈圈——终极幸存者挑战赛</a></li>
+<li><a href="#g%E6%8E%A2%E9%99%A9%E8%80%85%E7%9A%84%E8%A1%A5%E7%BB%99%E8%B7%AF%E7%BA%BF">G.探险者的补给路线</a></li>
+<li><a href="#hqfish%E7%9A%84%E6%B3%95%E6%9C%AF">H.Qfish的法术</a></li>
+<li><a href="#i%E5%AD%97%E6%AF%8D%E6%B7%B7%E6%B7%86">I.字母混淆</a></li>
+<li><a href="#j%E5%B0%8Fs%E7%9A%84%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%94">J.小s的杀戮尖塔</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
+      }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
+    });
+  }
+
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
+            </div>
+          
+        
+      </div>
+    </div>
+  
+</div>
+<script>
+  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
+  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
+  const SLIDE_UP_IN = 'slide-up-in';
+
+  let sidebar = document.querySelector('#sidebar'),
+  tocSideBar = document.querySelector('#tocSideBar'),
+  metaSideBar = document.querySelector('#metaSideBar'),
+  postToc = document.querySelector('#post_toc'),
+  postSiteMeta = document.querySelector('#post_side_meta'),
+  sidebarTitle = document.querySelector('.sidebar-title'),
+  sidebarBody = document.querySelector('#sidebar_body');
+
+  tocSideBar && tocSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  metaSideBar && metaSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  function toggleSidebar(e) {
+    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
+    if (currentTitle == e.srcElement) {
+      return ;
+    }
+    let current, showElement, hideElement;
+    if (e.srcElement == metaSideBar) {
+      showElement = postSiteMeta;
+      hideElement = postToc;
+    } else if (e.srcElement == tocSideBar){
+      showElement = postToc;
+      hideElement = postSiteMeta;
+    }
+    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
+    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
+
+    jQuery.Velocity(hideElement, 'stop');
+    jQuery.Velocity(hideElement, 'transition.slideUpOut', {
+      display: 'none',
+      duration: 200,
+      complete: function () {
+        jQuery.Velocity(showElement, 'transition.slideDownIn', {
+          duration: 200
+        });
+      }
+    })
+    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
+    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
+  }
+
+  postToc && postToc.addEventListener('transitionend', function() {
+    this.classList.remove(SLIDE_UP_IN);
+  });
+
+  if (sidebarBody) {
+    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
+      let hasFix = false;
+      let scrollEl = document.querySelector('.main-continer');
+      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
+      window.addEventListener('scroll', function(e) {
+        if (document.scrollingElement.scrollTop >= limitTop) {
+          if (!hasFix) {
+            sidebar.classList.add('sidebar-fixed');
+            hasFix = true;
+          }
+        } else {
+          if (hasFix) {
+            sidebar.classList.remove('sidebar-fixed');
+            hasFix = false;
+          }
+        }
+      });
+    }
+  }
+  
+</script>
+        <div class="section-box box-shadow-wrapper">
+          <div class="section bg-color post post-page">
+            <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://life.rusin7.com/post/22nd-NBTUC-solution/"> 第22届浙大宁波理工学院程序设计大赛题解 </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-open"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2025-12-13 12:08:08">2025-12-13</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-open"></i>
+      <span class="pc-show language" data-lan="category-in">标签:</span>
+       
+      <a href="https://life.rusin7.com/tag/C++/">
+        <span>C++</span>
+      </a>
+       
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock"></i>
+      <span>16<span class="language" data-lan="minute">分钟</span></span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word"></i>
+      <span>3084<span class="pc-show language" data-lan="words">字数</span></span>
+    </span>
+      
+    <span
+      id="/post/22nd-NBTUC-solution/"
+      data-flag-title="第22届浙大宁波理工学院程序设计大赛题解"
+      class="meta-item pc-show leancloud_visitors"
+    >
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-eye"></i>
+      <span><span class="language" data-lan="view">浏览量:</span><span id="busuanzi_page_pv"></span> 次</span>
+    </span>
+    
+  </div>
+</section>
+
+            <div class="post-body next-md-body" id="post_body">
+              <h1 id="第-22-届浙大宁波理工学院程序设计大赛题解">第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>22</mn></mrow><annotation encoding="application/x-tex">22</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">2</span></span></span></span> 届浙大宁波理工学院程序设计大赛题解</h1>
+<h2 id="a字符串">A.字符串</h2>
+<p>按照题意模拟即可，如果想要省掉代码量可以开个 <code>std::vector&lt;std::pair&lt;char, int&gt;&gt; ve(n)</code> 前一个记录字符，后一个记录当前的下标，直接进行升序排序，然后直接从k+1个开始输出。 提供排序的代码。</p>
+<pre><code class="language-c++">void clearlove13(void){
+    int n, k;
+    std::cin &gt;&gt; n &gt;&gt; k;
+    std::string s;
+    std::cin &gt;&gt; s;
+    std::vector&lt;std::pair&lt;char, int&gt;&gt; ve(n);
+    for (int i = 0; i &lt; n; i++) {
+        ve[i] = std::make_pair(s[i], i);
+    }
+    std::sort(ve.begin(), ve.end());
+    std::vector&lt;std::pair&lt;char, int&gt;&gt; ans;
+    ans.reserve(n);
+    for (int i = k; i &lt; n; i++) {
+        ans.push_back({ve[i].first, ve[i].second});
+    }
+    std::sort(ans.begin(), ans.end(), [&amp;](auto &amp; a, auto &amp; b) {
+        return a.second &lt; b.second;
+    });
+    for (auto &amp;[x, y] : ans) {
+        std::cout &lt;&lt; x;
+    }
+}
+</code></pre>
+<h2 id="b价格跨度">B.价格跨度</h2>
+<p>题意大概就是求该 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 前面第一个大于该 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 的位置，从题目数据可得知，此题我们需要使用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(n)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></span> 复杂度来写这道题，思考一下可以使用单调栈来实现，只需要等效思想来写即可。</p>
+<pre><code class="language-cpp">void clearlove13(void)
+{
+    int n;
+    std::cin &gt;&gt; n;
+    std::vector&lt;int&gt; a(n + 1);
+    for (int i = 1; i &lt;= n; i++) {
+        std::cin &gt;&gt; a[i];
+    }
+    std::vector&lt;int&gt;st;
+    std::vector&lt;int&gt; ans(n + 1);
+    st.reserve(n + 1);
+ 
+    for (int i = 1; i &lt;= n; i++) {
+        while (!st.empty() &amp;&amp; a[st.back()] &lt;= a[i]) {
+            st.pop_back();
+        }
+        if (st.empty()) {
+            ans[i] = i;
+        } else {
+            ans[i] = i - st.back();
+        }
+        st.push_back(i);
+    }
+ 
+    for (int i = 1; i &lt;= n; i++) {
+        std::cout &lt;&lt; ans[i];
+        if (i != n) std::cout &lt;&lt; ' ';
+    }
+}
+</code></pre>
+<h2 id="c斐波那契数">C.斐波那契数</h2>
+<p>事实上题目已经告诉你了做法直接模拟即可。</p>
+<pre><code class="language-cpp">i64 a[51];
+void clearlove13(void)
+{
+    int n;
+    std::cin &gt;&gt; n;
+    std::cout &lt;&lt; a[n] &lt;&lt; '\n';
+}
+int main(void)
+{
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    a[1] = 1;
+    a[0] = 1;
+    for (int i = 2; i &lt;= 50; i++) {
+        a[i] = a[i - 1] + a[i - 2];
+    }
+ 
+    int cas = 1;
+    std::cin &gt;&gt; cas;
+    while (cas--) clearlove13();
+    return 0;
+}
+</code></pre>
+<h2 id="d回收礼物">D.回收礼物</h2>
+<p>设 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>(</mo><mi>x</mi><mo>→</mo><mi>y</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">f(x\to y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span> 是以 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 为根 ，求x到y的树上最小路径 我们先了解题意，就可以明白是需要求形如 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>(</mo><mn>1</mn><mo>→</mo><mn>2</mn><mo>)</mo><mo>+</mo><mi>f</mi><mo>(</mo><mn>2</mn><mo>→</mo><mn>3</mn><mo>)</mo><mo>+</mo><mi>f</mi><mo>(</mo><mn>3</mn><msub><mo>→</mo><mo>…</mo></msub><mo>)</mo><mo>+</mo><mi>f</mi><msub><mo>(</mo><mo>…</mo></msub><mo>→</mo><mn>2</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">f(1\to 2)+f(2\to 3)+f(3\to _{\dots})+f(_{\dots}\to 2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">3</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord">3</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel">→</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.066em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="minner mtight">…</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen"><span class="mopen">(</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.066em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="minner mtight">…</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mclose">)</span></span></span></span> 这么一个式子，那么我们应该怎么快速去求树上最短路径呢？引入lca求最近公共祖先，有一个小trick就是我们 所以我们就先求出到两个点的深度之和再减去公共祖先的深度就可以写出这道题了。</p>
+<pre><code class="language-cpp">struct LCA {
+    int n, lg;
+    std::vector&lt;std::vector&lt;int&gt;&gt; up;
+    std::vector&lt;int&gt; depth, tin, tout;
+    int timer = 0;
+ 
+    LCA(std::vector&lt;std::vector&lt;int&gt;&gt;&amp; ed, int root = 0) {
+        n = int(ed.size());
+        lg = std::__lg(n) + 1;
+        up.assign(n, std::vector&lt;int&gt;(lg));
+        depth.assign(n, 0);
+        tin.resize(n), tout.resize(n);
+        auto dfs = [&amp;](auto self, int u, int p) -&gt; void {
+            tin[u] = timer++;
+            up[u][0] = p;
+            for (int i = 1; i &lt; lg; ++i) up[u][i] = up[up[u][i - 1]][i - 1];
+            for (int v : ed[u]) {
+                if (v == p) continue;
+                depth[v] = depth[u] + 1;
+                self(self, v, u);
+            }
+            tout[u] = timer++;
+        };
+        dfs(dfs, root, root);
+    }
+ 
+    bool is_ancestor(int u, int v) {
+        return tin[u] &lt;= tin[v] &amp;&amp; tout[v] &lt;= tout[u];
+    }
+ 
+    int get_lca(int u, int v) {
+        if (is_ancestor(u, v)) return u;
+        if (is_ancestor(v, u)) return v;
+        for (int i = lg - 1; i &gt;= 0; --i)
+            if (!is_ancestor(up[u][i], v)) u = up[u][i];
+        return up[u][0];
+    }
+ 
+    std::vector&lt;int&gt; get_path(int u, int v) {
+        int w = get_lca(u, v);
+        std::vector&lt;int&gt; up_path, down_path;
+        while (u != w) {
+            up_path.push_back(u);
+            u = up[u][0];
+        }
+        up_path.push_back(w);
+        while (v != w) {
+            down_path.push_back(v);
+            v = up[v][0];
+        }
+        std::reverse(down_path.begin(), down_path.end());
+        up_path.insert(up_path.end(), down_path.begin(), down_path.end());
+        return up_path;
+    }
+};
+ 
+void clearlove13() {
+    constexpr int lg = 20;
+    int n, q, rt;
+    std::cin &gt;&gt; n &gt;&gt; q ;
+    rt = 1;
+    std::vector&lt;std::vector&lt;int&gt;&gt; g(n + 1);
+    std::vector&lt;int&gt;ch(q);
+    for (int i = 2; i &lt;= n; i++) {
+        int u;
+        std::cin &gt;&gt; u;
+        g[u].push_back(i);
+        g[i].push_back(u);
+    }
+ 
+    std::vector&lt;int&gt; dep(n + 1);
+    std::vector&lt;std::array&lt;int, lg&gt;&gt; up(n + 1);
+    for (int i = 1; i &lt;= n; i++) {
+        std::fill(up[i].begin(), up[i].end(), -1);
+    }
+ 
+    auto dfs = [&amp;](auto self, int u, int fa) -&gt; void {
+        up[u][0] = fa;
+        for (int i = 1; i &lt; lg; i++) {
+            if (up[u][i - 1] != -1) {
+                up[u][i] = up[up[u][i - 1]][i - 1];
+            }
+        }
+        for (int v : g[u]) {
+            if (v != fa) {
+                dep[v] = dep[u] + 1;
+                self(self, v, u);
+            }
+        }
+    };
+ 
+    dfs(dfs, rt, -1);
+ 
+    auto lca = [&amp;](i64 u, i64 v) -&gt; int {
+        if (dep[u] &lt; dep[v]) std::swap(u, v);
+        i64 d = dep[u] - dep[v];
+        for (int i = 0; i &lt; lg; i++) {
+            if (d &gt;&gt; i &amp; 1) u = up[u][i];
+        }
+        if (u == v) return u;
+        for (int i = lg - 1; i &gt;= 0; i--) {
+            if (up[u][i] != up[v][i]) {
+                u = up[u][i];
+                v = up[v][i];
+            }
+        }
+        return up[u][0];
+    };
+ 
+    auto dist = [&amp;](i64 u, i64 v) -&gt; int {
+        i64 l = lca(u, v);
+        return dep[u] + dep[v] - 2 * dep[l];
+    };
+ 
+    for (auto &amp;i : ch) {
+        std::cin &gt;&gt; i;
+    }
+    i64 ans = dist(1, ch[0]);
+    for (int i = 1; i &lt; q; i++) {
+        ans += dist(ch[i - 1], ch[i]);
+    }
+    std::cout &lt;&lt; ans &lt;&lt; '\n';
+}
+</code></pre>
+<h2 id="e我们都是小怪兽-rescue-qfish">E.我们都是小怪兽 (Rescue Qfish)</h2>
+<p>推导公式发现边权每 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span> 步循环。利用分层图思想，将每个点按时刻拆为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span> 层，层间连边，跑 Dijkstra 最短路即可。提供建图的代码。</p>
+<pre><code class="language-cpp">for (ll i = 1; i &lt;= m; i++) {
+    cin &gt;&gt; u &gt;&gt; v &gt;&gt; w;
+    
+    ll w0 = w; //第一层是L
+    ll w1 = (w - 1) * quickpow(w + 1, md - 2, md) % md; //第二层是(L-1)/(L+1)
+    ll w2 = -quickpow(w, md - 2, md) % md;   //第三层是(-1)/L
+    ll w3 = (w + 1) * quickpow((1 - w + md) % md, md - 2, md) % md;//第四层是(L+1)/(1-L) 每四次循环
+
+    if (w1 &lt; 0) w1 += md;
+    if (w2 &lt; 0) w2 += md;
+    if (w3 &lt; 0) w3 += md;
+
+    g[u].push_back({w0, v + n});
+    g[v].push_back({w0, u + n});
+
+    g[u + n].push_back({w1, v + 2 * n});
+    g[v + n].push_back({w1, u + 2 * n});
+
+    g[u + 2 * n].push_back({w2, v + 3 * n});
+    g[v + 2 * n].push_back({w2, u + 3 * n});
+
+    g[u + 3 * n].push_back({w3, v});
+    g[v + 3 * n].push_back({w3, u});
+}
+</code></pre>
+<h2 id="f爱的魔力转圈圈终极幸存者挑战赛">F.爱的魔力转圈圈——终极幸存者挑战赛</h2>
+<p>这是一道约瑟夫环问题，但是数据开小了遍历也能过，递推公式： <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>(</mo><mi>n</mi><mo separator="true">,</mo><mi>k</mi><mo>)</mo><mo>=</mo><mi>f</mi><mo>(</mo><mi>n</mi><mo>−</mo><mn mathvariant="script">1</mn><mo separator="true">,</mo><mi>k</mi><mo>)</mo><mo>+</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">\mathcal{f(n,k)=f(n-1,k)+k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathcal">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span></span></p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n;
+    long long k;  
+    cin &gt;&gt; n &gt;&gt; k;
+    
+    long long res = 0;  // f(1)=0（1个人时位置为0）
+    for (int i = 2; i &lt;= n; ++i) {
+        res = (res + k) % i;  // 递推计算f(i)
+    }
+    
+    cout &lt;&lt; res + 1 &lt;&lt; endl;  // 转换为1-based编号
+    return 0;
+}
+</code></pre>
+<h2 id="g探险者的补给路线">G.探险者的补给路线</h2>
+<p>直接根据题目意思写就行，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi><mo separator="true">,</mo><mi>y</mi></mrow><annotation encoding="application/x-tex">x,y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> 分别是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo separator="true">,</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a,b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">b</span></span></span></span> 的倍数。</p>
+<pre><code class="language-cpp">void clearlove13(void)
+{
+    i64 a, b, x, y;
+    std::cin &gt;&gt; a &gt;&gt; b &gt;&gt; x &gt;&gt; y;
+    if (x % a == 0 &amp;&amp; y % b == 0 &amp;&amp; x &gt;= 0 &amp;&amp; y &gt;= 0) {
+        std::cout &lt;&lt; &quot;YES\n&quot;;
+    } else {
+        std::cout &lt;&lt; &quot;NO\n&quot;;
+    }
+}
+</code></pre>
+<h2 id="hqfish的法术">H.Qfish的法术</h2>
+<p>首先我们根据题意每次加2，可以知道区间和无论怎么操作奇偶性永远不会改变，由此延申我们进行分类讨论，如果区间长度是奇数的话，经过操作后的区间和直接贪心成偶数的目标去，因没有要求对操作后的值有具体要求，所以区间长度是奇数就一定可以，如果区间长度为偶数，但区间和为奇数，每次+2并不会改变奇偶性，所以无解。</p>
+<p>值得注意的是，我们需要对长度为2的区间进行一个简单的特判，区间和直接用前缀和维护就行。</p>
+<pre><code class="language-cpp">void clearlove13(void)
+{
+    int n, t;
+    std::cin &gt;&gt; n &gt;&gt; t;
+    std::vector&lt;i64&gt;a(n + 1);
+    for (int i = 1; i &lt;= n; i++) {
+        std::cin &gt;&gt; a[i];
+        a[i] += a[i - 1];
+    }
+    while (t--) {
+        int l, r;
+        std::cin &gt;&gt; l &gt;&gt; r;
+        if (r - l + 1 == 2 &amp;&amp; (a[r] != a[l - 1])) {
+            std::cout &lt;&lt; &quot;NO\n&quot;;
+            continue;
+        }
+        if (((r - l + 1LL) % 2 == 0) &amp;&amp; ((a[r] - a[l - 1]) % 2 == 1)) {
+            std::cout &lt;&lt; &quot;NO\n&quot;;
+        } else {
+            std::cout &lt;&lt; &quot;YES\n&quot;;
+        }
+    }
+}
+</code></pre>
+<h2 id="i字母混淆">I.字母混淆</h2>
+<p>直接根据题目来模拟就行。</p>
+<pre><code class="language-cpp">void solve(){
+    string s;
+    int n;
+    cin &gt;&gt; n &gt;&gt; s;
+    s = &quot; &quot; + s;
+    for (int i = 1; i &lt;= n; ++i)
+        cout &lt;&lt; (char)((s[i] + 32 - 'a' - 2 + 26) % 26 + 'a');
+}
+</code></pre>
+<h2 id="j小s的杀戮尖塔">J.小s的杀戮尖塔</h2>
+<p>超级大模拟， 首先我们可以观察到，观者的血量不会超过1000，并且大鄂虫每行动3轮攻击力就会永久增加，而观者每轮理想情况下只能有15点格挡。所以计算可知游戏轮数一定不会超过60轮。因此可以使用三维 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">dp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span></span></span></span> 求解。<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><msub><mi>p</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>q</mi></mrow></msub></mrow><annotation encoding="application/x-tex">dp_{i,j,q}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord mathdefault">d</span><span class="mord"><span class="mord mathdefault">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 代表第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 轮，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span> 代表大鄂虫剩余 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span> 滴血，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>q</mi></mrow><annotation encoding="application/x-tex">q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span></span></span></span> 代表观者处于的姿态。记录的是观者剩余的血量。每次抽取 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>5</mn></mrow><annotation encoding="application/x-tex">5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span></span></span></span> 张牌，用 dfs 记录所有会到达的状态。后面就是漫长的调试代码时间，总复杂度是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mn mathvariant="script">60</mn><mo>×</mo><mi>b</mi><mo>×</mo><mn mathvariant="script">3</mn><mo>×</mo><mn mathvariant="script">5</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O(60\times b \times  3 \times 5)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathcal">6</span><span class="mord mathcal">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathcal">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathcal">5</span><span class="mclose">)</span></span></span></span></span>。而且题目的伤害与大鄂虫的格挡实际上都是3的倍数，因此可以把伤害与血量 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>÷</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">\div 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">÷</span><span class="mord">3</span></span></span></span> 进行计算。实际上由于状态数远不会到达最高复杂度，因此代码可以通过。std 的耗时约 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>150</mn><mi>m</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">150ms</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">5</span><span class="mord">0</span><span class="mord mathdefault">m</span><span class="mord mathdefault">s</span></span></span></span>。 一些容易导致 WA 的细节：</p>
+<ul>
+<li>第一轮的行动 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 与后面轮次的行动 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 不同。后面轮次的行动 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 是有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>9</mn></mrow><annotation encoding="application/x-tex">9</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">9</span></span></span></span> 点护甲的，第一轮没有。</li>
+<li>最后 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 轮观者战胜大鄂虫时，游戏立即结算，此时观者不会再受到伤害。</li>
+<li>把费用用完并不是最优解，例如手里是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>5</mn></mrow><annotation encoding="application/x-tex">5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span></span></span></span> 张暴怒，此时可能会选择一张都不打。</li>
+</ul>
+<p>由于出题人的 std 过于臃肿，因此在这里放上能够通过对拍的 AI 代码。</p>
+<pre><code class="language-cpp">typedef long long ll;
+
+ll dp[2][40400][3]; 
+ll num[505050];
+
+struct MoveResult {
+    ll dmg;        // 造成的伤害
+    ll self_blk;   // 获得的格挡
+    ll end_stance; // 结束姿态
+};
+vector&lt;MoveResult&gt; moves_cache[3]; // [起始姿态] -&gt; 结果列表
+
+int main(){
+    cin.tie(0); cout.tie(0); ios::sync_with_stdio(0);
+    ll t, a, b, n;
+    if(!(cin &gt;&gt; t)) return 0;
+    
+    while(t--){
+        cin &gt;&gt; a &gt;&gt; b &gt;&gt; n;
+        for(int i=1; i&lt;=n; i++) cin &gt;&gt; num[i];
+        
+        // 压缩敌方血量
+        ll max_b = (b - 1) / 3 + 1;
+        
+        for(int x=0; x&lt;=max_b; x++) 
+            for(int s=0; s&lt;3; s++) dp[0][x][s] = -1;
+            
+        vector&lt;pair&lt;ll, ll&gt;&gt; q; // 队列: {敌方血量, 姿态}
+        q.push_back({max_b, 0});
+        dp[0][max_b][0] = a;
+        
+        ll ans = -1;
+        ll turn = 0;
+        ll gong = 0; // 力量
+        
+        while(!q.empty() &amp;&amp; turn &lt; 60) {
+            ll cur = turn % 2;
+            ll nxt = (turn + 1) % 2;
+            turn++;
+            
+            // 重置下一轮DP状态
+            for(int x=0; x&lt;=max_b; x++)
+                for(int s=0; s&lt;3; s++) dp[nxt][x][s] = -1;
+            
+            // 1. 确定手牌
+            vector&lt;ll&gt; hand;
+            for(int i=0; i&lt;5; i++) {
+                ll idx = ((turn - 1) * 5 + i) % n + 1;
+                hand.push_back(num[idx]);
+            }
+            sort(hand.begin(), hand.end());
+            
+            // 2. 预计算所有出牌结果
+            for(int s=0; s&lt;3; s++) moves_cache[s].clear();
+            
+            do {
+                for(int start_s=0; start_s&lt;3; start_s++) {
+                    ll c = 3, cur_s = start_s;
+                    ll raw_dmg = 0, self_blk = 0;
+                    
+                    // 记录&quot;一张牌都不出&quot;也是一种可能
+                    moves_cache[start_s].push_back({0, 0, start_s});
+                    
+                    for(ll card : hand) {
+                        ll cost = (card &gt;= 4) ? 2 : 1;
+                        if(c &lt; cost) break;
+                        c -= cost;
+                        
+                        // 伤害计算
+                        ll d = 0;
+                        if(card == 1) d = 6;
+                        else if(card == 3 || card == 4) d = 9;
+                        if(cur_s == 1) d *= 2; // 愤怒翻倍
+                        raw_dmg += d;
+                        
+                        // 格挡计算
+                        if(card == 2) self_blk += 5;
+                        else if(card == 5) self_blk += 8;
+                        
+                        // 姿态变更
+                        ll old_s = cur_s;
+                        if(card == 3) cur_s = 0;
+                        else if(card == 4) cur_s = 1;
+                        else if(card == 5) cur_s = 2;
+                        if(old_s == 2 &amp;&amp; (card == 3 || card == 4)) c += 2;
+                        
+                        // 存入结果 (伤害/3, 格挡, 姿态)
+                        moves_cache[start_s].push_back({raw_dmg / 3, self_blk, cur_s});
+                    }
+                }
+            } while(next_permutation(hand.begin(), hand.end()));
+            
+            // 3. 大鄂虫属性计算
+            ll chong = (turn - 1) % 3 + 1;
+            if(turn &gt; 1 &amp;&amp; (turn - 1) % 3 == 0) gong += 5; // 每3回合加一次力量
+            
+            ll enemy_dmg = 0;
+            if(chong == 1) enemy_dmg = 12 + gong;
+            else if(chong == 2) enemy_dmg = 7 + gong;
+            
+            ll enemy_blk_reduce = 0;
+            if(turn &gt; 1) {
+                ll prev_act = (turn - 2) % 3 + 1;
+                if(prev_act == 2) enemy_blk_reduce = 2; // 6/3
+                else if(prev_act == 3) enemy_blk_reduce = 3; // 9/3
+            }
+            
+            vector&lt;pair&lt;ll, ll&gt;&gt; next_q;
+            
+            // 4. 状态转移
+            for(auto &amp;st : q) {
+                ll e_hp = st.first;
+                ll p_stance = st.second;
+                ll p_hp = dp[cur][e_hp][p_stance];
+                
+                for(auto &amp;res : moves_cache[p_stance]) {
+                    // 计算实际对敌伤害
+                    ll dmg_dealt = max(0LL, res.dmg - enemy_blk_reduce);
+                    ll next_e_hp = e_hp - dmg_dealt;
+                    
+                    // 击杀判定
+                    if(next_e_hp &lt;= 0) {
+                        ans = max(ans, p_hp);
+                        continue; // 敌死，不入队
+                    }
+                    
+                    // 玩家承伤计算
+                    ll incoming = enemy_dmg;
+                    if(res.end_stance == 1) incoming *= 2; // 愤怒易伤
+                    ll take = max(0LL, incoming - res.self_blk);
+                    ll next_p_hp = p_hp - take;
+                    
+                    if(next_p_hp &gt; 0) {
+                        if(dp[nxt][next_e_hp][res.end_stance] == -1) {
+                            next_q.push_back({next_e_hp, res.end_stance});
+                            dp[nxt][next_e_hp][res.end_stance] = next_p_hp;
+                        } else {
+                            dp[nxt][next_e_hp][res.end_stance] = max(dp[nxt][next_e_hp][res.end_stance], next_p_hp);
+                        }
+                    }
+                }
+            }
+            q = next_q;
+        }
+        cout &lt;&lt; ans &lt;&lt; &quot;\n&quot;;
+    }
+    return 0;
+}
+</code></pre>
+
+            </div>
+            
+              <div class="reward-btn">
+                <div class="reward-btn-text">订阅</div>
+              </div>
+            
+            
+              <div class="post-footer">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong class="language" data-lan="author">本文作者：</strong>
+      ruying-suixing
+    </li>
+    <li class="post-copyright-link">
+      <strong class="language" data-lan="link">本文链接：</strong>
+      <a href="https://life.rusin7.com/post/22nd-NBTUC-solution/" title="第22届浙大宁波理工学院程序设计大赛题解" style="color: #4dabf7;">https://life.rusin7.com/post/22nd-NBTUC-solution/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong class="language" data-lan="copyright">版权声明： </strong>
+      本博客所有文章除特别声明外，均采用<a href="/about" rel="noopener" target="_blank" style="color: #4dabf7;">©️ BY-NC-SA</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+  <div class="tags">
+    
+      <a href="https://life.rusin7.com/tag/C++/"># C++</a>
+    
+  </div>
+  <div class="nav">
+    <div class="nav-prev">
+      
+        <i class="fa fa-chevron-left"></i>
+        <a class="nav-pc-next" title="Markdown语法教程" href="https://life.rusin7.com/post/markdown/">Markdown语法教程</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="Markdown语法教程" href="https://life.rusin7.com/post/markdown/">上一篇</a>
+      
+    </div>
+    <div class="nav-next">
+      
+        <a class="nav-pc-next" title="Hello Gridea" href="https://life.rusin7.com/post/hello-gridea/">Hello Gridea</a>
+        <a class="nav-mobile-next" title="Hello Gridea" href="https://life.rusin7.com/post/hello-gridea/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
+      
+    </div>
+  </div>
+</div>
+            
+            
+  <script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<div id="vcomments" style="padding: 10px 0px 0px 0px"></div>
+
+<style>
+  .v .veditor {
+    min-height: 10rem;
+    background-image: url('https://cdn.luogu.com.cn/upload/usericon/1620655.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-color: rgba(255, 255, 255, 0);
+    resize: none;
+  }
+
+  .v .vwrap {
+    border: 1px solid #000 !important;
+  }
+
+  .v .vbtn {
+    padding: .4rem 1.2rem !important;
+    border-color: #fff !important;
+    background-color: #49b1f5 !important;
+    color: #fff !important;
+    font-size: .7rem !important;
+  }
+
+  .v .vcards .vcard .vh .vmeta .vat {
+    padding: 0 .8rem !important;
+    border: 1px solid #00c4b6 !important;
+    border-radius: 5px !important;
+    color: #00c4b6 !important;
+  }
+</style>
+<script>
+  new Valine({
+    el: '#vcomments',
+    appId: 'MAAasDLv2NYMtEEAn4QnnU3l-gzGzoHsz',
+    appKey: 'dISXAmwDUYme6vJqsc5HgYw1',
+    avatar: 'identicon',
+    placeholder: '来都来了，确定不留下点痕迹吗？',
+    pageSize: '10',
+    lang: 'zh-cn',
+    enableQQ: 'true' === 'true',
+    visitor: 'true' === 'true',
+    highlight: 'true' === 'true',
+    avatarForce: 'true' === 'false',
+    serverURLs: 'https://ruying-suixing.github.io/',
+		recordIP: 'true' === 'false',
+  });
+</script>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-box">
+  <footer class="footer">
+    <!-- 访问统计 -->
+    <span id="busuanzi_container_site_pv">浏览数:<span id="busuanzi_value_site_pv"></span> 次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">访客数:<span id="busuanzi_value_site_uv"></span> 人</span>
+    <span id="busuanzi_container_today_pv">今日总访问量 <span id="busuanzi_today_pv">加载中...</span> 次</span>
+    <!-- 站点运行时间（配置文件读取） -->
+    <script>
+      BirthDay = new Date('2025-12-12');
+      if (BirthDay.getTime()) {
+        function runTime() {
+          const today = new Date();
+          const daysold = Math.floor((today.getTime() - BirthDay.getTime()) / (24 * 60 * 60 * 1000));
+          return daysold + "天";
+        }
+        setInterval(() => $("#run_time").html(runTime()), 1000);
+      } else {
+        document.querySelector('#runTimeBox') && document.querySelector('.footer').removeChild(document.querySelector('#runTimeBox'));
+      }
+    </script>
+
+    <!-- 站点运行时间（固定时间） -->
+    <div>
+      <span id="runtimeSpan" style="color: #ff0000;"></span>
+      <script>
+        function showRuntime() {
+          const startTime = new Date("12/12/2025 00:00:00");
+          const timestamp = Date.now() - startTime.getTime();
+          const oneDay = 24*60*60*1000;
+          const totalDays = Math.floor(timestamp / oneDay);
+          const remain = timestamp % oneDay;
+          const yuHours = Math.floor(remain / 3600000).toString().padStart(2, '0');
+          const yuMinutes = Math.floor((remain % 3600000) / 60000).toString().padStart(2, '0');
+          const yuSeconds = Math.floor((remain % 60000) / 1000).toString().padStart(2, '0');
+          runtimeSpan.innerHTML = `本站已安全运行: ${totalDays}天${yuHours}小时${yuMinutes}分${yuSeconds}秒`;
+          setTimeout(showRuntime, 1000);
+        }
+        showRuntime();
+      </script>
+    </div>
+
+    <!-- 页脚信息 -->
+    <div class="poweredby"></div>
+  </footer>
+
+  <!-- 侧边栏抽屉按钮（仅muse/mist主题） -->
+  
+  
+
+  <!-- 返回顶部按钮 -->
+  <div class="pisces back-to-top" id="back_to_top">
+    <i class="fa fa-arrow-up"></i>
+    
+      <span class="scrollpercent"> <span id="back_to_top_text">0</span>% </span>
+    
+  </div>
+
+  <!-- 背景图片 -->
+  
+
+  <!-- 引入子组件 -->
+  
+  
+  <!-- 替换 APlayer CSS -->
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/aplayer/1.10.1/APlayer.min.css">
+  <!-- 替换 APlayer JS -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
+  <div class="aplayer" id="aplayer"></div>
+  <script>
+  let musics = JSON.parse('[{"author":"Axero","cover":"http://p1.music.126.net/IHBaP2FnLibUS4JxTKmAAg==/109951164415666404.jpg?param=130y130","lrc":"","musicLink":"http://music.163.com/song/media/outer/url?id=36492599.mp3","musicName":"trip"},{"author":"Salder4cash","cover":"http://p1.music.126.net/QJoBtToXBScsEnWfZZa6fw==/109951164380775587.jpg?param=130y130","lrc":"","musicLink":"http://music.163.com/song/media/outer/url?id=1392600538.mp3","musicName":"【FREE】lucky"}]');
+  let mediaMusic = [];
+  for (let i = 0; i < musics.length; i++) {
+    let item = musics[i];
+    mediaMusic.push({
+      name: item.musicName,
+      artist: item.author,
+      url: item.musicLink,
+      lrc: item.lrc,
+      cover: item.cover
+    });
+  }
+
+  const ap = new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      lrcType: 3,
+      listFolded: false,
+      listMaxHeight: 90,
+      audio: mediaMusic
+  });
+  window.addEventListener('load', function() {
+    let postBody = document.querySelector('#post_body');
+    let hs = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+    postBody && hs.forEach(h => {
+      let helems = postBody.querySelectorAll(h);
+      if (helems.length > 0) {
+        helems.forEach(elem => {
+          elem.id = encodeURI(elem.id);
+        })
+      }
+    })
+  })
+  </script>
+
+
+</div>
+
+<!-- 样式合集 -->
+<style>
+  /* 运行时间文字动画 */
+  #runtimeSpan {animation: change 10s infinite;font-weight: 800;}
+  @keyframes change {
+    0%{color:#AAC9CE;}25%{color:#F56A79;}50%{color:#1AA6B7;}75%{color:#FCF9F0;}100%{color:#E73B3E;}
+  }
+  /* 模糊文本样式 */
+  .blur {filter: blur(5px);transition: filter 0.3s;}
+  .blur:hover {filter: none;}
+</style>
+
+<!-- 核心功能脚本 -->
+<script>
+  // ========== 返回顶部功能 ==========
+  const back2Top = document.querySelector("#back_to_top");
+  const back2TopText = document.querySelector("#back_to_top_text");
+  
+  // 平滑滚动到顶部
+  function scrollAnimation(currentY, targetY) {
+    const needScrollTop = targetY - currentY;
+    let _currentY = currentY;
+    setTimeout(() => {
+      const dist = Math.ceil(needScrollTop / 10);
+      _currentY += dist;
+      window.scrollTo(_currentY, currentY);
+      if (Math.abs(needScrollTop) > 10) scrollAnimation(_currentY, targetY);
+      else window.scrollTo(_currentY, targetY);
+    }, 1);
+  }
+
+  // 绑定返回顶部点击事件
+  back2Top?.addEventListener("click", (e) => {
+    scrollAnimation(document.scrollingElement.scrollTop, 0);
+    e.stopPropagation();
+    return false;
+  });
+
+  // 滚动监听（返回顶部按钮显示/百分比更新）
+  window.addEventListener("scroll", () => {
+    const scrollTop = document.scrollingElement.scrollTop;
+    const scrollHeight = document.scrollingElement.scrollHeight;
+    const clientHeight = document.scrollingElement.clientHeight;
+    const percent = Math.min(100, (scrollTop / (scrollHeight - clientHeight)) * 100);
+
+    // 更新返回顶部按钮状态
+    if (percent > 1) back2Top?.classList.add("back-top-active");
+    else back2Top?.classList.remove("back-top-active");
+
+    // 更新滚动百分比
+    if (back2TopText) back2TopText.textContent = Math.floor(percent);
+  });
+
+  // ========== 侧边栏高度计算 ==========
+  let hasCacu = false;
+  function calcuHeight() {
+    if ((!hasCacu && back2Top?.classList.contains("pisces")) || back2Top?.classList.contains("gemini")) {
+      const sideBar = document.querySelector(".sidebar");
+      const navUl = document.querySelector("#site_nav");
+      if (sideBar && navUl) {
+        sideBar.style.marginTop = `${navUl.offsetHeight + navUl.offsetTop + 15}px`;
+        hasCacu = true;
+      }
+    }
+  }
+  calcuHeight();
+  window.addEventListener("resize", calcuHeight);
+
+  // ========== 侧边栏抽屉功能 ==========
+  const drawerBox = document.querySelector("#drawer_box");
+  const rightSideBar = document.querySelector(".sidebar");
+  const viewport = document.body;
+  
+  if (drawerBox && rightSideBar) {
+    let open = false;
+    const MOTION_TIME = 300;
+    const RIGHT_MOVE_DIS = "320px";
+    const right = drawerBox.classList.contains("right");
+    const transitionDir = right ? "transition.slideRightIn" : "transition.slideLeftIn";
+    const rightMotions = document.querySelectorAll(".right-motion");
+    
+    // 定义位移属性
+    const openProp = right ? { paddingRight: RIGHT_MOVE_DIS } : { paddingLeft: RIGHT_MOVE_DIS };
+    const closeProp = right ? { paddingRight: "0px" } : { paddingLeft: "0px" };
+
+    // 抽屉点击事件
+    drawerBox.onclick = function () {
+      open = !open;
+      jQuery.Velocity(rightSideBar, "stop");
+      jQuery.Velocity(viewport, "stop");
+      jQuery.Velocity(rightMotions, "stop");
+
+      if (open) {
+        jQuery.Velocity(rightSideBar, { width: RIGHT_MOVE_DIS }, {
+          duration: MOTION_TIME,
+          begin: () => jQuery.Velocity(rightMotions, transitionDir, {})
+        });
+        jQuery.Velocity(viewport, openProp, { duration: MOTION_TIME });
+      } else {
+        jQuery.Velocity(rightSideBar, { width: "0px" }, {
+          duration: MOTION_TIME,
+          begin: () => jQuery.Velocity(rightMotions, { opacity: 0 })
+        });
+        jQuery.Velocity(viewport, closeProp, { duration: MOTION_TIME });
+      }
+
+      // 切换线条样式
+      Array.from(drawerBox.children).forEach(child => child.classList.toggle("muse-line"));
+      drawerBox.classList.toggle("sidebar-open");
+    };
+  }
+
+  // ========== 链接新窗口打开 ==========
+  const newWindow = "true";
+  if (newWindow === "true") {
+    document.querySelectorAll(".post-body a:not(.btn)").forEach(link => {
+      link.setAttribute("target", "_blank");
+    });
+  }
+
+  // ========== 搜索按钮事件 ==========
+  document.querySelector("#fa_search")?.addEventListener("click", () => {
+    document.querySelector("#search_mask").style = "";
+  });
+
+  // ========== 代码高亮 ==========
+  hljs.initHighlightingOnLoad();
+
+  // ========== 页面离开标题变化 ==========
+  const leaveTitle = "o(>﹏<)o不要离开我";
+  if (leaveTitle) {
+    let normal_title = document.title;
+    document.addEventListener("visibilitychange", () => {
+      document.title = document.visibilityState === "hidden" ? leaveTitle : normal_title;
+    });
+  }
+
+  // ========== 图片fancybox处理 ==========
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".section img").forEach(image => {
+      const parent = image.parentElement;
+      const next = image.nextElementSibling;
+      parent.removeChild(image);
+      
+      const aelem = document.createElement("a");
+      aelem.href = image.src;
+      aelem.dataset.fancybox = "images";
+      aelem.dataset.rel = "fancybox-button";
+      aelem.classList.add("fancybox");
+      aelem.appendChild(image);
+      
+      parent.insertBefore(aelem, next);
+    });
+  });
+
+  // ========== 控制台打印信息 ==========
+  console.log(`
+██████╗ ███████╗ █████╗ ███╗   ██╗██╗   ██╗███████╗
+██╔══██╗██╔════╝██╔══██╗████╗  ██║██║   ██║██╔════╝
+██████╔╝█████╗  ███████║██╔██╗ ██║██║   ██║█████╗  
+██╔══██╗██╔══╝  ██╔══██║██║╚██╗██║██║   ██║██╔══╝  
+██████╔╝███████╗██║  ██║██║ ╚████║╚██████╔╝███████╗
+╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝
+  `);
+  if (window.console?.log) {
+    console.log("%c毒鸡汤（https://ruying-suixing.github.io/dujitang）","color:#fff; background-color:#333333; padding:5px; border-radius:10px; font-size:16px;");
+    console.log('%c在我的网站打开控制台，您想做什么？','color:#fff; background-color:#333333; padding:5px; border-radius:10px; font-size:16px;');
+  }
+</script>
+
+<!-- 第三方资源 -->
+<link rel="stylesheet" href="/media/css/jquery.fancybox.css" />
+<script src="/media/js/jquery.fancybox.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+<!-- 特效合集 -->
+<script>
+  // 1. 顶部进度条
+  (function(w, d) {
+    const domDiv = d.createElement('div');
+    domDiv.style.cssText = 'position: fixed; top: 0; left: 0; width: 0; height: 3px;box-shadow: 0 0 3px #999; background: -webkit-linear-gradient(left, red,orange,yellow,green,blue,indigo,violet );z-index: 999999;-webkit-transition:width .3s linear;';
+    d.body.appendChild(domDiv);
+    const domH = w.innerHeight || d.documentElement.clientHeight || d.body.clientHeight;
+    w.addEventListener('scroll', () => {
+      domDiv.style.width = Math.round(w.pageYOffset / (d.body.offsetHeight - domH) * 100) + '%';
+    });
+  })(window, document);
+
+  // 2. 鼠标光晕特效
+  (function() {
+    const circle = document.createElement('div');
+    circle.style.cssText = `
+      position: fixed; border-radius: 50%; pointer-events: none;
+      background: radial-gradient(circle, #ff7676 0%, #74b9ff 25%, #a29bfe 50%, #fd79a8 75%, #fdcb6e 100%);
+      filter: blur(15px); opacity: 0.6; z-index: 99999999;
+      transform: translate(-50%, -50%); transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+      width: 80px; height: 80px;
+    `;
+    document.body.appendChild(circle);
+    
+    document.addEventListener('mousemove', (e) => {
+      circle.style.left = e.clientX + 'px';
+      circle.style.top = e.clientY + 'px';
+    });
+    document.addEventListener('mouseleave', () => circle.style.opacity = '0');
+    document.addEventListener('mouseenter', () => circle.style.opacity = '0.6');
+  })();
+
+  // 3. 绿色小圆鼠标跟随
+  (function() {
+    const cursorDot = document.createElement('div');
+    cursorDot.style.cssText = `
+      position: fixed; width: 16px; height: 16px; background-color: #34d859;
+      border-radius: 50%; z-index: 999999999; pointer-events: none;
+      opacity: 0.5; transform: translate(-50%, -50%);
+    `;
+    document.body.appendChild(cursorDot);
+
+    let dotX = 0, dotY = 0, mouseX = 0, mouseY = 0;
+    const speed = 0.16;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateDot() {
+      dotX += (mouseX - dotX) * speed;
+      dotY += (mouseY - dotY) * speed;
+      cursorDot.style.left = dotX + "px";
+      cursorDot.style.top = dotY + "px";
+      requestAnimationFrame(animateDot);
+    }
+    animateDot();
+  })();
+
+  // 4. 屏蔽F12
+  window.onload = function() {
+    document.onkeydown = function(e) {
+      e = e || window.event;
+      // 监听 F12 键（查看源代码）
+      if (e.keyCode === 123) {
+        Swal.fire({
+          title: '错误',
+          text: '请尊重本站版权，本站不允许查看源代码。',
+          icon: 'error',
+          timer: 1200,
+          customClass: { 
+            container: 'swal-zindex-fix',
+            popup: 'swal-large-popup',
+            title: 'swal-large-title',
+            content: 'swal-large-content',
+            confirmButton: 'swal-custom-button-1'
+          }
+        });
+        setTimeout(() => {
+          document.querySelector('.swal-zindex-fix')?.style.setProperty('z-index', '999999');
+        }, 0);
+        return false;
+      }
+    }
+  }
+</script>
+<!-- ============================= -->
+<!-- ============================= -->
+<!-- 右键菜单自定义，使用AI辅助完成 -->
+<!-- ============================= -->
+<!-- ============================= -->
+<!-- ============================= -->
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/sweetalert2/11.10.8/sweetalert2.min.css">
+<script src="https://cdn.bootcdn.net/ajax/libs/sweetalert2/11.10.8/sweetalert2.min.js"></script>
+
+<!-- 增加SweetAlert2样式覆盖，提升弹窗层级 -->
+<style type="text/css">
+/* 右键菜单样式（纯文本图标，无字体依赖） */
+.usercm {
+    background: #fff !important;
+    font-size: 13px !important;
+    width: 200px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    position: absolute;
+    display: none;
+    z-index: 9999999; /* 右键菜单层级 */
+    opacity: 0.95;
+    border-radius: 8px;
+    padding: 5px 0;
+    margin: 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.usercm ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.usercm li {
+    margin: 0;
+    padding: 0;
+    line-height: 35px;
+}
+.usercm li a {
+    color: #666;
+    padding: 0 15px;
+    display: block;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+.usercm li a:hover {
+    color: #fff;
+    background: rgba(170,222,18,0.88);
+}
+/* 纯文本图标（替代FontAwesome，避免乱码） */
+.usercm li a .icon {
+    margin-right: 10px;
+    display: inline-block;
+    width: 16px;
+    text-align: center;
+}
+.usercm li.line {
+    height: 1px;
+    background: #e5e5e5;
+    margin: 2px 0;
+    padding: 0;
+}
+/* 隐藏不需要的菜单 */
+.usercm .text-menu,
+.usercm .img-menu,
+.usercm .link-menu,
+.usercm .history-forward,
+.usercm .history-back {
+    display: none;
+}
+
+/* 提升SweetAlert2弹窗层级，避免被遮挡 */
+.swal2-container {
+    z-index: 999999 !important; /* 比右键菜单更高 */
+}
+</style>
+
+<!-- 右键菜单DOM（新增文本搜索） -->
+<div class="usercm" style="left: 0; top: 0;">
+    <ul>
+        <!-- 首页 -->
+        <li><a href="https://ruying-suixing.github.io/"><span class="icon">🏠</span><span>首页</span></a></li>
+        
+        <!-- 文字相关菜单 -->
+        <li class="text-menu"><a onclick="copyText()"><span class="icon">📋</span><span>复制文字（Ctrl+C）</span></a></li>
+        <!-- 新增：划词搜索按钮 -->
+        <li class="text-menu"><a onclick="showSearchEnginePopup()"><span class="icon">🔍</span><span>文本搜索</span></a></li>
+        
+        <!-- 页面导航 -->
+        <li class="history-forward"><a href="javascript:history.go(1)"><span class="icon">▶</span><span>前进</span></a></li>
+        <li class="history-back"><a href="javascript:history.go(-1)"><span class="icon">◀</span><span>后退</span></a></li>
+        <li><a href="javascript:location.reload()"><span class="icon">🔄</span><span>刷新页面（F5）</span></a></li>
+        <li><a onclick="openNewTab()"><span class="icon">🖼️</span><span>复制页面（Ctrl+Shift+K）</span></a></li>
+        
+        <!-- 分享链接 -->
+        <li><a onclick="copyPageLink()"><span class="icon">🔗</span><span>分享链接</span></a></li>
+        
+        <li class="line"></li>
+        
+        <!-- 图片专属 -->
+        <li class="img-menu"><a onclick="copyImgUrl()"><span class="icon">🔗</span><span>复制图片链接</span></a></li>
+        <li class="img-menu"><a onclick="openImg()"><span class="icon">↗</span><span>新页打开图片</span></a></li>
+        <li class="line img-menu"></li>
+        
+        <!-- 链接专属 -->
+        <li class="link-menu"><a onclick="copyLink()"><span class="icon">📎</span><span>复制链接地址</span></a></li>
+        <li class="link-menu"><a onclick="openLink()"><span class="icon">↗</span><span>新页打开链接</span></a></li>
+        <li class="line link-menu"></li>
+        
+        <!-- 通用功能 -->
+        <li><a href="https://ruying-suixing.github.io/404.html"><span class="icon">🤝</span><span>申请友链</span></a></li>
+        <li><a href="mailto:Haoxuanzhang2014@outlook.com?subject=来自博客读者的联系&body=您好，我从您的博客找到您..."><span class="icon">✉️</span><span>E-mail</span></a></li>
+    </ul>
+</div>
+
+<script>
+let curImg = null;
+let curLink = null;
+const menu = document.querySelector('.usercm');
+
+// 封装提示函数
+function showToast(message, isSuccess = true) {
+    if (typeof Swal !== 'undefined') {
+        Swal.fire({
+            title: isSuccess ? '成功' : '提示',
+            text: message,
+            icon: isSuccess ? 'success' : 'info',
+            timer: 1000, // 1秒自动关闭
+            timerProgressBar: true,
+            showConfirmButton: false,
+            position: 'top-end',
+            toast: true,
+            backdrop: false
+        });
+    } else {
+        alert(message);
+    }
+}
+
+// 检测浏览器历史记录
+function checkHistoryState() {
+    const forwardItem = document.querySelector('.history-forward');
+    const backItem = document.querySelector('.history-back');
+    const canForward = window.history.length > (window.history.state?.idx || 0) + 1;
+    const canBack = window.history.state?.idx > 0 || window.history.length > 1;
+    forwardItem.style.display = canForward ? 'block' : 'none';
+    backItem.style.display = canBack ? 'block' : 'none';
+}
+
+// 禁用原生右键+显示菜单
+document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    resetMenu();
+    checkHistoryState();
+
+    curImg = e.target.tagName === 'IMG' ? e.target : e.target.closest('img');
+    curLink = e.target.tagName === 'A' ? e.target : e.target.closest('a');
+    const selectedText = window.getSelection().toString().trim();
+
+    if (selectedText) document.querySelectorAll('.text-menu').forEach(item => item.style.display = 'block');
+    if (curImg) document.querySelectorAll('.img-menu').forEach(item => item.style.display = 'block');
+    if (curLink) document.querySelectorAll('.link-menu').forEach(item => item.style.display = 'block');
+
+    const scrollX = window.scrollX || document.documentElement.scrollLeft;
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    const finalLeft = Math.min(e.clientX + scrollX, window.innerWidth - menu.offsetWidth + scrollX);
+    const finalTop = Math.min(e.clientY + scrollY, window.innerHeight - menu.offsetHeight + scrollY);
+    
+    menu.style.left = `${finalLeft}px`;
+    menu.style.top = `${finalTop}px`;
+    menu.style.display = 'block';
+});
+
+// 点击空白关闭
+document.addEventListener('click', (e) => {
+    if (!menu.contains(e.target)) {
+        menu.style.display = 'none';
+        resetMenu();
+    }
+});
+
+// 重置菜单
+function resetMenu() {
+    curImg = null;
+    curLink = null;
+    document.querySelectorAll('.text-menu, .img-menu, .link-menu, .history-forward, .history-back').forEach(item => {
+        item.style.display = 'none';
+    });
+}
+// ==================== 划词搜索功能（精简版） ====================
+function showSearchEnginePopup() {
+    const text = window.getSelection().toString().trim();
+    if (!text) {
+        showToast("未选中任何文字", false);
+        menu.style.display = 'none';
+        return;
+    }
+
+    menu.style.display = 'none';
+
+    // SweetAlert2 选择弹窗
+    Swal.fire({
+        title: '选择搜索引擎',
+        text: `搜索：${text}`,
+        icon: 'question',
+        showCancelButton: true,
+        cancelButtonText: '取消',
+        // 核心按钮
+        showConfirmButton: true,
+        confirmButtonText: '百度',
+        confirmButtonColor: '#b81111',
+        showDenyButton: true,
+        denyButtonText: '必应',
+        denyButtonColor: '#0078d4',
+        showNeutralButton: true,
+        neutralButtonText: '谷歌',
+        neutralButtonColor: '#4285f4',
+        // 仅保留DuckDuckGo按钮
+        footer: `
+            <div style="margin-top: 15px; display: flex; gap: 10px; justify-content: center;">
+                <button class="swal2-custom-engine-btn" style="padding: 8px 16px; background: #de5833; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                    DuckDuckGo
+                </button>
+            </div>
+        `,
+        customClass: {
+            container: 'swal-zindex-fix',
+            popup: 'swal-large-popup',
+            title: 'swal-large-title',
+            content: 'swal-large-content',
+            actions: 'swal2-actions-flex'
+        }
+    }).then((result) => {
+        let url = '';
+        if (result.isConfirmed) {
+            url = `https://www.baidu.com/s?wd=${encodeURIComponent(text)}`;
+        } else if (result.isDenied) {
+            url = `https://cn.bing.com/search?q=${encodeURIComponent(text)}`;
+        } else if (result.isNeutral) {
+            url = `https://www.google.com/search?q=${encodeURIComponent(text)}`;
+        } else {
+            return;
+        }
+        Swal.fire({
+          title: '成功',
+          text: `搜索成功！正在跳转...`,
+          icon: 'success',
+          showConfirmButton: false
+        })
+        setTimeout(() => window.open(url, '_blank'), 1500);
+    });
+
+    // 监听 DuckDuckGo 按钮点击
+    document.querySelector('.swal2-custom-engine-btn')?.addEventListener('click', () => {
+        Swal.close();
+        Swal.fire({
+          title: '成功',
+          text: `搜索成功！正在跳转...`,
+          icon: 'success',
+          showConfirmButton: false
+        })
+        setTimeout(() => window.open(`https://duckduckgo.com/?q=${encodeURIComponent(text)}`, '_blank'), 1500);
+    });
+}
+
+// 复制当前页面链接
+function copyPageLink() {
+    const pageUrl = window.location.href;
+    menu.style.display = 'none';
+    
+    if (!navigator.clipboard) {
+        const textArea = document.createElement('textarea');
+        textArea.value = pageUrl;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showToast('复制成功 已复制到剪切板');
+        } catch (err) {
+            showToast('复制失败，请手动复制', false);
+        } finally {
+            document.body.removeChild(textArea);
+        }
+        return;
+    }
+
+    navigator.clipboard.writeText(pageUrl)
+        .then(() => showToast('复制成功 已复制到剪切板'))
+        .catch(() => showToast('复制失败，请手动复制', false));
+}
+
+// 复制文字
+function copyText() {
+    const text = window.getSelection().toString().trim();
+    if (!text) return;
+    
+    menu.style.display = 'none';
+    
+    if (!navigator.clipboard) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showToast('文字复制成功！');
+        } catch (err) {
+            showToast('复制失败，请手动复制', false);
+        } finally {
+            document.body.removeChild(textArea);
+        }
+        return;
+    }
+
+    navigator.clipboard.writeText(text)
+        .then(() => showToast('文字复制成功！'))
+        .catch(() => showToast('复制失败，请手动复制', false));
+}
+
+function openNewTab() {
+    window.open(location.href, '_blank');
+    menu.style.display = 'none';
+}
+
+function copyImgUrl() {
+    if (!curImg) return;
+    menu.style.display = 'none';
+    const imgUrl = curImg.src;
+    
+    if (!navigator.clipboard) {
+        const textArea = document.createElement('textarea');
+        textArea.value = imgUrl;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showToast('图片链接复制成功！');
+        } catch (err) {
+            showToast('复制失败，请手动复制', false);
+        } finally {
+            document.body.removeChild(textArea);
+        }
+        return;
+    }
+
+    navigator.clipboard.writeText(imgUrl)
+        .then(() => showToast('图片链接复制成功！'))
+        .catch(() => showToast('复制失败，请手动复制', false));
+}
+
+function openImg() {
+    curImg && window.open(curImg.src, '_blank');
+    menu.style.display = 'none';
+}
+
+function copyLink() {
+    if (!curLink) return;
+    menu.style.display = 'none';
+    const linkUrl = curLink.href;
+    
+    if (!navigator.clipboard) {
+        const textArea = document.createElement('textarea');
+        textArea.value = linkUrl;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showToast('链接地址复制成功！');
+        } catch (err) {
+            showToast('复制失败，请手动复制', false);
+        } finally {
+            document.body.removeChild(textArea);
+        }
+        return;
+    }
+
+    navigator.clipboard.writeText(linkUrl)
+        .then(() => showToast('链接地址复制成功！'))
+        .catch(() => showToast('复制失败，请手动复制', false));
+}
+
+function openLink() {
+    curLink && window.open(curLink.href, '_blank');
+    menu.style.display = 'none';
+}
+
+window.addEventListener('load', () => {
+    if (typeof Swal === 'undefined') {
+        console.warn('SweetAlert2 加载失败，将使用原生alert替代');
+    }
+});
+</script>
+    <div class="reward-mask" style="display: none;">
+  <div class="reward-relative">
+    <span class="close" aria-hidden="true">x</span>
+    <div class="reward-body">
+      <h2>感谢您的订阅，我会继续努力的!</h2>
+      <a href="https://github.com/ruying-suixing/ruying-suixing.github.io/issues/4" target="_blank"><strong>在 github 上订阅本博客月刊</strong></a>
+      <br>
+      <div class="reward-img-box">
+        <div style="position: relative; width: 140px; height: 140px;">
+                   
+          
+            <img id="zfb" class="reward-img" src="https://cdn.luogu.com.cn/upload/usericon/1620655.png" alt="赞赏码">
+          
+          
+            <img id="wx" class="reward-img" src="https://tuchuang.org.cn/imgs/2026/01/09/55266142be9c7a23.png" alt="赞赏码">
+          
+        </div>
+      </div>
+      <p class="reward-word">点击蓝字订阅月刊，每月初获取最新文章，详情请查看以上链接中的订阅须知。</p>
+      <p class="reward-tip">感谢您的订阅！</p>
+      <blockquote> <p>Tip：您需要拥有一个 github 账号，如没有请<a href="https://github.com/signup" title="创建 github 账号">点此创建</a>。</p> </blockquote>
+    </div>
+    <div class="bottom">
+      
+      <div id="zfbBtn" class="pay-text">
+        绿勾
+      </div>
+      
+      
+      <div id="wxBtn" class="pay-text">
+        红叉
+      </div>
+      
+    </div>
+  </div>
+</div>
+<style>
+  .reward-mask {
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #00000054;
+  }
+
+  .reward-relative {
+    position: relative;
+    width: 480px;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: #fff;
+    top: 50%;
+    margin-top: -205px;
+  }
+
+  .reward-relative .close {
+    position: absolute;
+    right: 10px;
+    font-weight: normal;
+    font-size: 16px;
+    color: #929292;
+  }
+
+  .reward-body {
+    padding: 40px 20px 20px;
+  }
+
+  .bottom {
+    display: flex;
+  }
+
+  .reward-btn {
+    text-align: center;
+  }
+
+  .reward-btn-text {
+    display: inline-block;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 50%;
+    background-color: #ff9734;
+    color: #FFF;
+    margin-top: 20px;
+  }
+
+  .pay-text {
+    margin-top: 10px;
+    padding: 10px;
+    flex: 1;
+    transition: all .2s linear;
+  }
+
+  .pay-text:hover {
+    background-color: #a5a5a536;
+  }
+
+  .reward-body h2 {
+    padding-top: 10px;
+    text-align: center;
+    color: #a3a3a3;
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0 0 20px;
+  }
+
+  .reward-body h2:after,
+  .reward-body h2:before {
+    font-family: Arial, Helvetica, sans-serif;
+    background: 0 0;
+    width: 0;
+    height: 0;
+    font-style: normal;
+    color: #eee;
+    font-size: 80px;
+    position: absolute;
+    top: 20px;
+  }
+
+  .reward-body h2:before {
+    content: '\201c';
+    left: 50px;
+  }
+
+  .reward-body h2:after {
+    content: '\201d';
+    right: 80px;
+  }
+
+  .reward-img-box {
+    display: inline-block;
+    padding: 10px;
+    border: 6px solid #ea5f00;
+    margin: 0 auto;
+    border-radius: 3px;
+    position: relative;
+  }
+
+  .reward-img {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 767px) {
+    .reward-relative {
+      height: 100%;
+      top: 0px;
+      margin-top: 0;
+      width: auto;
+    }
+
+    .reward-relative .bottom {
+      flex-direction: column;
+    }
+
+    .reward-relative .pay-text {
+      width: 80%;
+      margin: 5px auto;
+      border: 1px solid silver;
+      padding: 6px;
+      border-radius: 4px;
+    }
+
+    .reward-body h2:after {
+      right: 40px;
+    }
+
+    .reward-body h2:after,
+    .reward-body h2:before {
+      font-size: 60px;
+    }
+
+    .reward-body h2:before {
+      left: 20px;
+    }
+  }
+</style>
+<script>
+  !function () {
+    var mask = document.querySelector('.reward-mask');
+    let close = document.querySelector('.reward-relative .close');
+    let rewardBtn = document.querySelector('.reward-btn');
+
+    let zfb = document.querySelector('#zfb'),
+      wx = document.querySelector('#wx'),
+      zfbBtn = document.querySelector('#zfbBtn'),
+      wxBtn = document.querySelector('#wxBtn');
+
+    if (zfbBtn && wxBtn) {
+      zfbBtn.addEventListener('click', () => {
+        jQuery.Velocity(zfb, 'transition.slideLeftIn', {
+          duration: 400
+        });
+        jQuery.Velocity(wx, 'transition.slideRightOut', {
+          display: 'none',
+          duration: 400
+        });
+      });
+
+      wxBtn.addEventListener('click', () => {
+        jQuery.Velocity(wx, 'transition.slideRightIn', {
+          duration: 400
+        });
+        jQuery.Velocity(zfb, 'transition.slideLeftOut', {
+          display: 'none',
+          duration: 400
+        });
+      });
+    }
+
+    rewardBtn.addEventListener('click', (e) => {
+      jQuery.Velocity(mask, 'transition.slideDownIn', {
+        duration: 400
+      })
+    });
+
+    close.addEventListener('click', (e) => {
+      e.preventDefault();
+      jQuery.Velocity(mask, 'transition.slideUpOut', {
+        duration: 400
+      })
+    })
+  }()
+</script>
+
+  </div>
+</body>
+
+<input hidden id="copy" />
+<style>
+  /* 复制按钮样式 - 放大图标并美化 */
+  .copy-code {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
+    color: #666;
+    background: #f5f5f5;
+    border-radius: 4px;
+    padding: 4px 8px;
+    transition: all 0.3s;
+    z-index: 10;
+  }
+  
+  .copy-code:hover {
+    color: #0078e7;
+    background: #e8f4ff;
+  }
+  
+  /* 放大fa-copy图标 */
+  .copy-code i {
+    font-size: 18px; /* 图标大小，可根据需要调整 */
+    margin-right: 4px;
+  }
+  
+  /* 给pre添加相对定位，让按钮定位生效 */
+  pre {
+    position: relative;
+  }
+</style>
+<script>
+  !function () {
+    let times = document.querySelectorAll('.publish-time');
+    for (let i = 0; i < times.length; i++) {
+      let date = times[i].dataset.t;
+      let time = Math.floor((new Date().getTime() - new Date(date).getTime()) / 1000);
+      if (time < 60) {
+        str = time + '秒之前';
+      } else if (time < 3600) {
+        str = Math.floor(time / 60) + '分钟之前';
+      } else if (time >= 3600 && time < 86400) {
+        str = Math.floor(time / 3600) + '小时之前';
+      } else if (time >= 86400 && time < 259200) {
+        str = Math.floor(time / 86400) + '天之前';
+      } else {
+        str = times[i].textContent;
+      }
+      times[i].textContent = str;
+    }
+  }();
+</script>
+
+<script>
+  let language = '';
+  if (language !== '') {
+    let map = new Map();
+    if (language === 'en') {
+      map.set('search', 'Search');
+      map.set('category', 'Categories');
+      map.set('article', 'Articles');
+      map.set('tag', 'Tags');
+      map.set('top', 'Top');
+      map.set('publish', 'published');
+      map.set('minute', ' minutes');
+      map.set('read-more', 'Read More');
+      map.set('view', 'View');
+      map.set('words', ' words');
+      map.set('category-in', 'category in');
+      map.set('preview', 'Meta');
+      map.set('index', 'Toc');
+      map.set('no-archives', "You haven't created yet");
+      map.set('archives', " articles in total");
+      map.set('cloud-tags', " tags in total");
+      map.set('copyright', "Copyright: ");
+      map.set('author', "Author: ");
+      map.set('link', "Link: ");
+      map.set('leave-message', "Leave a message");
+      map.set('format', "Links Format");
+      map.set('site-name', "Name: ");
+      map.set('site-link', "Link: ");
+      map.set('site-desc', "Desc: ");
+      map.set('stat', " related results, taking ");
+      map.set('stat-time', " ms");
+      map.set('site-img', "Image: ");
+    }
+
+    if (map.size > 0) {
+      let lanElems = document.querySelectorAll('.language');
+      lanElems.forEach(elem => {
+        let lan = elem.dataset.lan, text = map.get(lan);
+        if (elem.__proto__ === HTMLInputElement.prototype) {
+          elem.placeholder = text
+        } else {
+          if (elem.dataset.count) {
+            text = elem.dataset.count + text;
+          }
+          elem.textContent = text;
+        }
+      })
+    }
+  }
+
+  window.Clipboard = (function (window, document, navigator) {
+    var textArea,
+      copy;
+
+    // 判断是不是ios端
+    function isOS() {
+      return navigator.userAgent.match(/ipad|iphone/i);
+    }
+    //创建文本元素
+    function createTextArea(text) {
+      textArea = document.createElement('textArea');
+      textArea.value = text;
+      textArea.style.width = 0;
+      textArea.style.height = 0;
+      textArea.clientHeight = 0;
+      textArea.clientWidth = 0;
+      document.body.appendChild(textArea);
+    }
+    //选择内容
+    function selectText() {
+      var range,
+        selection;
+
+      if (isOS()) {
+        range = document.createRange();
+        range.selectNodeContents(textArea);
+        selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        textArea.setSelectionRange(0, 999999);
+      } else {
+        textArea.select();
+      }
+    }
+
+    //复制到剪贴板
+    function copyToClipboard() {
+      try {
+        document.execCommand("Copy")
+      } catch (err) {
+        alert("复制错误！请手动复制！")
+      }
+      document.body.removeChild(textArea);
+    }
+
+    copy = function (text) {
+      createTextArea(text);
+      selectText();
+      copyToClipboard();
+    };
+
+    return {
+      copy: copy
+    };
+  })(window, document, navigator);
+
+  function copyCode(e) {
+    if (e.srcElement.tagName === 'SPAN' && e.srcElement.classList.contains('copy-code')) {
+      let code = e.currentTarget.querySelector('code');
+      var text = code.innerText;
+      // 修改判断逻辑 - 检查图标+文字组合
+      if (e.srcElement.innerHTML.includes('复制成功')) {
+        return;
+      }
+      // 修改：替换为复制成功的图标+文字
+      e.srcElement.innerHTML = '<i class="fas fa-check"></i> 复制成功';
+      (function (elem) {
+        setTimeout(() => {
+          // 修改：恢复为复制图标+文字
+          elem.innerHTML = '<i class="fas fa-copy"></i> 复制代码';
+        }, 1000);
+      })(e.srcElement)
+      Clipboard.copy(text);
+    }
+  }
+
+  let pres = document.querySelectorAll('pre');
+  pres.forEach(pre => {
+    let code = pre.querySelector('code');
+    let copyElem = document.createElement('span');
+    copyElem.classList.add('copy-code');
+    // 修改：替换为fa-copy图标+文字
+    copyElem.innerHTML = '<i class="fas fa-copy"></i> 复制代码';
+    pre.appendChild(copyElem);
+    pre.onclick = copyCode
+  })
+
+</script>
+<script src="/media/js/motion.js"></script>
+
+
+
+
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas>
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+<script type="text/javascript" src="/media/js/mouse/fireworks.js"></script>
+
+
+  <script src="/media/js/cool.js"></script>
+
+
+
+  <div class="snow-container"></div>
+  <script src="/media/js/bg/snow.js"></script>
+
+</html>
